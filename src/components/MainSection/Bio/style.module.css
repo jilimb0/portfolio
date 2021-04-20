@@ -1,0 +1,31 @@
+.title {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  text-align: center;
+
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-origin: border-box;
+
+  color: white;
+  font-size: 3em;
+}
+.title1 {
+  background-image: url(../../../assets/bg1.webp);
+  transition: all 1s;
+}
+.title2 {
+  background-image: url(../../../assets/bg2.webp);
+  transition: all 1s;
+}
+.links {
+  font-size: 1em;
+  display: flex;
+  justify-items: space-around;
+}
+.links a {
+  color: white;
+  font-size: 1em;
+}

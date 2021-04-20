@@ -1,0 +1,34 @@
+{
+  "stopCheck": {
+    "id": "stopcheck",
+    "name": "Stop Check",
+    "link": "https://stopcheck.top",
+    "descr": "Сайт для автосервиса \n Технологии: React, SCSS, JS \n",
+    "ghLink": "https://github.com/jilimb0/StopCheck"
+  },
+  "indulgence": {
+    "id": "indulgence",
+    "name": "Indulgence",
+    "link": "https://indulgence.cc",
+    "descr": "Сайт-визитка для мобильного приложения Indulgence \n Технологии: HTML, CSS, JS"
+  },
+  "indaapp": {
+    "id": "indaapp",
+    "name": "IndaApp",
+    "link": "https://www.indaapp.com",
+    "descr": "Сайт-визитка для компании IndaApp \n Технологии: HTML, CSS, JS"
+  },
+  "admin": {
+    "id": "admin",
+    "name": "Admin Panel",
+    "link": "",
+    "descr": "Админ-панель для мобильного приложения Indulgence \n Технологии: React, SCSS, JS, API, axios"
+  },
+  "pokemonGame": {
+    "id": "pokemon",
+    "name": "Pokemon",
+    "link": "https://determined-fermi-74d0bc.netlify.app",
+    "descr": "Игра про покемонов \n Технологии: React, styled components, JS \n",
+    "ghLink": "https://github.com/jilimb0/pokemon-game-js"
+  }
+}

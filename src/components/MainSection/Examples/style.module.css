@@ -1,0 +1,37 @@
+.examples-container {
+  display: grid;
+  place-items: center;
+}
+
+.example {
+  margin: 1vw 2.7vw;
+  display: flex;
+  align-items: center;
+}
+.example:nth-child(odd) {
+  flex-direction: row-reverse;
+}
+
+.link,
+.description {
+  padding: 1%;
+  width: 45vw;
+}
+.link img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0.5em 0.5em 1em 0.1em black;
+}
+.description {
+  text-align: center;
+  font-size: 2em;
+  white-space: pre-wrap;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.75);
+  border-radius: 1em;
+}
+
+.ghLink {
+  color: white;
+  font-size: 1em;
+}
