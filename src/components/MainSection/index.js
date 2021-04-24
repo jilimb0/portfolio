@@ -10,12 +10,10 @@ import s from "./style.module.css"
 const MainSection = ({ handlePortfolio }) => {
   let now = new Date().getHours()
 
-  if (now < 5) now = bg1
-  if (now < 14) now = bg2
-  if (now < 17) now = bg3
-  if (now < 20 <= 24) now = bg4
-
-  console.log(now)
+  if (0 < now && now <= 5) now = bg1
+  if (5 < now && now <= 12) now = bg2
+  if (12 < now && now <= 17) now = bg3
+  if (20 < now && now <= 24) now = bg4
 
   return (
     <div className={s.container} style={{ backgroundImage: `url(${now})` }}>

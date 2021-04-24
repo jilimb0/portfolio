@@ -30,5 +30,12 @@
     "link": "https://determined-fermi-74d0bc.netlify.app",
     "descr": "Игра про покемонов \n Технологии: React, styled components, JS \n",
     "ghLink": "https://github.com/jilimb0/pokemon-game-js"
+  },
+  "weatherForecast": {
+    "id": "weather",
+    "name": "Weather Forecast",
+    "link": "https://weather-forecast.ml/",
+    "descr": "Минималистичный прогноз погоды \n Технологии: HTML, CSS, JS \n",
+    "ghLink": "https://github.com/jilimb0/weather-forecast"
   }
 }

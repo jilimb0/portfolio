@@ -5,6 +5,7 @@ import pokemon from "../../../assets/pokemon.webp"
 import indulgence from "../../../assets/indulgence.webp"
 import indaapp from "../../../assets/indaapp.webp"
 import admin from "../../../assets/admin.webp"
+import weather from "../../../assets/weather.webp"
 
 const Examples = () => {
   return (
@@ -23,6 +24,8 @@ const Examples = () => {
                   ? indulgence
                   : id === "indaapp"
                   ? indaapp
+                  : id === "weather"
+                  ? weather
                   : admin
               }
               alt={id}
