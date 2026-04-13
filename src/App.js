@@ -1,6 +1,6 @@
+import { useState } from "react"
 import Header from "./components/Header"
 import MainSection from "./components/MainSection"
-import { useState } from "react"
 
 function App() {
   const [bool, setBool] = useState(false)

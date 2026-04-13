@@ -8,15 +8,19 @@ import bg4 from "./img/4.jpg"
 import s from "./style.module.css"
 
 const MainSection = ({ handlePortfolio }) => {
-  let now = new Date().getHours()
+  const hour = new Date().getHours()
+  let backgroundImage = bg4
 
-  if (0 < now && now <= 5) now = bg1
-  if (5 < now && now <= 12) now = bg2
-  if (12 < now && now <= 17) now = bg3
-  if (20 < now && now <= 24) now = bg4
+  if (hour >= 22 || hour < 6) backgroundImage = bg4
+  else if (hour < 12) backgroundImage = bg1
+  else if (hour < 18) backgroundImage = bg2
+  else backgroundImage = bg3
 
   return (
-    <div className={s.container} style={{ backgroundImage: `url(${now})` }}>
+    <div
+      className={s.container}
+      style={{ backgroundImage: `url(${backgroundImage})` }}
+    >
       <Bio handlePage={handlePortfolio} />
       <Examples />
     </div>
