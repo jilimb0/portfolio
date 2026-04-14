@@ -1,0 +1,460 @@
+.desktopRoot {
+  min-height: 100vh;
+  position: relative;
+  color: #ecf3ff;
+  background-image: var(--wallpaper-image);
+  background-size: var(--wallpaper-size, cover);
+  background-position: var(--wallpaper-position, center);
+  background-repeat: no-repeat;
+}
+
+.menuBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 3.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1.2rem;
+  background: transparent;
+  border-bottom: 0;
+  box-shadow: none;
+  z-index: 60;
+}
+
+.menuLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+.menuGroup {
+  position: relative;
+}
+
+.appleButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 0.6rem;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.appleLogo {
+  width: 2rem;
+  height: 2rem;
+  display: block;
+}
+
+.menuItem {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #eef4ff;
+  border: 0;
+  background: transparent;
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.5rem;
+  white-space: nowrap;
+}
+
+.menuItem:hover,
+.menuItem[aria-expanded="true"] {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.menuPanel {
+  position: absolute;
+  top: 2.9rem;
+  left: 0;
+  min-width: 18rem;
+  background: rgba(238, 246, 255, 0.93);
+  color: #182849;
+  border: 1px solid rgba(25, 43, 76, 0.14);
+  border-radius: 1rem;
+  box-shadow: 0 14px 28px rgba(4, 14, 34, 0.35);
+  padding: 0.5rem;
+  z-index: 80;
+}
+
+.menuPanelItem {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  background: transparent;
+  font-size: 1.25rem;
+  border-radius: 0.7rem;
+  padding: 0.7rem 0.8rem;
+  color: #182849;
+}
+
+.menuPanelItem:hover {
+  background: rgba(39, 88, 173, 0.15);
+}
+
+.menuRight {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #ebf5ff;
+}
+
+.desktopCanvas {
+  min-height: 100vh;
+  padding: 5.6rem 2rem 12rem;
+  position: relative;
+}
+
+.desktopFree {
+  overflow: hidden;
+}
+
+.desktopGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  gap: 1.8rem 1.2rem;
+}
+
+.iconTile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  background: transparent;
+  border: 0;
+  color: #f6faff;
+  cursor: grab;
+  animation: iconIntro 460ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  user-select: none;
+  touch-action: none;
+  -webkit-user-drag: none;
+}
+
+.desktopFree .iconTile {
+  position: absolute;
+}
+
+.iconTile:active {
+  cursor: grabbing;
+}
+
+.iconFrame {
+  width: 7.8rem;
+  height: 7.8rem;
+  border-radius: 2.1rem;
+  background: linear-gradient(
+    150deg,
+    rgba(255, 255, 255, 0.38),
+    rgba(255, 255, 255, 0.08)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.36);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.45),
+    0 14px 24px rgba(11, 23, 52, 0.45);
+  overflow: hidden;
+}
+
+.iconFrame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+.iconLabel {
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-shadow: 0 2px 10px rgba(7, 16, 39, 0.55);
+}
+
+.iconSmall .iconFrame {
+  width: 6.2rem;
+  height: 6.2rem;
+  border-radius: 1.6rem;
+}
+
+.iconSmall .iconLabel {
+  font-size: 1.1rem;
+}
+
+.iconLarge .iconFrame {
+  width: 9rem;
+  height: 9rem;
+  border-radius: 2.4rem;
+}
+
+.iconLarge .iconLabel {
+  font-size: 1.4rem;
+}
+
+.windowLayer {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  z-index: 70;
+}
+
+.windowBackdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(8, 18, 43, 0.24);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.window {
+  position: relative;
+  z-index: 1;
+  width: min(92vw, 94rem);
+  border-radius: 1.8rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: linear-gradient(
+    160deg,
+    rgba(58, 92, 150, 0.42),
+    rgba(41, 67, 122, 0.34)
+  );
+  backdrop-filter: blur(16px) saturate(130%);
+  -webkit-backdrop-filter: blur(16px) saturate(130%);
+  box-shadow: 0 26px 45px rgba(5, 13, 33, 0.5);
+  color: #eef3ff;
+  animation: windowOpen 230ms ease-out;
+}
+
+.windowBar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.windowControls {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.control {
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+}
+
+.controlClose {
+  background: #ff5f57;
+}
+
+.controlMin {
+  background: #ffbd2f;
+}
+
+.controlMax {
+  background: #28c840;
+}
+
+.windowTitle {
+  font-size: 1.45rem;
+  font-weight: 700;
+}
+
+.windowBody {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.8rem;
+  padding: 1.6rem;
+}
+
+.windowPreview {
+  width: 100%;
+  border-radius: 1.2rem;
+  box-shadow: 0 14px 26px rgba(11, 23, 52, 0.25);
+}
+
+.windowInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  font-size: 1.5rem;
+  line-height: 1.4;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.actionBtn,
+.actionBtnGhost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border-radius: 0.9rem;
+  padding: 0.8rem 1.2rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.actionBtn {
+  background: #2f71f6;
+  color: #fff;
+}
+
+.actionBtnGhost {
+  color: #eef4ff;
+  border: 1px solid rgba(224, 235, 255, 0.4);
+}
+
+.dock {
+  position: fixed;
+  left: 50%;
+  bottom: 1.2rem;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  border-radius: 1.8rem;
+  background: linear-gradient(
+    180deg,
+    rgba(237, 242, 255, 0.42),
+    rgba(216, 228, 252, 0.32)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(14px) saturate(130%);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
+  box-shadow: 0 10px 24px rgba(6, 18, 43, 0.35);
+  z-index: 65;
+}
+
+.dockItem {
+  width: 4.4rem;
+  height: 4.4rem;
+  padding: 0;
+  border: 0;
+  border-radius: 1rem;
+  overflow: hidden;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.2);
+  transition: transform 160ms ease;
+}
+
+.dockItem:hover {
+  transform: translateY(-4px) scale(1.05);
+}
+
+.dockItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@keyframes iconIntro {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes windowOpen {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 960px) {
+  .menuRight {
+    display: none;
+  }
+
+  .desktopCanvas {
+    padding: 5.6rem 1rem 11rem;
+  }
+
+  .windowBody {
+    grid-template-columns: 1fr;
+  }
+
+  .windowInfo {
+    font-size: 1.35rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .desktopGrid {
+    grid-template-columns: repeat(auto-fill, minmax(9.2rem, 1fr));
+  }
+
+  .iconTile {
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 620px) {
+  .menuBar {
+    min-height: 4.2rem;
+    padding: 0.5rem 0.7rem;
+  }
+
+  .menuItem {
+    font-size: 1.1rem;
+    padding: 0.2rem 0.4rem;
+  }
+
+  .menuPanel {
+    min-width: 16rem;
+  }
+
+  .iconFrame {
+    width: 6.8rem;
+    height: 6.8rem;
+    border-radius: 1.7rem;
+  }
+
+  .dock {
+    width: calc(100% - 1.4rem);
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.8rem;
+  }
+
+  .dockItem {
+    width: 3.8rem;
+    height: 3.8rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .iconTile,
+  .window,
+  .dockItem {
+    animation: none;
+    transition: none;
+  }
+}

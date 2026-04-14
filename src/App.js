@@ -1,19 +1,7 @@
-import { useState } from "react"
-import Header from "./components/Header"
-import MainSection from "./components/MainSection"
+import DesktopApp from "./components/DesktopApp"
 
 function App() {
-  const [bool, setBool] = useState(false)
-  function handleBio() {
-    setBool((prevState) => !prevState)
-  }
-
-  return (
-    <>
-      <Header handlePortfolio={handleBio} />
-      <MainSection handlePortfolio={bool} />
-    </>
-  )
+  return <DesktopApp />
 }
 
 export default App

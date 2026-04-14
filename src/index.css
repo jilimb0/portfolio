@@ -1,13 +1,33 @@
 :root {
-  --bg-color-header: rgba(0, 80, 255, 0.7);
-  --bg-color: rgba(0, 80, 255, 0.3);
+  --bg-color-header: rgba(245, 247, 255, 0.5);
+  --glass-bg: rgba(255, 255, 255, 0.2);
+  --glass-border: rgba(255, 255, 255, 0.45);
+  --text-primary: #121826;
+  --text-light: #f7f9ff;
+  --shadow-soft: 0 12px 30px rgba(14, 21, 38, 0.24);
   font-size: 10px;
 }
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  font-family:
+    "SF Pro Text", "SF Pro Display", "Segoe UI", "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
+  color: var(--text-primary);
+  background: #0f1733;
+}
+
 *::-webkit-scrollbar {
   width: 0px;
 }
