@@ -273,7 +273,6 @@ export default function DesktopApp() {
   const [activeId, setActiveId] = useState(null)
   const [now, setNow] = useState("")
   const [openMenu, setOpenMenu] = useState(null)
-  const [isDesktop, setIsDesktop] = useState(true)
   const [positionsInitialized, setPositionsInitialized] = useState(false)
   const [iconSize, setIconSize] = useState(() => {
     if (typeof window === "undefined") return "medium"
@@ -300,17 +299,6 @@ export default function DesktopApp() {
   }, [])
 
   useEffect(() => {
-    const syncViewportMode = () => {
-      setIsDesktop(window.innerWidth > 900)
-    }
-
-    syncViewportMode()
-    window.addEventListener("resize", syncViewportMode)
-    return () => window.removeEventListener("resize", syncViewportMode)
-  }, [])
-
-  useEffect(() => {
-    if (!isDesktop) return
     const stored = localStorage.getItem(POSITION_KEY)
     const fallback = getDefaultPositions(appTiles, window.innerWidth)
     if (!stored) {
@@ -326,16 +314,16 @@ export default function DesktopApp() {
       setIconPositions(fallback)
     }
     setPositionsInitialized(true)
-  }, [isDesktop])
+  }, [])
 
   useEffect(() => {
     localStorage.setItem(ICON_SIZE_KEY, iconSize)
   }, [iconSize])
 
   useEffect(() => {
-    if (!isDesktop || !positionsInitialized) return
+    if (!positionsInitialized) return
     localStorage.setItem(POSITION_KEY, JSON.stringify(iconPositions))
-  }, [iconPositions, isDesktop, positionsInitialized])
+  }, [iconPositions, positionsInitialized])
 
   useEffect(() => {
     const closeMenu = (event) => {
@@ -466,7 +454,7 @@ export default function DesktopApp() {
   const openTile = (id) => setActiveId(id)
 
   const handlePointerDown = (event, tileId) => {
-    if (!isDesktop || !canvasRef.current) return
+    if (!canvasRef.current) return
     event.preventDefault()
 
     const tileRect = event.currentTarget.getBoundingClientRect()
@@ -528,7 +516,7 @@ export default function DesktopApp() {
       />
 
       <section
-        className={`${s.desktopCanvas} ${isDesktop ? s.desktopFree : s.desktopGrid}`}
+        className={`${s.desktopCanvas} ${s.desktopFree}`}
         ref={canvasRef}
       >
         {appTiles.map((tile, index) => {
@@ -539,26 +527,18 @@ export default function DesktopApp() {
               key={tile.id}
               type="button"
               className={`${s.iconTile} ${iconSizeClass}`}
-              style={
-                isDesktop
-                  ? {
-                      left: `${position?.x ?? 20}px`,
-                      top: `${position?.y ?? HEADER_SAFE_TOP}px`,
-                      animationDelay: `${index * 80}ms`,
-                    }
-                  : { animationDelay: `${index * 80}ms` }
-              }
+              style={{
+                left: `${position?.x ?? 20}px`,
+                top: `${position?.y ?? HEADER_SAFE_TOP}px`,
+                animationDelay: `${index * 80}ms`,
+              }}
               onPointerDown={(event) => handlePointerDown(event, tile.id)}
               onDragStart={(event) => event.preventDefault()}
               onKeyDown={(event) => {
                 if (event.key === "Enter") openTile(tile.id)
               }}
               onClick={(event) => {
-                if (isDesktop) {
-                  event.preventDefault()
-                } else {
-                  openTile(tile.id)
-                }
+                event.preventDefault()
               }}
             >
               <span className={s.iconFrame}>
