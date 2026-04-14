@@ -490,9 +490,9 @@ export default function DesktopApp() {
     <main
       className={s.desktopRoot}
       style={{
-        "--wallpaper-image": `url(${wallpaper.image})`,
-        "--wallpaper-size": wallpaper.size,
-        "--wallpaper-position": wallpaper.position,
+        backgroundImage: `url(${wallpaper.image})`,
+        backgroundSize: wallpaper.size,
+        backgroundPosition: wallpaper.position,
       }}
     >
       <MenuBar
