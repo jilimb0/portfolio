@@ -37,5 +37,22 @@
     "link": "https://weather-forecast-jilimb0.netlify.app",
     "descr": "Минималистичный прогноз погоды \n Технологии: HTML, CSS, JS \n",
     "ghLink": "https://github.com/jilimb0/weather-forecast"
+  },
+  "serviceApp": {
+    "id": "serviceapp",
+    "name": "Service App",
+    "iconUrl": "https://mini.s-shot.ru/1200x900/JPEG/1200/Z100/?https://project-76mw2.vercel.app/login",
+    "iconPosition": "top center",
+    "link": "https://project-76mw2.vercel.app/login",
+    "descr": "Проект с авторизацией и пользовательским интерфейсом \n Технологии: React, JS"
+  },
+  "catlabPos": {
+    "id": "catlabpos",
+    "name": "Catlab POS",
+    "iconUrl": "https://mini.s-shot.ru/1200x900/JPEG/1200/Z100/?https://catlab-pos.vercel.app/",
+    "iconPosition": "top center",
+    "link": "https://catlab-pos.vercel.app/",
+    "descr": "POS-система для управления заказами и продажами \n Технологии: React, JS",
+    "embedBlocked": true
   }
 }

@@ -1,16 +1,18 @@
-import { useEffect, useMemo, useRef, useState } from "react"
+import { Fragment, useEffect, useMemo, useRef, useState } from "react"
 import admin from "../../assets/admin.webp"
+import catlabpos from "../../assets/catlab-pos-screen.webp"
 import indaapp from "../../assets/indaapp.webp"
 import indulgence from "../../assets/indulgence.webp"
 import logo from "../../assets/logo.webp"
 import pokemon from "../../assets/pokemon.webp"
+import serviceapp from "../../assets/service-app-screen.webp"
 import stopcheck from "../../assets/stopcheck.webp"
 import weather from "../../assets/weather.webp"
 import portfolioDb from "../../portfolio-db.json"
-import bg1 from "../MainSection/img/1.jpg"
-import bg2 from "../MainSection/img/2.jpg"
-import bg3 from "../MainSection/img/3.jpg"
-import bg4 from "../MainSection/img/4.jpg"
+import bg1 from "../MainSection/img/1.webp"
+import bg2 from "../MainSection/img/2.webp"
+import bg3 from "../MainSection/img/3.webp"
+import bg4 from "../MainSection/img/4.webp"
 import s from "./style.module.css"
 
 const imageById = {
@@ -18,8 +20,10 @@ const imageById = {
   indaapp,
   indulgence,
   pokemon,
+  serviceapp,
   stopcheck,
   weather,
+  catlabpos,
 }
 
 const appTiles = [
@@ -34,7 +38,7 @@ const appTiles = [
   },
   ...Object.values(portfolioDb).map((item) => ({
     ...item,
-    icon: imageById[item.id] ?? logo,
+    icon: imageById[item.id] || item.iconUrl || logo,
   })),
 ]
 
@@ -186,7 +190,18 @@ function MenuBar({
 }
 
 function AppWindow({ tile, onClose }) {
+  const [iframeLoaded, setIframeLoaded] = useState(false)
+
+  useEffect(() => {
+    if (tile) {
+      setIframeLoaded(false)
+    }
+  }, [tile])
+
   if (!tile) return null
+
+  const hasLiveLink = Boolean(tile.link)
+  const canEmbedLivePreview = hasLiveLink && !tile.embedBlocked
 
   return (
     <section className={s.windowLayer}>
@@ -216,7 +231,43 @@ function AppWindow({ tile, onClose }) {
         </div>
 
         <div className={s.windowBody}>
-          <img className={s.windowPreview} src={tile.icon} alt={tile.name} />
+          <div className={s.windowPreviewWrap}>
+            {canEmbedLivePreview ? (
+              <>
+                <div className={s.iframeLoading} data-loaded={iframeLoaded}>
+                  <span className={s.spinner} />
+                </div>
+                <iframe
+                  className={s.windowIframe}
+                  src={tile.link}
+                  title={`${tile.name} live preview`}
+                  loading="lazy"
+                  sandbox="allow-scripts allow-same-origin"
+                  onLoad={() => setIframeLoaded(true)}
+                />
+                {/* Fallback image for mobile (iframe is hidden via CSS) */}
+                <img
+                  className={s.windowPreview}
+                  src={tile.icon}
+                  alt={tile.name}
+                  style={{ position: "absolute", inset: 0 }}
+                />
+              </>
+            ) : (
+              <>
+                <img
+                  className={s.windowPreview}
+                  src={tile.icon}
+                  alt={tile.name}
+                />
+                {hasLiveLink && tile.embedBlocked && (
+                  <div className={s.embedNotice}>
+                    Live preview is blocked by this site. Use Open App.
+                  </div>
+                )}
+              </>
+            )}
+          </div>
           <div className={s.windowInfo}>
             <p>{tile.descr}</p>
             <div className={s.actions}>
@@ -248,19 +299,62 @@ function AppWindow({ tile, onClose }) {
   )
 }
 
-function DesktopDock({ items, onOpen }) {
+function DesktopDock({ items, onOpen, activeId }) {
+  const [mouseX, setMouseX] = useState(null)
+  const itemRefs = useRef([])
+
   return (
-    <footer className={s.dock}>
-      {items.slice(0, 7).map((tile) => (
-        <button
-          key={tile.id}
-          type="button"
-          className={s.dockItem}
-          onClick={() => onOpen(tile.id)}
-        >
-          <img src={tile.icon} alt="" />
-        </button>
-      ))}
+    <footer
+      className={`${s.dock} ${mouseX === null ? s.dockIdle : ""}`}
+      role="toolbar"
+      aria-label="Application dock"
+      onMouseMove={(event) => setMouseX(event.clientX)}
+      onMouseLeave={() => setMouseX(null)}
+    >
+      {items.map((tile, index) => {
+        const element = itemRefs.current[index]
+        const rect = element?.getBoundingClientRect()
+        const centerX = rect ? rect.left + rect.width / 2 : null
+
+        const influenceRadius = 220
+        const distance =
+          centerX === null || mouseX === null
+            ? influenceRadius
+            : Math.abs(mouseX - centerX)
+        const normalized = Math.max(0, 1 - distance / influenceRadius)
+        const eased = normalized * normalized
+        const scale = 1 + eased * 0.22 + (activeId === tile.id ? 0.015 : 0)
+        const lift = -(eased * 12 + (activeId === tile.id ? 1 : 0))
+
+        return (
+          <Fragment key={tile.id}>
+            <button
+              type="button"
+              className={`${s.dockItem} ${activeId === tile.id ? s.dockItemActive : ""}`}
+              onClick={() => onOpen(tile.id)}
+              onFocus={(event) => {
+                const targetRect = event.currentTarget.getBoundingClientRect()
+                setMouseX(targetRect.left + targetRect.width / 2)
+              }}
+              onBlur={() => setMouseX(null)}
+              data-label={tile.name}
+              aria-label={tile.name}
+              style={{
+                "--dock-scale": scale.toFixed(3),
+                "--dock-lift": `${lift.toFixed(2)}px`,
+              }}
+              ref={(node) => {
+                itemRefs.current[index] = node
+              }}
+            >
+              <img src={tile.icon} alt="" />
+            </button>
+            {index === 0 && (
+              <span className={s.dockDivider} aria-hidden="true" />
+            )}
+          </Fragment>
+        )
+      })}
     </footer>
   )
 }
@@ -278,7 +372,17 @@ export default function DesktopApp() {
     if (typeof window === "undefined") return "medium"
     return localStorage.getItem(ICON_SIZE_KEY) || "medium"
   })
+  const [systemTheme, setSystemTheme] = useState(() => {
+    if (typeof window === "undefined") return "dark"
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light"
+  })
   const [iconPositions, setIconPositions] = useState({})
+  const desktopTiles = useMemo(
+    () => appTiles.filter((tile) => tile.id !== "about"),
+    [],
+  )
 
   useEffect(() => {
     const updateClock = () => {
@@ -300,7 +404,7 @@ export default function DesktopApp() {
 
   useEffect(() => {
     const stored = localStorage.getItem(POSITION_KEY)
-    const fallback = getDefaultPositions(appTiles, window.innerWidth)
+    const fallback = getDefaultPositions(desktopTiles, window.innerWidth)
     if (!stored) {
       setIconPositions(fallback)
       setPositionsInitialized(true)
@@ -314,11 +418,22 @@ export default function DesktopApp() {
       setIconPositions(fallback)
     }
     setPositionsInitialized(true)
-  }, [])
+  }, [desktopTiles])
 
   useEffect(() => {
     localStorage.setItem(ICON_SIZE_KEY, iconSize)
   }, [iconSize])
+
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-color-scheme: dark)")
+    const update = () => {
+      setSystemTheme(media.matches ? "dark" : "light")
+    }
+
+    update()
+    media.addEventListener("change", update)
+    return () => media.removeEventListener("change", update)
+  }, [])
 
   useEffect(() => {
     if (!positionsInitialized) return
@@ -413,6 +528,7 @@ export default function DesktopApp() {
     () => appTiles.find((tile) => tile.id === activeId) ?? null,
     [activeId],
   )
+  const theme = systemTheme
 
   const wallpaper = useMemo(() => {
     const hour = new Date().getHours()
@@ -447,7 +563,7 @@ export default function DesktopApp() {
 
   const resetLayout = () => {
     const width = canvasRef.current?.clientWidth || window.innerWidth
-    setIconPositions(getDefaultPositions(appTiles, width))
+    setIconPositions(getDefaultPositions(desktopTiles, width))
     setOpenMenu(null)
   }
 
@@ -488,7 +604,7 @@ export default function DesktopApp() {
 
   return (
     <main
-      className={s.desktopRoot}
+      className={`${s.desktopRoot} ${theme === "light" ? s.themeLight : s.themeDark}`}
       style={{
         backgroundImage: `url(${wallpaper.image})`,
         backgroundSize: wallpaper.size,
@@ -519,14 +635,14 @@ export default function DesktopApp() {
         className={`${s.desktopCanvas} ${s.desktopFree}`}
         ref={canvasRef}
       >
-        {appTiles.map((tile, index) => {
+        {desktopTiles.map((tile, index) => {
           const position = iconPositions[tile.id]
 
           return (
             <button
               key={tile.id}
               type="button"
-              className={`${s.iconTile} ${iconSizeClass}`}
+              className={`${s.iconTile} ${iconSizeClass} ${activeId === tile.id ? s.iconTileActive : ""}`}
               style={{
                 left: `${position?.x ?? 20}px`,
                 top: `${position?.y ?? HEADER_SAFE_TOP}px`,
@@ -542,7 +658,14 @@ export default function DesktopApp() {
               }}
             >
               <span className={s.iconFrame}>
-                <img src={tile.icon} alt="" draggable={false} />
+                <img
+                  src={tile.icon}
+                  alt=""
+                  draggable={false}
+                  style={{
+                    objectPosition: tile.iconPosition || "center",
+                  }}
+                />
               </span>
               <span className={s.iconLabel}>{tile.name}</span>
             </button>
@@ -550,7 +673,7 @@ export default function DesktopApp() {
         })}
       </section>
 
-      <DesktopDock items={appTiles} onOpen={openTile} />
+      <DesktopDock items={appTiles} onOpen={openTile} activeId={activeId} />
       <AppWindow tile={activeTile} onClose={() => setActiveId(null)} />
     </main>
   )
