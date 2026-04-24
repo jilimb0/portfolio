@@ -3,39 +3,39 @@
     "id": "stopcheck",
     "name": "Stop Check",
     "link": "https://stopcheck.netlify.app",
-    "descr": "Сайт для автосервиса \n Технологии: React, SCSS, JS \n",
+    "descr": "Website for an auto service company \n Technologies: React, SCSS, JavaScript \n",
     "ghLink": "https://github.com/jilimb0/StopCheck"
   },
   "indulgence": {
     "id": "indulgence",
     "name": "Indulgence",
     "link": "",
-    "descr": "Сайт-визитка для мобильного приложения Indulgence \n Технологии: HTML, CSS, JS"
+    "descr": "Landing page for the Indulgence mobile app \n Technologies: HTML, CSS, JavaScript"
   },
   "indaapp": {
     "id": "indaapp",
     "name": "IndaApp",
     "link": "",
-    "descr": "Сайт-визитка для компании IndaApp \n Технологии: HTML, CSS, JS"
+    "descr": "Landing page for the IndaApp company \n Technologies: HTML, CSS, JavaScript"
   },
   "admin": {
     "id": "admin",
     "name": "Admin Panel",
     "link": "",
-    "descr": "Админ-панель для мобильного приложения Indulgence \n Технологии: React, SCSS, JS, API, axios"
+    "descr": "Admin dashboard for the Indulgence mobile app \n Technologies: React, SCSS, JavaScript, API, Axios"
   },
   "pokemonGame": {
     "id": "pokemon",
     "name": "Pokemon",
     "link": "https://pokemon-game-jilimb0.netlify.app",
-    "descr": "Игра про покемонов \n Технологии: React, styled components, JS \n",
+    "descr": "Pokemon battle game \n Technologies: React, styled-components, JavaScript \n",
     "ghLink": "https://github.com/jilimb0/pokemon-game-js"
   },
   "weatherForecast": {
     "id": "weather",
     "name": "Weather Forecast",
     "link": "https://weather-forecast-jilimb0.netlify.app",
-    "descr": "Минималистичный прогноз погоды \n Технологии: HTML, CSS, JS \n",
+    "descr": "Minimalist weather forecast app \n Technologies: HTML, CSS, JavaScript \n",
     "ghLink": "https://github.com/jilimb0/weather-forecast"
   },
   "serviceApp": {
@@ -44,7 +44,7 @@
     "iconUrl": "https://mini.s-shot.ru/1200x900/JPEG/1200/Z100/?https://project-76mw2.vercel.app/login",
     "iconPosition": "top center",
     "link": "https://project-76mw2.vercel.app/login",
-    "descr": "Проект с авторизацией и пользовательским интерфейсом \n Технологии: React, JS"
+    "descr": "Project with authentication and user dashboard UI \n Technologies: React, JavaScript"
   },
   "catlabPos": {
     "id": "catlabpos",
@@ -52,7 +52,14 @@
     "iconUrl": "https://mini.s-shot.ru/1200x900/JPEG/1200/Z100/?https://catlab-pos.vercel.app/",
     "iconPosition": "top center",
     "link": "https://catlab-pos.vercel.app/",
-    "descr": "POS-система для управления заказами и продажами \n Технологии: React, JS",
+    "descr": "POS system for managing orders and sales \n Technologies: React, JavaScript",
     "embedBlocked": true
+  },
+  "lifestyleEcosystem": {
+    "id": "lifestyleecosystem",
+    "name": "Lifestyle Ecosystem",
+    "link": "https://lifestyle-ecosystem.onrender.com/",
+    "descr": "All-in-one tracker for habits, plans, and finances \n Technologies: React, JavaScript",
+    "iconPosition": "top center"
   }
 }

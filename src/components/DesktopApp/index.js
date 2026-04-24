@@ -3,6 +3,7 @@ import admin from "../../assets/admin.webp"
 import catlabpos from "../../assets/catlab-pos-screen.webp"
 import indaapp from "../../assets/indaapp.webp"
 import indulgence from "../../assets/indulgence.webp"
+import lifestyleecosystem from "../../assets/lifestyle-ecosystem-screen.webp"
 import logo from "../../assets/logo.webp"
 import pokemon from "../../assets/pokemon.webp"
 import serviceapp from "../../assets/service-app-screen.webp"
@@ -24,6 +25,7 @@ const imageById = {
   stopcheck,
   weather,
   catlabpos,
+  lifestyleecosystem,
 }
 
 const appTiles = [
@@ -31,8 +33,9 @@ const appTiles = [
     id: "about",
     name: "About Me",
     descr:
-      "Frontend engineer building product-focused interfaces with React and modern CSS. Open to collaboration and freelance opportunities.",
+      "Frontend engineer focused on product UI, interactive UX, and production-ready frontend architecture.\nCore stack: React, JavaScript/TypeScript, modern CSS, REST API integrations, and reusable component systems.\nI build responsive web apps, admin dashboards, and polished portfolio/landing experiences with attention to performance and visual detail.\nOpen to freelance, long-term product collaboration, and frontend consulting.",
     ghLink: "https://github.com/jilimb0",
+    gitlabLink: "https://gitlab.com/ofmaos",
     link: "",
     icon: logo,
   },
@@ -190,18 +193,17 @@ function MenuBar({
 }
 
 function AppWindow({ tile, onClose }) {
+  const [showLivePreview, setShowLivePreview] = useState(false)
   const [iframeLoaded, setIframeLoaded] = useState(false)
-
-  useEffect(() => {
-    if (tile) {
-      setIframeLoaded(false)
-    }
-  }, [tile])
 
   if (!tile) return null
 
-  const hasLiveLink = Boolean(tile.link)
-  const canEmbedLivePreview = hasLiveLink && !tile.embedBlocked
+  const canEmbedLivePreview = Boolean(tile.link) && !tile.embedBlocked
+  const isAbout = tile.id === "about"
+  const infoLines = String(tile.descr || "")
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean)
 
   return (
     <section className={s.windowLayer}>
@@ -230,9 +232,9 @@ function AppWindow({ tile, onClose }) {
           <h2 className={s.windowTitle}>{tile.name}</h2>
         </div>
 
-        <div className={s.windowBody}>
+        <div className={`${s.windowBody} ${isAbout ? s.windowBodyAbout : ""}`}>
           <div className={s.windowPreviewWrap}>
-            {canEmbedLivePreview ? (
+            {showLivePreview && canEmbedLivePreview ? (
               <>
                 <div className={s.iframeLoading} data-loaded={iframeLoaded}>
                   <span className={s.spinner} />
@@ -245,40 +247,44 @@ function AppWindow({ tile, onClose }) {
                   sandbox="allow-scripts allow-same-origin"
                   onLoad={() => setIframeLoaded(true)}
                 />
-                {/* Fallback image for mobile (iframe is hidden via CSS) */}
                 <img
-                  className={s.windowPreview}
+                  className={s.windowPreviewLiveFallback}
                   src={tile.icon}
                   alt={tile.name}
-                  style={{ position: "absolute", inset: 0 }}
                 />
               </>
             ) : (
-              <>
-                <img
-                  className={s.windowPreview}
-                  src={tile.icon}
-                  alt={tile.name}
-                />
-                {hasLiveLink && tile.embedBlocked && (
-                  <div className={s.embedNotice}>
-                    Live preview is blocked by this site. Use Open App.
-                  </div>
-                )}
-              </>
+              <img
+                className={`${s.windowPreview} ${isAbout ? s.windowPreviewAbout : ""}`}
+                src={tile.icon}
+                alt={tile.name}
+              />
             )}
           </div>
           <div className={s.windowInfo}>
-            <p>{tile.descr}</p>
+            <div className={s.infoText}>
+              {infoLines.map((line) => (
+                <p key={`${tile.id}-${line}`}>{line}</p>
+              ))}
+            </div>
             <div className={s.actions}>
+              {canEmbedLivePreview && !showLivePreview && (
+                <button
+                  type="button"
+                  className={s.actionBtnGhost}
+                  onClick={() => setShowLivePreview(true)}
+                >
+                  Open In Window
+                </button>
+              )}
               {tile.link && (
                 <a
                   href={tile.link}
                   target="_blank"
                   rel="noreferrer"
-                  className={s.actionBtn}
+                  className={showLivePreview ? s.actionBtn : s.actionBtnGhost}
                 >
-                  Open App
+                  {showLivePreview ? "Open in New Tab" : "Open Website"}
                 </a>
               )}
               {tile.ghLink && (
@@ -289,6 +295,16 @@ function AppWindow({ tile, onClose }) {
                   className={s.actionBtnGhost}
                 >
                   GitHub
+                </a>
+              )}
+              {tile.gitlabLink && (
+                <a
+                  href={tile.gitlabLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={s.actionBtnGhost}
+                >
+                  GitLab
                 </a>
               )}
             </div>
@@ -674,7 +690,11 @@ export default function DesktopApp() {
       </section>
 
       <DesktopDock items={appTiles} onOpen={openTile} activeId={activeId} />
-      <AppWindow tile={activeTile} onClose={() => setActiveId(null)} />
+      <AppWindow
+        key={activeTile?.id || "closed"}
+        tile={activeTile}
+        onClose={() => setActiveId(null)}
+      />
     </main>
   )
 }
