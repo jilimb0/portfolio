@@ -237,6 +237,7 @@
 }
 
 .iconFrame {
+  position: relative;
   width: 7.8rem;
   height: 7.8rem;
   border-radius: 2.1rem;
@@ -252,6 +253,24 @@
   overflow: hidden;
 }
 
+/* Premium glossy reflection layer for unified presentation */
+.iconFrame::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(255, 255, 255, 0.06) 80%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
 .iconFrame img {
   width: 100%;
   height: 100%;
@@ -259,13 +278,14 @@
   display: block;
   -webkit-user-drag: none;
   pointer-events: none;
+  filter: saturate(1.05) contrast(1.02); /* Harmonize screenshot details */
 }
 
 .iconLabel {
   font-size: 1.3rem;
   font-weight: 600;
   text-shadow: var(--label-shadow);
-  width: 9.2rem;
+  width: 12rem; /* Increased from 9.2rem to fit long words like Weather Forecast on one line */
   text-align: center;
   line-height: 1.2;
   max-height: 2.4em;
@@ -311,7 +331,7 @@
 
 .iconSmall .iconLabel {
   font-size: 1.1rem;
-  width: 7.4rem;
+  width: 10rem; /* Increased from 7.4rem */
 }
 
 .iconLarge .iconFrame {
@@ -322,7 +342,7 @@
 
 .iconLarge .iconLabel {
   font-size: 1.4rem;
-  width: 10.6rem;
+  width: 13rem;
 }
 
 .windowLayer {
@@ -662,6 +682,20 @@
   box-shadow: var(--dock-item-active-shadow);
 }
 
+.dockItemDot {
+  position: absolute;
+  bottom: 0.45rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0.45rem;
+  height: 0.45rem;
+  background-color: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+  z-index: 10;
+  pointer-events: none;
+}
+
 .dockItem.near2 {
   --dock-lift: -3px;
   --dock-scale: 1.045;
@@ -735,13 +769,16 @@
 }
 
 @keyframes windowOpen {
-  from {
+  0% {
     opacity: 0;
-    transform: scale(0.98);
+    transform: scale(0.94) translateY(15px);
   }
-  to {
+  65% {
+    transform: scale(1.01) translateY(-2px);
+  }
+  100% {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1) translateY(0);
   }
 }
 
