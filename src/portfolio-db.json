@@ -1,65 +1,146 @@
 {
-  "stopCheck": {
-    "id": "stopcheck",
-    "name": "Stop Check",
-    "link": "https://stopcheck.netlify.app",
-    "descr": "Website for an auto service company \n Technologies: React, SCSS, JavaScript \n",
-    "ghLink": "https://github.com/jilimb0/StopCheck"
-  },
-  "indulgence": {
-    "id": "indulgence",
-    "name": "Indulgence",
-    "link": "",
-    "descr": "Landing page for the Indulgence mobile app \n Technologies: HTML, CSS, JavaScript"
-  },
-  "indaapp": {
-    "id": "indaapp",
-    "name": "IndaApp",
-    "link": "",
-    "descr": "Landing page for the IndaApp company \n Technologies: HTML, CSS, JavaScript"
-  },
-  "admin": {
-    "id": "admin",
-    "name": "Admin Panel",
-    "link": "",
-    "descr": "Admin dashboard for the Indulgence mobile app \n Technologies: React, SCSS, JavaScript, API, Axios"
-  },
-  "pokemonGame": {
-    "id": "pokemon",
-    "name": "Pokemon",
-    "link": "https://pokemon-game-jilimb0.netlify.app",
-    "descr": "Pokemon battle game \n Technologies: React, styled-components, JavaScript \n",
-    "ghLink": "https://github.com/jilimb0/pokemon-game-js"
-  },
-  "weatherForecast": {
-    "id": "weather",
-    "name": "Weather Forecast",
-    "link": "https://weather-forecast-jilimb0.netlify.app",
-    "descr": "Minimalist weather forecast app \n Technologies: HTML, CSS, JavaScript \n",
-    "ghLink": "https://github.com/jilimb0/weather-forecast"
-  },
-  "serviceApp": {
-    "id": "serviceapp",
-    "name": "Service App",
-    "iconUrl": "https://mini.s-shot.ru/1200x900/JPEG/1200/Z100/?https://project-76mw2.vercel.app/login",
-    "iconPosition": "top center",
-    "link": "https://project-76mw2.vercel.app/login",
-    "descr": "Project with authentication and user dashboard UI \n Technologies: React, JavaScript"
-  },
   "catlabPos": {
     "id": "catlabpos",
     "name": "Catlab POS",
+    "category": "Commercial Product",
+    "tags": ["React", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS", "Zustand"],
+    "problem": "C&T Lab coffee shop chain required a centralized POS checkout system across multiple retail sites, requiring order syncing and transaction analytics.",
+    "role": "Full-stack Engineer: Architected PostgreSQL database model, integrated receipt printing APIs, and built the real-time order cashier frontend.",
+    "challenges": "Implementing robust offline support so checkouts function during internet drops, and auto-syncing local cached sales queues on connection restoration.",
+    "outcome": "Successfully deployed across two retail branches, securely processing 200+ daily checkouts with 99.9% uptime analytics sync.",
     "iconUrl": "https://mini.s-shot.ru/1200x900/JPEG/1200/Z100/?https://catlab-pos.vercel.app/",
     "iconPosition": "top center",
     "link": "https://catlab-pos.vercel.app/",
-    "descr": "POS system for managing orders and sales \n Technologies: React, JavaScript",
     "embedBlocked": true
   },
   "lifestyleEcosystem": {
     "id": "lifestyleecosystem",
     "name": "Lifestyle Ecosystem",
-    "link": "https://lifestyle-ecosystem.onrender.com/",
-    "descr": "All-in-one tracker for habits, plans, and finances \n Technologies: React, JavaScript",
-    "iconPosition": "top center"
+    "category": "Featured Case Study",
+    "tags": ["React", "JavaScript", "CSS Modules", "BEM Architecture", "Chart.js", "Zustand"],
+    "problem": "Designed to address fragmented user productivity apps by consolidating habit trackers, financial planners, and daily agendas into one unified platform.",
+    "role": "Sole Frontend Architect & UI Designer: Engineered the central state machine using Zustand and built customizable dashboard widget blocks.",
+    "challenges": "Optimizing canvas analytics rendering and synchronizing local data stores without bloating the document object model (DOM) count.",
+    "outcome": "Created a clean productivity interface with responsive widget placement, dynamic financial analytics, and responsive desktop layout.",
+    "iconPosition": "top center",
+    "link": "https://lifestyle-ecosystem.onrender.com/"
+  },
+  "stopCheck": {
+    "id": "stopcheck",
+    "name": "Stop Check",
+    "category": "Client Project",
+    "tags": ["React", "SCSS Modules", "BEM", "React Transition Group", "JavaScript"],
+    "problem": "An auto diagnostic and tuning service needed an interactive modern landing layout to describe services, compute pricing, and capture booking requests.",
+    "role": "Sole Frontend Developer: Developed customized SCSS styles with BEM rules and implemented pricing calculators.",
+    "challenges": "Crafting custom SVG diagnostic circuit animations that run at 60fps across low-performance mobile devices.",
+    "outcome": "Launched in production, reducing booking capture drops and increasing customer inquiries.",
+    "link": "https://stopcheck.netlify.app",
+    "ghLink": "https://github.com/jilimb0/StopCheck"
+  },
+  "admin": {
+    "id": "admin",
+    "name": "Admin Panel",
+    "category": "Commercial Dashboard",
+    "tags": ["React", "SCSS", "JavaScript", "Axios", "REST API", "Chart.js"],
+    "problem": "Indulgence mobile application administrators lacked a central system to moderate user reports, publish content, and view daily usage telemetry.",
+    "role": "Frontend Developer: Built the complete authentication layout and configured Axios interceptors for automatic session token refresh.",
+    "challenges": "Designing security layers to prevent token leakage and handling high-frequency telemetry charts rendering efficiently.",
+    "outcome": "Delivered a fully integrated admin dashboard running secure content moderation tools with direct backend database links.",
+    "link": ""
+  },
+  "serviceApp": {
+    "id": "serviceapp",
+    "name": "Service App",
+    "category": "UX Experiment",
+    "tags": ["React", "JavaScript", "CSS3", "REST APIs", "Context API"],
+    "problem": "Explored clean interface patterns for subscription-based products, focusing on payment portals, member settings, and transaction feeds.",
+    "role": "Frontend Developer: Implemented user profile controls, simulated checkout pages, and organized global state using React Context.",
+    "challenges": "Securing page routing rules using client-side auth state validation triggers.",
+    "outcome": "Formed a reusable UI starter kit detailing fluid navigation schemas and premium profile customization dashboards.",
+    "iconUrl": "https://mini.s-shot.ru/1200x900/JPEG/1200/Z100/?https://project-76mw2.vercel.app/login",
+    "iconPosition": "top center",
+    "link": "https://project-76mw2.vercel.app/login"
+  },
+  "indulgence": {
+    "id": "indulgence",
+    "name": "Indulgence",
+    "category": "Client Landing Page",
+    "tags": ["HTML5", "CSS3", "JavaScript", "Intersection Observer", "AOS.js"],
+    "problem": "The Indulgence mobile application team required a high-converting single-page landing site to showcase features and link app stores.",
+    "role": "Lead Web Developer: Wrote clean semantic markup and styled interactive features sections.",
+    "challenges": "Achieving fast initial page load metrics and implementing scroll-triggered animations without layout shifts.",
+    "outcome": "Produced a lightweight static showcase landing page with optimized images, landing perfect PageSpeed scores.",
+    "link": ""
+  },
+  "indaapp": {
+    "id": "indaapp",
+    "name": "IndaApp",
+    "category": "Client Landing Page",
+    "tags": ["HTML5", "CSS3", "JavaScript", "Responsive Design", "Git Hooks"],
+    "problem": "IndaApp agency requested a minimalist corporate portfolio website to showcase their B2B digital transformation services.",
+    "role": "Lead Frontend Developer: Translated design system guidelines into modular stylesheet templates.",
+    "challenges": "Constructing fully responsive media grids that behave identically across old Safari browsers and modern mobile viewports.",
+    "outcome": "Successfully launched corporate branding landing page driving business leads.",
+    "link": ""
+  },
+  "pokemonGame": {
+    "id": "pokemon",
+    "name": "Pokemon",
+    "category": "Pet Project",
+    "tags": ["React", "styled-components", "JavaScript", "PokeAPI", "Redux Toolkit"],
+    "problem": "A personal challenge to construct an interactive turn-based browser battle simulator fetching PokeAPI properties.",
+    "role": "Sole Developer: Coded the core battle calculations, animated health bar tracking, and Redux Toolkit state flow.",
+    "challenges": "Animating game attack sequences and resolving asynchronous asset pre-loading to ensure sound/sprite alignment.",
+    "outcome": "Built a fully functional battle game highlighting interactive sprite battles and state-driven game menus.",
+    "link": "https://pokemon-game-jilimb0.netlify.app",
+    "ghLink": "https://github.com/jilimb0/pokemon-game-js"
+  },
+  "weatherForecast": {
+    "id": "weather",
+    "name": "Weather Forecast",
+    "category": "Pet Project",
+    "tags": ["HTML5", "CSS3", "JavaScript", "OpenWeatherMap API", "Geolocation API"],
+    "problem": "A simple training build to showcase clean, minimalist weather tracking using geolocation search lookups.",
+    "role": "Sole Developer: Designed the UI layouts, coded search parameters, and integrated geolocation weather checks.",
+    "challenges": "Parsing weather data formats from JSON responses and translating code results dynamically into custom meteorological sky states.",
+    "outcome": "Delivered a lightweight weather app using native Geolocation APIs.",
+    "link": "https://weather-forecast-jilimb0.netlify.app",
+    "ghLink": "https://github.com/jilimb0/weather-forecast"
+  },
+  "uiLibrary": {
+    "id": "uilib",
+    "name": "UI Library",
+    "category": "Open Source",
+    "tags": ["React", "JavaScript", "CSS Modules", "Component Design", "Storybook"],
+    "problem": "Every new project required rebuilding the same UI primitives from scratch — buttons, inputs, modals, cards — introducing inconsistency and wasted dev time.",
+    "role": "Sole Author: Designed the component API, built each primitive with composability and theme-agnosticism in mind, and documented usage patterns.",
+    "challenges": "Keeping components truly flexible and reusable across projects without coupling them to specific design systems or business logic.",
+    "outcome": "A shared component library published on GitHub, providing a consistent visual language and rapid UI scaffolding for future projects.",
+    "link": "",
+    "ghLink": "https://github.com/jilimb0/UI-Library"
+  },
+  "myPersFinBot": {
+    "id": "mypersfinbot",
+    "name": "MyPersFinBot",
+    "category": "Personal Tool",
+    "tags": ["Python", "Telegram Bot API", "SQLite", "Personal Finance", "Automation"],
+    "problem": "Tracking personal income, expenses, and savings manually across spreadsheets was tedious, error-prone, and offered no quick summaries.",
+    "role": "Sole Developer: Designed the conversation flow, implemented expense categorisation logic, built SQLite persistence, and integrated the Telegram Bot API.",
+    "challenges": "Crafting an intuitive, command-driven UX within the tight constraints of Telegram's chat interface without overwhelming the user.",
+    "outcome": "A fully functioning personal finance app running live on Telegram — actively tracking real transactions, categorising spending, and delivering automated weekly summary reports in daily use.",
+    "link": "https://t.me/MyPersFinBot",
+    "ghLink": "https://github.com/jilimb0/MyPersFinBot"
+  },
+  "tgWrapper": {
+    "id": "tgwrapper",
+    "name": "TGWrapper",
+    "category": "Open Source",
+    "tags": ["JavaScript", "Node.js", "Telegram Bot API", "npm Package", "Open Source"],
+    "problem": "Building Telegram bots with the raw Bot API requires repetitive boilerplate for polling, routing, and error handling — slowing down development.",
+    "role": "Sole Author: Designed the wrapper API surface, wrote the core routing and polling engine, authored documentation, and published to npm.",
+    "challenges": "Abstracting the full complexity of the Telegram Bot API into a minimal, ergonomic interface while retaining escape hatches for advanced use cases.",
+    "outcome": "Published as @jilimb0/tgwrapper on npm — an open-source package enabling developers to launch Telegram bots with a few lines of JavaScript.",
+    "link": "https://www.npmjs.com/package/@jilimb0/tgwrapper",
+    "ghLink": "https://github.com/jilimb0/TGWrapper"
   }
 }

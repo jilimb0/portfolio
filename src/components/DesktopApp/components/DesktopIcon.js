@@ -1,6 +1,19 @@
 import PropTypes from "prop-types"
 import s from "../style.module.css"
 
+// Map category strings to short badge labels
+const CATEGORY_BADGE = {
+  "Featured Case Study": { label: "Featured", mod: s.badgeFeatured },
+  "Commercial Product": { label: "Commercial", mod: s.badgeCommercial },
+  "Commercial Dashboard": { label: "Dashboard", mod: s.badgeCommercial },
+  "Client Project": { label: "Client", mod: s.badgeClient },
+  "Client Landing Page": { label: "Client", mod: s.badgeClient },
+  "UX Experiment": { label: "Experiment", mod: s.badgeExperiment },
+  "Pet Project": { label: "Pet", mod: s.badgePet },
+  "Open Source": { label: "Open Source", mod: s.badgeOpenSource },
+  "Personal Tool": { label: "Tool", mod: s.badgePersonalTool },
+}
+
 export default function DesktopIcon({
   tile,
   isActive,
@@ -11,6 +24,8 @@ export default function DesktopIcon({
   onKeyDown,
   index,
 }) {
+  const badge = tile.category ? CATEGORY_BADGE[tile.category] : null
+
   return (
     <button
       key={tile.id}
@@ -37,6 +52,9 @@ export default function DesktopIcon({
             objectPosition: tile.iconPosition || "center",
           }}
         />
+        {badge && (
+          <span className={`${s.iconBadge} ${badge.mod}`}>{badge.label}</span>
+        )}
       </span>
       <span className={s.iconLabel}>{tile.name}</span>
     </button>
@@ -47,6 +65,7 @@ DesktopIcon.propTypes = {
   tile: PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
+    category: PropTypes.string,
     icon: PropTypes.string,
     iconPosition: PropTypes.string,
   }).isRequired,

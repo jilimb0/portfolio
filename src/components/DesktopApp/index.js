@@ -5,9 +5,12 @@ import indaapp from "../../assets/indaapp.webp"
 import indulgence from "../../assets/indulgence.webp"
 import lifestyleecosystem from "../../assets/lifestyle-ecosystem-screen.webp"
 import logo from "../../assets/logo.webp"
+import mypersfinbot from "../../assets/mypersfinbot.png"
 import pokemon from "../../assets/pokemon.webp"
 import serviceapp from "../../assets/service-app-screen.webp"
 import stopcheck from "../../assets/stopcheck.webp"
+import tgwrapper from "../../assets/tgwrapper.png"
+import uilib from "../../assets/uilib.png"
 import weather from "../../assets/weather.webp"
 import portfolioDb from "../../portfolio-db.json"
 import bg1 from "../MainSection/img/1.webp"
@@ -26,9 +29,12 @@ const imageById = {
   admin,
   indaapp,
   indulgence,
+  mypersfinbot,
   pokemon,
   serviceapp,
   stopcheck,
+  tgwrapper,
+  uilib,
   weather,
   catlabpos,
   lifestyleecosystem,
@@ -61,7 +67,12 @@ export default function DesktopApp() {
   const menuRef = useRef(null)
   const rafRef = useRef(null)
 
-  const [activeId, setActiveId] = useState(null)
+  const [activeId, setActiveId] = useState(() => {
+    // Open "About Me" automatically on first-ever visit
+    if (typeof window === "undefined") return null
+    const hasVisited = localStorage.getItem(POSITION_KEY)
+    return hasVisited ? null : "about"
+  })
   const [now, setNow] = useState("")
   const [openMenu, setOpenMenu] = useState(null)
   const [positionsInitialized, setPositionsInitialized] = useState(false)
@@ -369,6 +380,7 @@ export default function DesktopApp() {
         }}
       />
 
+      {/* ─── Desktop canvas ─────────────────────────── */}
       <section
         className={`${s.desktopCanvas} ${s.desktopFree}`}
         ref={canvasRef}
@@ -391,6 +403,102 @@ export default function DesktopApp() {
           )
         })}
       </section>
+
+      {/* ─── Hero Widget (desktop only) ─────────────── */}
+      <div className={s.heroWidget}>
+        <div className={s.heroCard}>
+          <h1 className={s.heroName}>Maksym Opanasenko</h1>
+          <p className={s.heroTitle}>Frontend Engineer · UI/UX</p>
+          <span className={s.heroBadge}>
+            <span className={s.heroBadgeDot} />
+            Open to work
+          </span>
+          <div className={s.heroLinks}>
+            <a
+              href="https://github.com/jilimb0"
+              target="_blank"
+              rel="noreferrer"
+              className={s.heroLink}
+            >
+              GitHub
+            </a>
+            <a
+              href="https://gitlab.com/ofmaos"
+              target="_blank"
+              rel="noreferrer"
+              className={s.heroLink}
+            >
+              GitLab
+            </a>
+            <button
+              type="button"
+              className={s.heroLink}
+              onClick={() => openTile("about")}
+            >
+              About Me
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* ─── Mobile layout (≤768px) ─────────────────── */}
+      <div className={s.mobileHero}>
+        <h1 className={s.mobileHeroName}>Maksym Opanasenko</h1>
+        <p className={s.mobileHeroTitle}>Frontend Engineer · UI/UX</p>
+        <span className={s.mobileBadge}>
+          <span className={s.mobileBadgeDot} />
+          Open to work
+        </span>
+        <div className={s.mobileLinks}>
+          <a
+            href="https://github.com/jilimb0"
+            target="_blank"
+            rel="noreferrer"
+            className={s.mobileLink}
+          >
+            GitHub
+          </a>
+          <a
+            href="https://gitlab.com/ofmaos"
+            target="_blank"
+            rel="noreferrer"
+            className={s.mobileLink}
+          >
+            GitLab
+          </a>
+          <button
+            type="button"
+            className={s.mobileLink}
+            onClick={() => openTile("about")}
+          >
+            About Me
+          </button>
+        </div>
+      </div>
+
+      <div className={s.mobileProjectGrid}>
+        {desktopTiles.map((tile, idx) => (
+          <button
+            key={tile.id}
+            type="button"
+            className={s.mobileProjectCard}
+            style={{ animationDelay: `${idx * 55}ms` }}
+            onClick={() => openTile(tile.id)}
+          >
+            <img
+              className={s.mobileProjectThumb}
+              src={tile.icon}
+              alt={tile.name}
+            />
+            <div className={s.mobileProjectInfo}>
+              <p className={s.mobileProjectName}>{tile.name}</p>
+              {tile.category && (
+                <p className={s.mobileProjectCat}>{tile.category}</p>
+              )}
+            </div>
+          </button>
+        ))}
+      </div>
 
       <DesktopDock items={appTiles} onOpen={openTile} activeId={activeId} />
       <AppWindow

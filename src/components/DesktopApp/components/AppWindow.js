@@ -17,10 +17,26 @@ export default function AppWindow({ tile, onClose }) {
 
   const canEmbedLivePreview = Boolean(tile.link) && !tile.embedBlocked
   const isAbout = tile.id === "about"
-  const infoLines = String(tile.descr || "")
-    .split("\n")
-    .map((line) => line.trim())
-    .filter(Boolean)
+
+  // About tile: simple text lines
+  const infoLines = isAbout
+    ? String(tile.descr || "")
+        .split("\n")
+        .map((l) => l.trim())
+        .filter(Boolean)
+    : null
+
+  // Case-study sections
+  const caseStudySections = !isAbout
+    ? [
+        { label: "Problem", value: tile.problem },
+        { label: "Role", value: tile.role },
+        { label: "Challenges", value: tile.challenges },
+        { label: "Outcome", value: tile.outcome },
+      ].filter((s) => s.value)
+    : []
+
+  const tags = Array.isArray(tile.tags) ? tile.tags : []
 
   return (
     <section className={s.windowLayer}>
@@ -35,6 +51,7 @@ export default function AppWindow({ tile, onClose }) {
         role="dialog"
         aria-label={`${tile.name} window`}
       >
+        {/* Title bar */}
         <div className={s.windowBar}>
           <div className={s.windowControls}>
             <button
@@ -46,10 +63,19 @@ export default function AppWindow({ tile, onClose }) {
             <span className={`${s.control} ${s.controlMin}`} />
             <span className={`${s.control} ${s.controlMax}`} />
           </div>
-          <h2 className={s.windowTitle}>{tile.name}</h2>
+          <div className={s.windowTitleGroup}>
+            <h2 className={s.windowTitle}>{tile.name}</h2>
+            {tile.category && (
+              <span className={s.windowCategory}>{tile.category}</span>
+            )}
+          </div>
         </div>
 
-        <div className={`${s.windowBody} ${isAbout ? s.windowBodyAbout : ""}`}>
+        {/* Body */}
+        <div
+          className={`${s.windowBody} ${isAbout ? s.windowBodyAbout : s.windowBodyCase}`}
+        >
+          {/* Preview panel */}
           <div className={s.windowPreviewWrap}>
             {showLivePreview && canEmbedLivePreview ? (
               <>
@@ -78,17 +104,44 @@ export default function AppWindow({ tile, onClose }) {
               />
             )}
           </div>
+
+          {/* Info panel */}
           <div className={s.windowInfo}>
-            <div className={s.infoText}>
-              {infoLines.map((line) => (
-                <p key={`${tile.id}-${line}`}>{line}</p>
-              ))}
-            </div>
+            {isAbout ? (
+              /* About Me — simple paragraphs */
+              <div className={s.infoText}>
+                {infoLines.map((line) => (
+                  <p key={`${tile.id}-${line.slice(0, 20)}`}>{line}</p>
+                ))}
+              </div>
+            ) : (
+              /* Case Study */
+              <div className={s.caseStudy}>
+                {caseStudySections.map(({ label, value }) => (
+                  <div key={label} className={s.caseSection}>
+                    <span className={s.caseSectionLabel}>{label}</span>
+                    <p className={s.caseSectionText}>{value}</p>
+                  </div>
+                ))}
+
+                {tags.length > 0 && (
+                  <div className={s.tagList}>
+                    {tags.map((tag) => (
+                      <span key={tag} className={s.tag}>
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Actions */}
             <div className={s.actions}>
               {canEmbedLivePreview && !showLivePreview && (
                 <button
                   type="button"
-                  className={s.actionBtnGhost}
+                  className={s.actionBtnPrimary}
                   onClick={() => setShowLivePreview(true)}
                 >
                   Open In Window
@@ -136,7 +189,13 @@ AppWindow.propTypes = {
   tile: PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
+    category: PropTypes.string,
     descr: PropTypes.string,
+    problem: PropTypes.string,
+    role: PropTypes.string,
+    challenges: PropTypes.string,
+    outcome: PropTypes.string,
+    tags: PropTypes.arrayOf(PropTypes.string),
     icon: PropTypes.string,
     link: PropTypes.string,
     ghLink: PropTypes.string,

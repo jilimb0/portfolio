@@ -4,6 +4,33 @@ import s from "../style.module.css"
 
 const MENU_LABELS = ["Portfolio", "File", "View", "Window"]
 
+const CONTACT_LINKS = [
+  {
+    id: "telegram",
+    label: "Telegram",
+    href: "https://t.me/MaksymOp",
+    title: "Message on Telegram",
+  },
+  {
+    id: "linkedin",
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/maksym-opanasenko-06b028199/?locale=en",
+    title: "LinkedIn Profile",
+  },
+  {
+    id: "email",
+    label: "Email",
+    href: "mailto:opanasenko.mo@gmail.com",
+    title: "Send Email",
+  },
+  {
+    id: "npm",
+    label: "npm",
+    href: "https://www.npmjs.com/~jilimb0",
+    title: "npm Packages",
+  },
+]
+
 export default function MenuBar({
   menuRef,
   now,
@@ -116,7 +143,25 @@ export default function MenuBar({
       </div>
 
       <div className={s.menuRight}>
-        <span>{now}</span>
+        {/* Contact links */}
+        <nav className={s.menuContactLinks} aria-label="Contact links">
+          {CONTACT_LINKS.map(({ id, label, href, title }) => (
+            <a
+              key={id}
+              href={href}
+              target={href.startsWith("mailto") ? undefined : "_blank"}
+              rel="noreferrer"
+              className={s.menuContactLink}
+              title={title}
+            >
+              {label}
+            </a>
+          ))}
+        </nav>
+
+        {/* Divider + clock */}
+        <span className={s.menuDivider} />
+        <span className={s.menuClock}>{now}</span>
       </div>
     </header>
   )
