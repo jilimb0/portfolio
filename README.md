@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+# 🖥️ Interactive macOS-Style Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A premium, interactive desktop environment portfolio built with **React** and **CSS Modules**. It simulates a macOS desktop experience, featuring draggable icons, responsive grid snapping, an animated dock, and live interactive project windows using iframe embeds.
 
-## Available Scripts
+Live Deployed URL: **[maksympanasenko.netlify.app](https://maksympanasenko.netlify.app)**
 
-In the project directory, you can run:
+---
 
-### `yarn start`
+## ✨ Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **📱 Live Iframe Embedding**: Opening a portfolio item loads the actual live site directly inside a draggable macOS-style window, with fallback loading spinners and a mobile-friendly screenshot layout.
+- **🎛️ Dynamic Glassmorphic Dock**: A custom dock featuring scale magnification physics depending on mouse distance and standard running indicators (active status dots).
+- **🤏 Interactive Desktop Icons**: Fully draggable icons that snap to a custom alignment grid.
+- **📏 Spilling Prevention**: Automatically snaps icon boundaries back inside safe screen coordinates when resizing the browser window.
+- **🌓 System Theme Detection**: Automatically matches your system light or dark preferences.
+- **🔋 Performance Optimized**: Throttled drag-and-drop triggers using `requestAnimationFrame` to keep rendering at a smooth 60fps.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+---
 
-### `yarn test`
+## 🛠️ Tech Stack & Tooling
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Core**: React 18, HTML5, CSS Modules
+- **Quality Assurance**: Biome (Linter, formatter, import organizer)
+- **Package Manager**: pnpm 10
+- **Build system**: Create React App (react-scripts)
 
-### `yarn build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 📂 Codebase Architecture
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The project has been refactored into a highly modular component structure:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```text
+src/
+├── assets/                  # Icons and wallpaper background WebP images
+├── components/
+│   └── DesktopApp/
+│       ├── components/
+│       │   ├── AppWindow.js   # Project detail view, iframe embedder & actions
+│       │   ├── DesktopDock.js # Bottom dock with macOS magnification physics
+│       │   ├── DesktopIcon.js # Single draggable icon component
+│       │   └── MenuBar.js     # Top menu, clock, and options panel
+│       ├── utils/
+│       │   └── layout.js      # Drag clamping, grid snap calculations
+│       ├── index.js           # Desktop main coordinator
+│       └── style.module.css   # Glassmorphic custom theme system
+├── App.js                   # Application root
+├── index.css                # Base HTML reset & variables
+└── portfolio-db.json        # Unified project database configuration
+```
 
-### `yarn eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 🚀 Running Locally
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Ensure you have [Node.js](https://nodejs.org/) installed, then run:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### 1. Install Dependencies
+```bash
+pnpm install
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### 2. Start Dev Server
+```bash
+pnpm start
+```
+Open **[http://localhost:3000](http://localhost:3000)** to view it in the browser.
 
-## Learn More
+### 3. Code Standards & Linting
+Run Biome formatter and linter check:
+```bash
+pnpm lint
+```
+Auto-fix formatting and linting rules:
+```bash
+pnpm lint:fix
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 4. Build for Production
+```bash
+pnpm build
+```
