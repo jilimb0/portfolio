@@ -13,6 +13,16 @@ import tgwrapper from "../../assets/tgwrapper.png"
 import uilib from "../../assets/uilib.png"
 import weather from "../../assets/weather.webp"
 import portfolioDb from "../../portfolio-db.json"
+import type {
+  AppTile,
+  DragState,
+  IconPositions,
+  IconSize,
+  MenuLabel,
+  PortfolioProject,
+  ProjectFilter,
+} from "../../types/portfolio"
+import { PROJECT_FILTER_CATEGORIES } from "../../types/portfolio"
 import bg1 from "../MainSection/img/1.webp"
 import bg2 from "../MainSection/img/2.webp"
 import bg3 from "../MainSection/img/3.webp"
@@ -20,12 +30,11 @@ import bg4 from "../MainSection/img/4.webp"
 import AppWindow from "./components/AppWindow"
 import DesktopDock from "./components/DesktopDock"
 import DesktopIcon from "./components/DesktopIcon"
-// Import modular components
 import MenuBar from "./components/MenuBar"
 import s from "./style.module.css"
 import { clamp, getDefaultPositions, snap } from "./utils/layout"
 
-const imageById = {
+const imageById: Record<string, string> = {
   admin,
   indaapp,
   indulgence,
@@ -40,58 +49,72 @@ const imageById = {
   lifestyleecosystem,
 }
 
-const appTiles = [
-  {
-    id: "about",
-    name: "About Me",
-    descr:
-      "Frontend engineer focused on product UI, interactive UX, and production-ready frontend architecture.\nCore stack: React, JavaScript/TypeScript, modern CSS, REST API integrations, and reusable component systems.\nI build responsive web apps, admin dashboards, and polished portfolio/landing experiences with attention to performance and visual detail.\nOpen to freelance, long-term product collaboration, and frontend consulting.",
-    ghLink: "https://github.com/jilimb0",
-    gitlabLink: "https://gitlab.com/ofmaos",
-    link: "",
-    icon: logo,
-  },
-  ...Object.values(portfolioDb).map((item) => ({
-    ...item,
-    icon: imageById[item.id] || item.iconUrl || logo,
-  })),
+const aboutTile: AppTile = {
+  id: "about",
+  name: "About Me",
+  descr:
+    "Frontend engineer focused on product UI, interactive UX, and production-ready frontend architecture.\n3+ Years Production Experience | 10+ Launched Projects\nCore stack: React, JavaScript/TypeScript, modern CSS, REST API integrations, and reusable component systems.\nI build responsive web apps, admin dashboards, and polished portfolio/landing experiences with attention to performance and visual detail.\nOpen to freelance, long-term product collaboration, and frontend consulting.",
+  ghLink: "https://github.com/jilimb0",
+  gitlabLink: "https://gitlab.com/ofmaos",
+  cvLink: "/cv.pdf",
+  link: "",
+  icon: logo,
+}
+
+const appTiles: AppTile[] = [
+  aboutTile,
+  ...Object.values(portfolioDb as Record<string, PortfolioProject>).map(
+    (item) => ({
+      ...item,
+      icon: imageById[item.id] || item.iconUrl || logo,
+    }),
+  ),
 ]
 
 const POSITION_KEY = "portfolio.desktop.iconPositions.v1"
 const ICON_SIZE_KEY = "portfolio.desktop.iconSize.v1"
 const HEADER_SAFE_TOP = 54
 
-export default function DesktopApp() {
-  const canvasRef = useRef(null)
-  const dragRef = useRef(null)
-  const menuRef = useRef(null)
-  const rafRef = useRef(null)
+function parseIconSize(value: string | null): IconSize {
+  if (value === "small" || value === "large") return value
+  return "medium"
+}
 
-  const [activeId, setActiveId] = useState(() => {
-    // Open "About Me" automatically on first-ever visit
+export default function DesktopApp() {
+  const canvasRef = useRef<HTMLElement>(null)
+  const dragRef = useRef<DragState | null>(null)
+  const menuRef = useRef<HTMLElement>(null)
+  const rafRef = useRef<number | null>(null)
+
+  const [activeId, setActiveId] = useState<string | null>(() => {
     if (typeof window === "undefined") return null
     const hasVisited = localStorage.getItem(POSITION_KEY)
     return hasVisited ? null : "about"
   })
   const [now, setNow] = useState("")
-  const [openMenu, setOpenMenu] = useState(null)
+  const [openMenu, setOpenMenu] = useState<MenuLabel | null>(null)
   const [positionsInitialized, setPositionsInitialized] = useState(false)
-  const [iconSize, setIconSize] = useState(() => {
+  const [iconSize, setIconSize] = useState<IconSize>(() => {
     if (typeof window === "undefined") return "medium"
-    return localStorage.getItem(ICON_SIZE_KEY) || "medium"
+    return parseIconSize(localStorage.getItem(ICON_SIZE_KEY))
   })
-  const [systemTheme, setSystemTheme] = useState(() => {
+  const [systemTheme, setSystemTheme] = useState<"dark" | "light">(() => {
     if (typeof window === "undefined") return "dark"
     return window.matchMedia("(prefers-color-scheme: dark)").matches
       ? "dark"
       : "light"
   })
-  const [iconPositions, setIconPositions] = useState({})
+  const [iconPositions, setIconPositions] = useState<IconPositions>({})
+  const [projectFilter, setProjectFilter] = useState<ProjectFilter>("All")
 
-  const desktopTiles = useMemo(
-    () => appTiles.filter((tile) => tile.id !== "about"),
-    [],
-  )
+  const desktopTiles = useMemo(() => {
+    const base = appTiles.filter((tile) => tile.id !== "about")
+    if (projectFilter === "All") return base
+    const allowed = PROJECT_FILTER_CATEGORIES[projectFilter] || []
+    return base.filter(
+      (tile) => tile.category && allowed.includes(tile.category),
+    )
+  }, [projectFilter])
 
   useEffect(() => {
     const updateClock = () => {
@@ -121,7 +144,7 @@ export default function DesktopApp() {
     }
 
     try {
-      const parsed = JSON.parse(stored)
+      const parsed = JSON.parse(stored) as IconPositions
       setIconPositions({ ...fallback, ...parsed })
     } catch {
       setIconPositions(fallback)
@@ -150,8 +173,12 @@ export default function DesktopApp() {
   }, [iconPositions, positionsInitialized])
 
   useEffect(() => {
-    const closeMenu = (event) => {
-      if (!menuRef.current?.contains(event.target)) {
+    const closeMenu = (event: MouseEvent) => {
+      if (
+        menuRef.current &&
+        event.target instanceof Node &&
+        !menuRef.current.contains(event.target)
+      ) {
         setOpenMenu(null)
       }
     }
@@ -161,7 +188,7 @@ export default function DesktopApp() {
   }, [])
 
   useEffect(() => {
-    const handleEscape = (event) => {
+    const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setActiveId(null)
         setOpenMenu(null)
@@ -172,7 +199,6 @@ export default function DesktopApp() {
     return () => window.removeEventListener("keydown", handleEscape)
   }, [])
 
-  // Check bounds on resize and pull spilling icons back into visible screen area
   useEffect(() => {
     const handleResize = () => {
       setIconPositions((prev) => {
@@ -204,7 +230,7 @@ export default function DesktopApp() {
   }, [])
 
   useEffect(() => {
-    const onMove = (event) => {
+    const onMove = (event: PointerEvent) => {
       if (!dragRef.current || !canvasRef.current) return
 
       const drag = dragRef.current
@@ -227,7 +253,6 @@ export default function DesktopApp() {
         drag.moved = true
       }
 
-      // Optimize dragging rendering frequency with requestAnimationFrame
       if (rafRef.current) cancelAnimationFrame(rafRef.current)
       rafRef.current = requestAnimationFrame(() => {
         setIconPositions((prev) => ({
@@ -237,7 +262,7 @@ export default function DesktopApp() {
       })
     }
 
-    const onUp = (event) => {
+    const onUp = (event: PointerEvent) => {
       if (!dragRef.current) return
       const drag = dragRef.current
       if (drag.pointerId !== event.pointerId) return
@@ -312,9 +337,12 @@ export default function DesktopApp() {
     setOpenMenu(null)
   }
 
-  const openTile = (id) => setActiveId(id)
+  const openTile = (id: string) => setActiveId(id)
 
-  const handlePointerDown = (event, tileId) => {
+  const handlePointerDown = (
+    event: React.PointerEvent<HTMLButtonElement>,
+    tileId: string,
+  ) => {
     if (!canvasRef.current) return
     event.preventDefault()
 
@@ -347,7 +375,10 @@ export default function DesktopApp() {
         ? s.iconLarge
         : s.iconMedium
 
-  const handleKeyDown = (event, id) => {
+  const handleKeyDown = (
+    event: React.KeyboardEvent<HTMLButtonElement>,
+    id: string,
+  ) => {
     if (event.key === "Enter") openTile(id)
   }
 
@@ -378,9 +409,10 @@ export default function DesktopApp() {
           setActiveId(null)
           setOpenMenu(null)
         }}
+        projectFilter={projectFilter}
+        setProjectFilter={setProjectFilter}
       />
 
-      {/* ─── Desktop canvas ─────────────────────────── */}
       <section
         className={`${s.desktopCanvas} ${s.desktopFree}`}
         ref={canvasRef}
@@ -404,7 +436,6 @@ export default function DesktopApp() {
         })}
       </section>
 
-      {/* ─── Hero Widget (desktop only) ─────────────── */}
       <div className={s.heroWidget}>
         <div className={s.heroCard}>
           <h1 className={s.heroName}>Maksym Opanasenko</h1>
@@ -437,11 +468,18 @@ export default function DesktopApp() {
             >
               About Me
             </button>
+            <a
+              href="/cv.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className={s.heroLink}
+            >
+              View CV
+            </a>
           </div>
         </div>
       </div>
 
-      {/* ─── Mobile layout (≤768px) ─────────────────── */}
       <div className={s.mobileHero}>
         <h1 className={s.mobileHeroName}>Maksym Opanasenko</h1>
         <p className={s.mobileHeroTitle}>Frontend Engineer · UI/UX</p>
@@ -473,6 +511,14 @@ export default function DesktopApp() {
           >
             About Me
           </button>
+          <a
+            href="/cv.pdf"
+            target="_blank"
+            rel="noreferrer"
+            className={s.mobileLink}
+          >
+            View CV
+          </a>
         </div>
       </div>
 

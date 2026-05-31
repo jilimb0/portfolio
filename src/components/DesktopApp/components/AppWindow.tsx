@@ -1,12 +1,16 @@
-import PropTypes from "prop-types"
 import { useEffect, useState } from "react"
+import type { AppTile } from "../../../types/portfolio"
 import s from "../style.module.css"
 
-export default function AppWindow({ tile, onClose }) {
+interface AppWindowProps {
+  tile: AppTile | null
+  onClose: () => void
+}
+
+export default function AppWindow({ tile, onClose }: AppWindowProps) {
   const [showLivePreview, setShowLivePreview] = useState(false)
   const [iframeLoaded, setIframeLoaded] = useState(false)
 
-  // Reset loading and preview flags when window tile changes
   // biome-ignore lint/correctness/useExhaustiveDependencies: tile.id changes require resetting window loading state
   useEffect(() => {
     setShowLivePreview(false)
@@ -18,22 +22,20 @@ export default function AppWindow({ tile, onClose }) {
   const canEmbedLivePreview = Boolean(tile.link) && !tile.embedBlocked
   const isAbout = tile.id === "about"
 
-  // About tile: simple text lines
   const infoLines = isAbout
     ? String(tile.descr || "")
         .split("\n")
-        .map((l) => l.trim())
+        .map((line) => line.trim())
         .filter(Boolean)
     : null
 
-  // Case-study sections
   const caseStudySections = !isAbout
     ? [
         { label: "Problem", value: tile.problem },
         { label: "Role", value: tile.role },
         { label: "Challenges", value: tile.challenges },
         { label: "Outcome", value: tile.outcome },
-      ].filter((s) => s.value)
+      ].filter((section) => section.value)
     : []
 
   const tags = Array.isArray(tile.tags) ? tile.tags : []
@@ -51,7 +53,6 @@ export default function AppWindow({ tile, onClose }) {
         role="dialog"
         aria-label={`${tile.name} window`}
       >
-        {/* Title bar */}
         <div className={s.windowBar}>
           <div className={s.windowControls}>
             <button
@@ -71,11 +72,9 @@ export default function AppWindow({ tile, onClose }) {
           </div>
         </div>
 
-        {/* Body */}
         <div
           className={`${s.windowBody} ${isAbout ? s.windowBodyAbout : s.windowBodyCase}`}
         >
-          {/* Preview panel */}
           <div className={s.windowPreviewWrap}>
             {showLivePreview && canEmbedLivePreview ? (
               <>
@@ -105,17 +104,14 @@ export default function AppWindow({ tile, onClose }) {
             )}
           </div>
 
-          {/* Info panel */}
           <div className={s.windowInfo}>
             {isAbout ? (
-              /* About Me — simple paragraphs */
               <div className={s.infoText}>
-                {infoLines.map((line) => (
+                {infoLines?.map((line) => (
                   <p key={`${tile.id}-${line.slice(0, 20)}`}>{line}</p>
                 ))}
               </div>
             ) : (
-              /* Case Study */
               <div className={s.caseStudy}>
                 {caseStudySections.map(({ label, value }) => (
                   <div key={label} className={s.caseSection}>
@@ -136,7 +132,6 @@ export default function AppWindow({ tile, onClose }) {
               </div>
             )}
 
-            {/* Actions */}
             <div className={s.actions}>
               {canEmbedLivePreview && !showLivePreview && (
                 <button
@@ -177,30 +172,20 @@ export default function AppWindow({ tile, onClose }) {
                   GitLab
                 </a>
               )}
+              {tile.cvLink && (
+                <a
+                  href={tile.cvLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={s.actionBtnGhost}
+                >
+                  View CV
+                </a>
+              )}
             </div>
           </div>
         </div>
       </article>
     </section>
   )
-}
-
-AppWindow.propTypes = {
-  tile: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    category: PropTypes.string,
-    descr: PropTypes.string,
-    problem: PropTypes.string,
-    role: PropTypes.string,
-    challenges: PropTypes.string,
-    outcome: PropTypes.string,
-    tags: PropTypes.arrayOf(PropTypes.string),
-    icon: PropTypes.string,
-    link: PropTypes.string,
-    ghLink: PropTypes.string,
-    gitlabLink: PropTypes.string,
-    embedBlocked: PropTypes.bool,
-  }),
-  onClose: PropTypes.func.isRequired,
 }

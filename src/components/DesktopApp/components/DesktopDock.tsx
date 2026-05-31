@@ -1,10 +1,20 @@
-import PropTypes from "prop-types"
 import { Fragment, useRef, useState } from "react"
+import type { AppTile } from "../../../types/portfolio"
 import s from "../style.module.css"
 
-export default function DesktopDock({ items, onOpen, activeId }) {
-  const [mouseX, setMouseX] = useState(null)
-  const itemRefs = useRef([])
+interface DesktopDockProps {
+  items: AppTile[]
+  onOpen: (id: string) => void
+  activeId: string | null
+}
+
+export default function DesktopDock({
+  items,
+  onOpen,
+  activeId,
+}: DesktopDockProps) {
+  const [mouseX, setMouseX] = useState<number | null>(null)
+  const itemRefs = useRef<(HTMLButtonElement | null)[]>([])
 
   return (
     <footer
@@ -44,16 +54,17 @@ export default function DesktopDock({ items, onOpen, activeId }) {
               onBlur={() => setMouseX(null)}
               data-label={tile.name}
               aria-label={tile.name}
-              style={{
-                "--dock-scale": scale.toFixed(3),
-                "--dock-lift": `${lift.toFixed(2)}px`,
-              }}
+              style={
+                {
+                  "--dock-scale": scale.toFixed(3),
+                  "--dock-lift": `${lift.toFixed(2)}px`,
+                } as React.CSSProperties
+              }
               ref={(node) => {
                 itemRefs.current[index] = node
               }}
             >
               <img src={tile.icon} alt="" />
-              {/* Premium active dot indicator */}
               {isActive && (
                 <span className={s.dockItemDot} aria-hidden="true" />
               )}
@@ -61,21 +72,18 @@ export default function DesktopDock({ items, onOpen, activeId }) {
             {index === 0 && (
               <span className={s.dockDivider} aria-hidden="true" />
             )}
+            {tile.id === "lifestyleecosystem" && (
+              <span className={s.dockDivider} aria-hidden="true" />
+            )}
+            {tile.id === "indaapp" && (
+              <span className={s.dockDivider} aria-hidden="true" />
+            )}
+            {tile.id === "weather" && (
+              <span className={s.dockDivider} aria-hidden="true" />
+            )}
           </Fragment>
         )
       })}
     </footer>
   )
-}
-
-DesktopDock.propTypes = {
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      icon: PropTypes.string,
-    }),
-  ).isRequired,
-  onOpen: PropTypes.func.isRequired,
-  activeId: PropTypes.string,
 }

@@ -1,8 +1,29 @@
-import PropTypes from "prop-types"
+import type { RefObject } from "react"
 import logo from "../../../assets/logo.webp"
+import type {
+  IconSize,
+  MenuLabel,
+  ProjectFilter,
+} from "../../../types/portfolio"
 import s from "../style.module.css"
 
-const MENU_LABELS = ["Portfolio", "File", "View", "Window"]
+const MENU_LABELS: MenuLabel[] = [
+  "Portfolio",
+  "File",
+  "Filter",
+  "View",
+  "Window",
+]
+
+const FILTER_OPTIONS: ProjectFilter[] = [
+  "All",
+  "Commercial",
+  "Featured",
+  "Client",
+  "Open Source",
+  "Tools",
+  "Pet",
+]
 
 const CONTACT_LINKS = [
   {
@@ -29,7 +50,20 @@ const CONTACT_LINKS = [
     href: "https://www.npmjs.com/~jilimb0",
     title: "npm Packages",
   },
-]
+] as const
+
+interface MenuBarProps {
+  menuRef: RefObject<HTMLElement>
+  now: string
+  openMenu: MenuLabel | null
+  setOpenMenu: React.Dispatch<React.SetStateAction<MenuLabel | null>>
+  onOpenAbout: () => void
+  onResetLayout: () => void
+  onSetIconSize: (size: IconSize) => void
+  onCloseWindow: () => void
+  projectFilter: ProjectFilter
+  setProjectFilter: React.Dispatch<React.SetStateAction<ProjectFilter>>
+}
 
 export default function MenuBar({
   menuRef,
@@ -40,10 +74,12 @@ export default function MenuBar({
   onResetLayout,
   onSetIconSize,
   onCloseWindow,
-}) {
-  const isOpen = (label) => openMenu === label
+  projectFilter,
+  setProjectFilter,
+}: MenuBarProps) {
+  const isOpen = (label: MenuLabel) => openMenu === label
 
-  const toggleMenu = (label) => {
+  const toggleMenu = (label: MenuLabel) => {
     setOpenMenu((prev) => (prev === label ? null : label))
   }
 
@@ -101,6 +137,27 @@ export default function MenuBar({
               </div>
             )}
 
+            {isOpen(label) && label === "Filter" && (
+              <div className={s.menuPanel}>
+                {FILTER_OPTIONS.map((filter) => (
+                  <button
+                    key={filter}
+                    className={s.menuPanelItem}
+                    style={
+                      projectFilter === filter ? { fontWeight: "bold" } : {}
+                    }
+                    type="button"
+                    onClick={() => {
+                      setProjectFilter(filter)
+                      setOpenMenu(null)
+                    }}
+                  >
+                    {projectFilter === filter ? `✓ ${filter}` : filter}
+                  </button>
+                ))}
+              </div>
+            )}
+
             {isOpen(label) && label === "View" && (
               <div className={s.menuPanel}>
                 <button
@@ -143,7 +200,6 @@ export default function MenuBar({
       </div>
 
       <div className={s.menuRight}>
-        {/* Contact links */}
         <nav className={s.menuContactLinks} aria-label="Contact links">
           {CONTACT_LINKS.map(({ id, label, href, title }) => (
             <a
@@ -159,24 +215,9 @@ export default function MenuBar({
           ))}
         </nav>
 
-        {/* Divider + clock */}
         <span className={s.menuDivider} />
         <span className={s.menuClock}>{now}</span>
       </div>
     </header>
   )
-}
-
-MenuBar.propTypes = {
-  menuRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
-  ]),
-  now: PropTypes.string.isRequired,
-  openMenu: PropTypes.string,
-  setOpenMenu: PropTypes.func.isRequired,
-  onOpenAbout: PropTypes.func.isRequired,
-  onResetLayout: PropTypes.func.isRequired,
-  onSetIconSize: PropTypes.func.isRequired,
-  onCloseWindow: PropTypes.func.isRequired,
 }
