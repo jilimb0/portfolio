@@ -1,17 +1,16 @@
 import { useEffect, useMemo, useRef, useState } from "react"
-import admin from "../../assets/admin.webp"
+import bouquet from "../../assets/bouquet.webp"
 import catlabpos from "../../assets/catlab-pos-screen.webp"
-import indaapp from "../../assets/indaapp.webp"
-import indulgence from "../../assets/indulgence.webp"
+import converter from "../../assets/converter.webp"
 import lifestyleecosystem from "../../assets/lifestyle-ecosystem-screen.webp"
 import logo from "../../assets/logo.webp"
 import mypersfinbot from "../../assets/mypersfinbot.png"
-import pokemon from "../../assets/pokemon.webp"
-import serviceapp from "../../assets/service-app-screen.webp"
+import reporadar from "../../assets/reporadar.webp"
+import speech from "../../assets/speech.webp"
 import stopcheck from "../../assets/stopcheck.webp"
 import tgwrapper from "../../assets/tgwrapper.png"
 import uilib from "../../assets/uilib.png"
-import weather from "../../assets/weather.webp"
+import wishlist from "../../assets/wishlist.webp"
 import portfolioDb from "../../portfolio-db.json"
 import type {
   AppTile,
@@ -37,18 +36,17 @@ import s from "./style.module.css"
 import { clamp, getDefaultPositions, snap } from "./utils/layout"
 
 const imageById: Record<string, string> = {
-  admin,
-  indaapp,
-  indulgence,
-  mypersfinbot,
-  pokemon,
-  serviceapp,
+  bouquet,
+  catlabpos,
+  converter,
+  lifestyleecosystem,
+  mypersfin: mypersfinbot,
+  reporadar,
+  speech,
   stopcheck,
   tgwrapper,
-  uilib,
-  weather,
-  catlabpos,
-  lifestyleecosystem,
+  uilibrary: uilib,
+  wishlist,
 }
 
 const aboutTile: AppTile = {
@@ -127,7 +125,8 @@ export default function DesktopApp() {
         return JSON.parse(saved)
       } catch {}
     }
-    return { x: 20, y: 70 }
+    const bottom = typeof window !== "undefined" ? window.innerHeight - 220 : 70
+    return { x: 20, y: Math.max(70, bottom) }
   })
   const heroDrag = useRef<{
     startX: number
