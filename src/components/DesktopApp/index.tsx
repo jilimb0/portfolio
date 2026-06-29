@@ -119,6 +119,22 @@ export default function DesktopApp() {
   const [iconPositions, setIconPositions] = useState<IconPositions>({})
   const [projectFilter, setProjectFilter] = useState<ProjectFilter>("All")
   const [showTerminal, setShowTerminal] = useState(false)
+  const [heroPos, setHeroPos] = useState<{ x: number; y: number }>(() => {
+    if (typeof window === "undefined") return { x: 20, y: 70 }
+    const saved = localStorage.getItem("portfolio.heroPos")
+    if (saved) {
+      try {
+        return JSON.parse(saved)
+      } catch {}
+    }
+    return { x: 20, y: 70 }
+  })
+  const heroDrag = useRef<{
+    startX: number
+    startY: number
+    origX: number
+    origY: number
+  } | null>(null)
 
   const desktopTiles = useMemo(() => {
     const base = appTiles.filter((tile) => tile.id !== "about")
@@ -344,6 +360,34 @@ export default function DesktopApp() {
     }
   }, [])
 
+  const handleHeroPointerDown = (e: React.PointerEvent) => {
+    const el = e.currentTarget as HTMLElement
+    el.setPointerCapture(e.pointerId)
+    heroDrag.current = {
+      startX: e.clientX,
+      startY: e.clientY,
+      origX: heroPos.x,
+      origY: heroPos.y,
+    }
+  }
+
+  const handleHeroPointerMove = (e: React.PointerEvent) => {
+    if (!heroDrag.current) return
+    const dx = e.clientX - heroDrag.current.startX
+    const dy = e.clientY - heroDrag.current.startY
+    setHeroPos({
+      x: heroDrag.current.origX + dx,
+      y: heroDrag.current.origY + dy,
+    })
+  }
+
+  const handleHeroPointerUp = () => {
+    if (heroDrag.current) {
+      heroDrag.current = null
+      localStorage.setItem("portfolio.heroPos", JSON.stringify(heroPos))
+    }
+  }
+
   const resetLayout = () => {
     const width = canvasRef.current?.clientWidth || window.innerWidth
     setIconPositions(getDefaultPositions(desktopTiles, width))
@@ -456,7 +500,18 @@ export default function DesktopApp() {
         })}
       </section>
 
-      <div className={s.heroWidget}>
+      <div
+        className={s.heroWidget}
+        style={{
+          left: heroPos.x,
+          top: heroPos.y,
+          position: "fixed",
+          zIndex: 100,
+        }}
+        onPointerDown={handleHeroPointerDown}
+        onPointerMove={handleHeroPointerMove}
+        onPointerUp={handleHeroPointerUp}
+      >
         <div className={s.heroCard}>
           <h1 className={s.heroName}>Maksym Opanasenko</h1>
           <p className={s.heroTitle}>Frontend Engineer · UI/UX</p>

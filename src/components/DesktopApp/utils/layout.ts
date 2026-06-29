@@ -16,19 +16,19 @@ export function getDefaultPositions(
   items: AppTile[],
   width: number,
 ): IconPositions {
-  const height = typeof window !== "undefined" ? window.innerHeight : 768
-  const maxRows = Math.max(
+  const GAP = 20
+  const START_X = GAP
+  const START_Y = HEADER_SAFE_TOP + 10
+  const itemsPerRow = Math.max(
     1,
-    Math.floor((height - HEADER_SAFE_TOP - 140) / ITEM_BOX_SIZE),
+    Math.floor((width - GAP) / (ITEM_BOX_SIZE + GAP)),
   )
 
   return items.reduce<IconPositions>((acc, tile, index) => {
-    const row = index % maxRows
-    const col = Math.floor(index / maxRows)
-
-    const rightEdgeX = width - ITEM_BOX_SIZE - 20
-    const x = Math.max(20, rightEdgeX - col * ITEM_BOX_SIZE)
-    const y = HEADER_SAFE_TOP + row * ITEM_BOX_SIZE
+    const row = Math.floor(index / itemsPerRow)
+    const col = index % itemsPerRow
+    const x = START_X + col * (ITEM_BOX_SIZE + GAP)
+    const y = START_Y + row * (ITEM_BOX_SIZE + GAP)
 
     acc[tile.id] = {
       x: snap(x),

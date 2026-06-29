@@ -87,16 +87,6 @@
     "challenges": "Implementing Compare-And-Set (CAS) session semantics via Redis Lua scripting for conflict-free concurrent access across distributed instances. Building APM-grade observability from scratch instead of wrapping OTEL SDK.",
     "outcome": "64 tests across 22 files, 7 npm packages published, automated CI/CD with changeset versioning, Telegram API drift detection via weekly watchdog. API stability policy documented. FailsafeSessionStorage for Redis resilience."
   },
-  "portfolio": {
-    "id": "portfolio",
-    "name": "Portfolio",
-    "category": "Open Source",
-    "tags": ["Vite", "React 18", "TypeScript", "CSS Modules", "Vitest", "PWA"],
-    "problem": "Personal portfolio needed to demonstrate engineering excellence — the code itself must be as impressive as the UI.",
-    "role": "Sole Developer & Designer: CRA→Vite migration, PWA service worker, Lighthouse CI, ErrorBoundary resilience, JSON-LD structured data.",
-    "challenges": "Reducing bundle from 2.6MB (CRA) to 174KB (Vite, 93% reduction) while preserving the macOS simulation UX. Compressing 8.6MB wallpapers to 484KB without visible quality loss.",
-    "outcome": "57KB gzip total bundle (93% reduction), 3 smoke tests passing, PWA offline support, Lighthouse CI enforcement (Perf ≥95, A11y ≥95, SEO 100), 8.6MB→484KB wallpaper compression (94% reduction)."
-  },
   "converter": {
     "id": "converter",
     "name": "FormatFlow Converter",
@@ -141,12 +131,13 @@
       "TGWrapper",
       "Whisper STT",
       "PostgreSQL",
-      "Zod"
+      "Zod",
+      "i18n"
     ],
-    "problem": "Russian-speaking professionals lacked a tool to analyze filler word usage in their speech for improving public speaking skills.",
-    "role": "Creator & Developer: Built Telegram Mini App with Whisper STT integration, filler word detection (Russian), scoring system (0-100), and session management.",
-    "challenges": "Implementing provider-pattern for STT backends (managed-whisper, faster-whisper) with abstract interface. Designing 3-dimensional scoring rubric (fillers-per-minute, speech rate, filler dominance).",
-    "outcome": "End-to-end filler word analysis pipeline with Whisper transcription, 0-100 scoring, session history with detail/progress screens, and premium gating via session limits."
+    "problem": "Professionals lacked a tool to analyze filler word usage in their speech across multiple languages for improving public speaking skills.",
+    "role": "Creator & Developer: Built Telegram Mini App with Whisper STT integration, multi-language filler word detection (RU → UA/EN planned via dictionary abstraction), 0-100 scoring system, and session management.",
+    "challenges": "Implementing provider-pattern for STT backends (managed-whisper, faster-whisper) with abstract interface. Designing language-agnostic filler dictionary architecture so new languages can be added without changing detection logic. 3-dimensional scoring rubric (fillers-per-minute, speech rate, filler dominance).",
+    "outcome": "End-to-end filler word analysis pipeline with Whisper transcription, multi-language architecture (RU live, UA/EN dictionary stubs ready), 0-100 scoring, session history with detail/progress screens, and premium gating via session limits."
   },
   "mypersfin": {
     "id": "mypersfin",
