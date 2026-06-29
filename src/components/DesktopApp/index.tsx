@@ -23,6 +23,7 @@ import type {
   ProjectFilter,
 } from "../../types/portfolio"
 import { PROJECT_FILTER_CATEGORIES } from "../../types/portfolio"
+import { ErrorBoundary } from "../ErrorBoundary"
 import bg1 from "../MainSection/img/1.webp"
 import bg2 from "../MainSection/img/2.webp"
 import bg3 from "../MainSection/img/3.webp"
@@ -384,6 +385,7 @@ export default function DesktopApp() {
 
   return (
     <main
+      data-testid="desktop"
       className={`${s.desktopRoot} ${theme === "light" ? s.themeLight : s.themeDark}`}
       style={{
         backgroundImage: `url(${wallpaper.image})`,
@@ -547,11 +549,13 @@ export default function DesktopApp() {
       </div>
 
       <DesktopDock items={appTiles} onOpen={openTile} activeId={activeId} />
-      <AppWindow
-        key={activeTile?.id || "closed"}
-        tile={activeTile}
-        onClose={() => setActiveId(null)}
-      />
+      <ErrorBoundary>
+        <AppWindow
+          key={activeTile?.id || "closed"}
+          tile={activeTile}
+          onClose={() => setActiveId(null)}
+        />
+      </ErrorBoundary>
     </main>
   )
 }
