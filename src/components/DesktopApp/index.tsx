@@ -32,6 +32,7 @@ import AppWindow from "./components/AppWindow"
 import DesktopDock from "./components/DesktopDock"
 import DesktopIcon from "./components/DesktopIcon"
 import MenuBar from "./components/MenuBar"
+import { Terminal } from "./components/Terminal"
 import s from "./style.module.css"
 import { clamp, getDefaultPositions, snap } from "./utils/layout"
 
@@ -62,8 +63,18 @@ const aboutTile: AppTile = {
   icon: logo,
 }
 
+const terminalTile: AppTile = {
+  id: "terminal",
+  name: "Terminal",
+  descr: "Interactive terminal emulator. Type 'help' for available commands.",
+  ghLink: "",
+  link: "",
+  icon: logo,
+}
+
 const appTiles: AppTile[] = [
   aboutTile,
+  terminalTile,
   ...Object.values(portfolioDb as Record<string, PortfolioProject>).map(
     (item) => ({
       ...item,
@@ -107,6 +118,7 @@ export default function DesktopApp() {
   })
   const [iconPositions, setIconPositions] = useState<IconPositions>({})
   const [projectFilter, setProjectFilter] = useState<ProjectFilter>("All")
+  const [showTerminal, setShowTerminal] = useState(false)
 
   const desktopTiles = useMemo(() => {
     const base = appTiles.filter((tile) => tile.id !== "about")
@@ -338,7 +350,13 @@ export default function DesktopApp() {
     setOpenMenu(null)
   }
 
-  const openTile = (id: string) => setActiveId(id)
+  const openTile = (id: string) => {
+    if (id === "terminal") {
+      setShowTerminal(true)
+    } else {
+      setActiveId(id)
+    }
+  }
 
   const handlePointerDown = (
     event: React.PointerEvent<HTMLButtonElement>,
@@ -556,6 +574,17 @@ export default function DesktopApp() {
           onClose={() => setActiveId(null)}
         />
       </ErrorBoundary>
+
+      {showTerminal && (
+        <Terminal
+          tiles={appTiles}
+          onOpenProject={(id) => {
+            setShowTerminal(false)
+            setActiveId(id)
+          }}
+          onClose={() => setShowTerminal(false)}
+        />
+      )}
     </main>
   )
 }

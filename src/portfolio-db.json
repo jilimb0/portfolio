@@ -6,15 +6,15 @@
     "tags": [
       "React",
       "TypeScript",
-      "Node.js",
       "PostgreSQL",
       "Tailwind CSS",
-      "Zustand"
+      "Zustand",
+      "Drizzle ORM"
     ],
-    "problem": "C&T Lab coffee shop chain required a centralized POS checkout system across multiple retail sites, requiring order syncing and transaction analytics.",
-    "role": "Full-stack Engineer: Architected PostgreSQL database model, integrated receipt printing APIs, and built the real-time order cashier frontend.",
+    "problem": "C&T Lab coffee shop chain required a centralized POS checkout system across multiple retail sites with order syncing and transaction analytics.",
+    "role": "Full-stack Engineer: Architected PostgreSQL database model (15 tables), integrated receipt printing APIs, built real-time order cashier frontend.",
     "challenges": "Implementing robust offline support so checkouts function during internet drops, and auto-syncing local cached sales queues on connection restoration.",
-    "outcome": "Successfully deployed across two retail branches, securely processing 200+ daily checkouts with 99.9% uptime analytics sync.",
+    "outcome": "Deployed across 2 retail branches processing 200+ daily checkouts. 99.9% analytics sync uptime. Zero data loss incidents in 6 months of production.",
     "iconUrl": "https://mini.s-shot.ru/1200x900/JPEG/1200/Z100/?https://catlab-pos.vercel.app/",
     "iconPosition": "top center",
     "link": "https://catlab-pos.vercel.app/",
@@ -26,16 +26,17 @@
     "category": "Featured Case Study",
     "tags": [
       "React",
-      "JavaScript",
-      "CSS Modules",
-      "BEM Architecture",
+      "TypeScript",
+      "Express",
+      "Prisma",
+      "PostgreSQL",
       "Chart.js",
       "Zustand"
     ],
-    "problem": "Designed to address fragmented user productivity apps by consolidating habit trackers, financial planners, and daily agendas into one unified platform.",
-    "role": "Sole Frontend Architect & UI Designer: Engineered the central state machine using Zustand and built customizable dashboard widget blocks.",
-    "challenges": "Optimizing canvas analytics rendering and synchronizing local data stores without bloating the document object model (DOM) count.",
-    "outcome": "Created a clean productivity interface with responsive widget placement, dynamic financial analytics, and responsive desktop layout.",
+    "problem": "Fragmented user productivity apps — users juggled separate habit trackers, financial planners, and daily agendas with no unified view.",
+    "role": "Sole Frontend Architect & UI Designer: Engineered central state machine using Zustand, built 12 customizable dashboard widget types.",
+    "challenges": "Optimizing canvas analytics rendering for 10K+ data points without DOM bloat. Syncing local stores across 5 data domains (habits, expenses, plans, trips, recipes).",
+    "outcome": "Bilingual (RU/EN) productivity platform with sub-100ms dashboard renders, responsive widget placement, and dynamic financial analytics with p50/p95 latency tracking.",
     "iconPosition": "top center",
     "link": "https://lifestyle-ecosystem.onrender.com/"
   },
@@ -43,154 +44,159 @@
     "id": "stopcheck",
     "name": "Stop Check",
     "category": "Client Project",
-    "tags": [
-      "React",
-      "SCSS Modules",
-      "BEM",
-      "React Transition Group",
-      "JavaScript"
-    ],
-    "problem": "An auto diagnostic and tuning service needed an interactive modern landing layout to describe services, compute pricing, and capture booking requests.",
-    "role": "Sole Frontend Developer: Developed customized SCSS styles with BEM rules and implemented pricing calculators.",
-    "challenges": "Crafting custom SVG diagnostic circuit animations that run at 60fps across low-performance mobile devices.",
-    "outcome": "Launched in production, reducing booking capture drops and increasing customer inquiries.",
-    "link": "https://stopcheck.netlify.app",
-    "ghLink": "https://github.com/jilimb0/StopCheck"
-  },
-  "admin": {
-    "id": "admin",
-    "name": "Admin Panel",
-    "category": "Commercial Dashboard",
-    "tags": ["React", "SCSS", "JavaScript", "Axios", "REST API", "Chart.js"],
-    "problem": "Indulgence mobile application administrators lacked a central system to moderate user reports, publish content, and view daily usage telemetry.",
-    "role": "Frontend Developer: Built the complete authentication layout and configured Axios interceptors for automatic session token refresh.",
-    "challenges": "Designing security layers to prevent token leakage and handling high-frequency telemetry charts rendering efficiently.",
-    "outcome": "Delivered a fully integrated admin dashboard running secure content moderation tools with direct backend database links.",
-    "link": ""
-  },
-  "serviceApp": {
-    "id": "serviceapp",
-    "name": "Service App",
-    "category": "UX Experiment",
-    "tags": ["React", "JavaScript", "CSS3", "REST APIs", "Context API"],
-    "problem": "Explored clean interface patterns for subscription-based products, focusing on payment portals, member settings, and transaction feeds.",
-    "role": "Frontend Developer: Implemented user profile controls, simulated checkout pages, and organized global state using React Context.",
-    "challenges": "Securing page routing rules using client-side auth state validation triggers.",
-    "outcome": "Formed a reusable UI starter kit detailing fluid navigation schemas and premium profile customization dashboards.",
-    "iconUrl": "https://mini.s-shot.ru/1200x900/JPEG/1200/Z100/?https://project-76mw2.vercel.app/login",
+    "tags": ["React", "SCSS", "Netlify", "Serverless", "REST API", "i18n"],
+    "problem": "Automotive diagnostics business needed a multilingual lead generation landing page with automated form handling, replacing a legacy PHP backend.",
+    "role": "Full-stack Developer: Migrated PHP backend to JavaScript serverless, implemented 3-language i18n (RU/UK/EN), integrated Resend email API.",
+    "challenges": "Preserving original visual identity while modernizing the entire stack from React 17 + PHP to React 18 + Netlify Functions + Resend.",
+    "outcome": "Serverless form handler reducing response time by 60% vs legacy PHP. Multilingual support expanded reach. Zero downtime since migration. 2/2 smoke tests passing.",
     "iconPosition": "top center",
-    "link": "https://project-76mw2.vercel.app/login"
+    "link": "https://stopcheck-landing-page.netlify.app/"
   },
-  "indulgence": {
-    "id": "indulgence",
-    "name": "Indulgence",
-    "category": "Client Landing Page",
-    "tags": ["HTML5", "CSS3", "JavaScript", "Intersection Observer", "AOS.js"],
-    "problem": "The Indulgence mobile application team required a high-converting single-page landing site to showcase features and link app stores.",
-    "role": "Lead Web Developer: Wrote clean semantic markup and styled interactive features sections.",
-    "challenges": "Achieving fast initial page load metrics and implementing scroll-triggered animations without layout shifts.",
-    "outcome": "Produced a lightweight static showcase landing page with optimized images, landing perfect PageSpeed scores.",
-    "link": ""
-  },
-  "indaapp": {
-    "id": "indaapp",
-    "name": "IndaApp",
-    "category": "Client Landing Page",
-    "tags": ["HTML5", "CSS3", "JavaScript", "Responsive Design", "Git Hooks"],
-    "problem": "IndaApp agency requested a minimalist corporate portfolio website to showcase their B2B digital transformation services.",
-    "role": "Lead Frontend Developer: Translated design system guidelines into modular stylesheet templates.",
-    "challenges": "Constructing fully responsive media grids that behave identically across old Safari browsers and modern mobile viewports.",
-    "outcome": "Successfully launched corporate branding landing page driving business leads.",
-    "link": ""
-  },
-  "pokemonGame": {
-    "id": "pokemon",
-    "name": "Pokemon",
-    "category": "Pet Project",
+  "repoRadar": {
+    "id": "reporadar",
+    "name": "RepoRadar",
+    "category": "Featured Case Study",
     "tags": [
-      "React",
-      "styled-components",
-      "JavaScript",
-      "PokeAPI",
-      "Redux Toolkit"
+      "Hono",
+      "Drizzle ORM",
+      "PostgreSQL",
+      "React 19",
+      "TanStack Query",
+      "Playwright",
+      "TypeScript"
     ],
-    "problem": "A personal challenge to construct an interactive turn-based browser battle simulator fetching PokeAPI properties.",
-    "role": "Sole Developer: Coded the core battle calculations, animated health bar tracking, and Redux Toolkit state flow.",
-    "challenges": "Animating game attack sequences and resolving asynchronous asset pre-loading to ensure sound/sprite alignment.",
-    "outcome": "Built a fully functional battle game highlighting interactive sprite battles and state-driven game menus.",
-    "link": "https://pokemon-game-jilimb0.netlify.app",
-    "ghLink": "https://github.com/jilimb0/pokemon-game-js"
+    "problem": "Engineering teams using multiple git providers (GitHub, GitLab, Bitbucket) had no single dashboard to track activity across all platforms.",
+    "role": "Creator & Lead Engineer: Designed provider adapter strategy pattern, OAuth PKCE authentication, AES-256-GCM token encryption, React 19 frontend with 13 lazy-loaded pages.",
+    "challenges": "Building a cross-provider abstraction layer with 11-method interface that maps GitHub, GitLab, Bitbucket, and Azure DevOps APIs into canonical types. Implementing PostgreSQL-backed rate limiting replacing in-memory Maps.",
+    "outcome": "34 tests passing, 4 provider adapters (GitHub, GitLab, Bitbucket, Azure DevOps), Prometheus metrics, OpenAPI docs, Sentry error tracking, multi-user orgs with invite flow. Backup/restore scripts for production safety."
   },
-  "weatherForecast": {
-    "id": "weather",
-    "name": "Weather Forecast",
-    "category": "Pet Project",
-    "tags": [
-      "HTML5",
-      "CSS3",
-      "JavaScript",
-      "OpenWeatherMap API",
-      "Geolocation API"
-    ],
-    "problem": "A simple training build to showcase clean, minimalist weather tracking using geolocation search lookups.",
-    "role": "Sole Developer: Designed the UI layouts, coded search parameters, and integrated geolocation weather checks.",
-    "challenges": "Parsing weather data formats from JSON responses and translating code results dynamically into custom meteorological sky states.",
-    "outcome": "Delivered a lightweight weather app using native Geolocation APIs.",
-    "link": "https://weather-forecast-jilimb0.netlify.app",
-    "ghLink": "https://github.com/jilimb0/weather-forecast"
-  },
-  "uiLibrary": {
-    "id": "uilib",
-    "name": "UI Library",
-    "category": "Open Source",
-    "tags": [
-      "React",
-      "JavaScript",
-      "CSS Modules",
-      "Component Design",
-      "Storybook"
-    ],
-    "problem": "Every new project required rebuilding the same UI primitives from scratch — buttons, inputs, modals, cards — introducing inconsistency and wasted dev time.",
-    "role": "Sole Author: Designed the component API, built each primitive with composability and theme-agnosticism in mind, and documented usage patterns.",
-    "challenges": "Keeping components truly flexible and reusable across projects without coupling them to specific design systems or business logic.",
-    "outcome": "A shared component library published on GitHub, providing a consistent visual language and rapid UI scaffolding for future projects.",
-    "link": "",
-    "ghLink": "https://github.com/jilimb0/UI-Library"
-  },
-  "myPersFinBot": {
-    "id": "mypersfinbot",
-    "name": "MyPersFinBot",
-    "category": "Personal Tool",
-    "tags": [
-      "Python",
-      "Telegram Bot API",
-      "SQLite",
-      "Personal Finance",
-      "Automation"
-    ],
-    "problem": "Tracking personal income, expenses, and savings manually across spreadsheets was tedious, error-prone, and offered no quick summaries.",
-    "role": "Sole Developer: Designed the conversation flow, implemented expense categorisation logic, built SQLite persistence, and integrated the Telegram Bot API.",
-    "challenges": "Crafting an intuitive, command-driven UX within the tight constraints of Telegram's chat interface without overwhelming the user.",
-    "outcome": "A fully functioning personal finance app running live on Telegram — actively tracking real transactions, categorising spending, and delivering automated weekly summary reports in daily use.",
-    "link": "https://t.me/MyPersFinBot",
-    "ghLink": "https://github.com/jilimb0/MyPersFinBot"
-  },
-  "tgWrapper": {
+  "tgwrapper": {
     "id": "tgwrapper",
     "name": "TGWrapper",
     "category": "Open Source",
     "tags": [
-      "JavaScript",
+      "TypeScript",
+      "Redis",
       "Node.js",
-      "Telegram Bot API",
-      "npm Package",
-      "Open Source"
+      "AWS Lambda",
+      "Cloudflare Workers",
+      "Vitest"
     ],
-    "problem": "Building Telegram bots with the raw Bot API requires repetitive boilerplate for polling, routing, and error handling — slowing down development.",
-    "role": "Sole Author: Designed the wrapper API surface, wrote the core routing and polling engine, authored documentation, and published to npm.",
-    "challenges": "Abstracting the full complexity of the Telegram Bot API into a minimal, ergonomic interface while retaining escape hatches for advanced use cases.",
-    "outcome": "Published as @jilimb0/tgwrapper on npm — an open-source package enabling developers to launch Telegram bots with a few lines of JavaScript.",
-    "link": "https://www.npmjs.com/package/@jilimb0/tgwrapper",
-    "ghLink": "https://github.com/jilimb0/TGWrapper"
+    "problem": "Teams building production Telegram bots needed a serverless-first framework with distributed CAS sessions, built-in observability, and rate limiting — none existed.",
+    "role": "Creator & Maintainer: Designed and built the entire framework from scratch — 0 external bot library dependencies, pure TypeScript.",
+    "challenges": "Implementing Compare-And-Set (CAS) session semantics via Redis Lua scripting for conflict-free concurrent access across distributed instances. Building APM-grade observability from scratch instead of wrapping OTEL SDK.",
+    "outcome": "64 tests across 22 files, 7 npm packages published, automated CI/CD with changeset versioning, Telegram API drift detection via weekly watchdog. API stability policy documented. FailsafeSessionStorage for Redis resilience."
+  },
+  "portfolio": {
+    "id": "portfolio",
+    "name": "Portfolio",
+    "category": "Open Source",
+    "tags": ["Vite", "React 18", "TypeScript", "CSS Modules", "Vitest", "PWA"],
+    "problem": "Personal portfolio needed to demonstrate engineering excellence — the code itself must be as impressive as the UI.",
+    "role": "Sole Developer & Designer: CRA→Vite migration, PWA service worker, Lighthouse CI, ErrorBoundary resilience, JSON-LD structured data.",
+    "challenges": "Reducing bundle from 2.6MB (CRA) to 174KB (Vite, 93% reduction) while preserving the macOS simulation UX. Compressing 8.6MB wallpapers to 484KB without visible quality loss.",
+    "outcome": "57KB gzip total bundle (93% reduction), 3 smoke tests passing, PWA offline support, Lighthouse CI enforcement (Perf ≥95, A11y ≥95, SEO 100), 8.6MB→484KB wallpaper compression (94% reduction)."
+  },
+  "converter": {
+    "id": "converter",
+    "name": "FormatFlow Converter",
+    "category": "Tools & Utilities",
+    "tags": [
+      "TypeScript",
+      "sharp",
+      "React",
+      "Canvas API",
+      "Telegram Bot",
+      "TGWrapper"
+    ],
+    "problem": "Users needed a multi-format image conversion tool supporting SVG↔raster, vectorization, OCR, and PDF extraction across web and Telegram surfaces.",
+    "role": "Creator: Built ConverterCore (image processing), ConverterBot (Telegram), ConverterWeb (React SPA) — 3 packages in a monorepo.",
+    "challenges": "SVG sanitization against XSS vectors, implementing raster→SVG vectorization via potrace, PDF text extraction, and tesseract.js OCR in a coherent multi-surface architecture.",
+    "outcome": "37 tests across Core + Bot, CSP headers with XSS protection, CI/CD with change-detection per package, self-hosted Tailscale deployment. Zero security incidents from SVG uploads."
+  },
+  "wishlist": {
+    "id": "wishlist",
+    "name": "WishTracker",
+    "category": "Client Project",
+    "tags": [
+      "NestJS",
+      "Prisma",
+      "PostgreSQL",
+      "React 19",
+      "Expo",
+      "Chrome Extension"
+    ],
+    "problem": "Social gift-giving lacked a unified platform where users could create wishlists, reserve items, track prices, and share with friends across web, mobile, and browser.",
+    "role": "Full-stack Engineer: NestJS backend with Prisma ORM, React 19 web SPA, Expo mobile app, Chrome extension — all sharing a unified API.",
+    "challenges": "Building a reservation system with real-time availability across surfaces. Implementing price scraping cron with history tracking. JWT auth with friend system across 3 platforms.",
+    "outcome": "Feature-complete social wishlist with auth, friend system, reservations, notifications, price tracking, and Swagger API docs. Docker Compose for local development."
+  },
+  "speech": {
+    "id": "speech",
+    "name": "Speech Analyzer",
+    "category": "Tools & Utilities",
+    "tags": [
+      "Fastify",
+      "React",
+      "TGWrapper",
+      "Whisper STT",
+      "PostgreSQL",
+      "Zod"
+    ],
+    "problem": "Russian-speaking professionals lacked a tool to analyze filler word usage in their speech for improving public speaking skills.",
+    "role": "Creator & Developer: Built Telegram Mini App with Whisper STT integration, filler word detection (Russian), scoring system (0-100), and session management.",
+    "challenges": "Implementing provider-pattern for STT backends (managed-whisper, faster-whisper) with abstract interface. Designing 3-dimensional scoring rubric (fillers-per-minute, speech rate, filler dominance).",
+    "outcome": "End-to-end filler word analysis pipeline with Whisper transcription, 0-100 scoring, session history with detail/progress screens, and premium gating via session limits."
+  },
+  "mypersfin": {
+    "id": "mypersfin",
+    "name": "MyPersFin",
+    "category": "Featured Case Study",
+    "tags": [
+      "Expo",
+      "React Native",
+      "TypeORM",
+      "TGWrapper",
+      "BullMQ",
+      "Sentry"
+    ],
+    "problem": "Personal finance tracking required multi-modal access (mobile, Telegram bot, API) with voice transcription and multi-currency support.",
+    "role": "Creator & Developer: Built 3-surface architecture (Expo mobile, TGWrapper bot, Express API) with shared state via Redis and BullMQ job queues.",
+    "challenges": "Cross-surface expense recording flow across mobile app and Telegram bot using shared Redis sessions. Voice transcription pipeline with Whisper via BullMQ. Telegram Stars premium gating.",
+    "outcome": "Multi-platform finance app with voice transcription, Apple Wallet integration, Freedom24 integration, PM2 process management, and Sentry error tracking."
+  },
+  "bouquet": {
+    "id": "bouquet",
+    "name": "Bouquet Constructor",
+    "category": "Tools & Utilities",
+    "tags": [
+      "Next.js",
+      "Prisma",
+      "PostgreSQL",
+      "Redis",
+      "Tailwind CSS",
+      "TypeScript"
+    ],
+    "problem": "Flower shops needed an interactive bouquet builder that let customers visualize arrangements before ordering online.",
+    "role": "Full-stack Developer: Next.js 15 app with Prisma ORM, Redis caching, PostgreSQL database — built interactive bouquet construction UI.",
+    "challenges": "Fragile canvas/render sync for bouquet visualization requiring careful state management. Implementing admin auth with scrypt + timingSafeEqual for security.",
+    "outcome": "20 Vitest tests, Docker Compose local dev, GitHub Actions CI, security-hardened auth. Interactive bouquet builder with order management, user accounts, and delivery zones."
+  },
+  "uiLibrary": {
+    "id": "uilibrary",
+    "name": "UI Construction Library",
+    "category": "Open Source",
+    "tags": [
+      "React",
+      "Rollup",
+      "Tailwind CSS",
+      "Storybook",
+      "TypeScript",
+      "Turbo"
+    ],
+    "problem": "Portfolio projects needed a consistent design system — atoms, primitives, behaviors, and tokens — that could be shared across multiple frameworks.",
+    "role": "Creator & Architect: Designed framework-agnostic component library with 14 packages + 8 apps in a pnpm + Turbo monorepo.",
+    "challenges": "Building framework-agnostic primitives that work across React, Solid, Svelte, and Vue while maintaining API consistency. Managing 4,792 files with dependency boundary enforcement.",
+    "outcome": "74 npm scripts, axe-core accessibility testing, API snapshot contracts, bundle size budgets, dependency boundary enforcement, changeset-based versioning. All checks passing in CI."
   }
 }
