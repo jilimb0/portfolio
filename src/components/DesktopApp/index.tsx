@@ -58,7 +58,7 @@ const aboutTile: AppTile = {
     "Frontend engineer focused on product UI, interactive UX, and production-ready frontend architecture.\n3+ Years Production Experience | 10+ Launched Projects\nCore stack: React, JavaScript/TypeScript, modern CSS, REST API integrations, and reusable component systems.\nI build responsive web apps, admin dashboards, and polished portfolio/landing experiences with attention to performance and visual detail.\nOpen to freelance, long-term product collaboration, and frontend consulting.",
   ghLink: "https://github.com/jilimb0",
   gitlabLink: "https://gitlab.com/ofmaos",
-  cvLink: "/cv.pdf",
+  cvLink: "",
   link: "",
   icon: logo,
 }
@@ -543,14 +543,16 @@ export default function DesktopApp() {
             >
               About Me
             </button>
-            <a
-              href="/cv.pdf"
-              target="_blank"
-              rel="noreferrer"
-              className={s.heroLink}
-            >
-              View CV
-            </a>
+            {aboutTile.cvLink && (
+              <a
+                href={aboutTile.cvLink}
+                target="_blank"
+                rel="noreferrer"
+                className={s.heroLink}
+              >
+                View CV
+              </a>
+            )}
           </div>
         </div>
       </div>
@@ -586,14 +588,16 @@ export default function DesktopApp() {
           >
             About Me
           </button>
-          <a
-            href="/cv.pdf"
-            target="_blank"
-            rel="noreferrer"
-            className={s.mobileLink}
-          >
-            View CV
-          </a>
+          {aboutTile.cvLink && (
+            <a
+              href={aboutTile.cvLink}
+              target="_blank"
+              rel="noreferrer"
+              className={s.mobileLink}
+            >
+              View CV
+            </a>
+          )}
         </div>
       </div>
 
