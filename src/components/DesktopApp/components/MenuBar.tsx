@@ -53,7 +53,7 @@ const CONTACT_LINKS = [
 ] as const
 
 interface MenuBarProps {
-  menuRef: RefObject<HTMLElement>
+  menuRef: RefObject<HTMLElement | null>
   now: string
   openMenu: MenuLabel | null
   setOpenMenu: React.Dispatch<React.SetStateAction<MenuLabel | null>>
