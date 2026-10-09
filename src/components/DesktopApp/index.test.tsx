@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react"
+import { fireEvent, render, screen } from "@testing-library/react"
 import { beforeEach, describe, expect, it } from "vitest"
 import DesktopApp from "./index"
 
@@ -60,9 +60,7 @@ describe("DesktopApp", () => {
 
   it("opens About window by default on first visit", () => {
     render(<DesktopApp />)
-    expect(
-      screen.getByRole("dialog", { name: "About Me window" }),
-    ).toBeTruthy()
+    expect(screen.getByRole("dialog", { name: "About Me window" })).toBeTruthy()
   })
 
   it("renders project tiles from portfolio-db", () => {
@@ -70,8 +68,29 @@ describe("DesktopApp", () => {
     expect(screen.getAllByText("Catlab POS").length).toBeGreaterThanOrEqual(1)
     expect(screen.getAllByText("TGWrapper").length).toBeGreaterThanOrEqual(1)
     expect(screen.getAllByText("RepoRadar").length).toBeGreaterThanOrEqual(1)
-    expect(screen.getAllByText("UI Construction Library").length).toBeGreaterThanOrEqual(
+    expect(
+      screen.getAllByText("UI Construction Library").length,
+    ).toBeGreaterThanOrEqual(1)
+  })
+
+  it("renders Project Audit tile", () => {
+    render(<DesktopApp />)
+    expect(screen.getAllByText("Project Audit").length).toBeGreaterThanOrEqual(
       1,
     )
+  })
+
+  it("handles keyboard shortcuts Cmd+K and Cmd+W", () => {
+    render(<DesktopApp />)
+    expect(screen.getByRole("dialog", { name: "About Me window" })).toBeTruthy()
+
+    fireEvent.keyDown(window, { key: "w", metaKey: true })
+    expect(screen.queryByRole("dialog", { name: "About Me window" })).toBeNull()
+
+    fireEvent.keyDown(window, { key: "k", metaKey: true })
+    expect(screen.getByRole("dialog", { name: "Terminal" })).toBeTruthy()
+
+    fireEvent.keyDown(window, { key: "w", metaKey: true })
+    expect(screen.queryByRole("dialog", { name: "Terminal" })).toBeNull()
   })
 })

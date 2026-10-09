@@ -6,7 +6,8 @@ import AppWindow from "./AppWindow"
 const aboutTile: AppTile = {
   id: "about",
   name: "About Me",
-  descr: "Frontend engineer focused on product UI.\n3+ Years Production Experience",
+  descr:
+    "Frontend engineer focused on product UI.\n3+ Years Production Experience",
   icon: "logo.png",
 }
 
@@ -26,9 +27,7 @@ const projectTile: AppTile = {
 
 describe("AppWindow", () => {
   it("returns null when tile is null", () => {
-    const { container } = render(
-      <AppWindow tile={null} onClose={() => {}} />,
-    )
+    const { container } = render(<AppWindow tile={null} onClose={() => {}} />)
     expect(container.innerHTML).toBe("")
   })
 
@@ -85,8 +84,20 @@ describe("AppWindow", () => {
     expect(
       screen.getByText("Frontend engineer focused on product UI."),
     ).toBeTruthy()
-    expect(
-      screen.getByText("3+ Years Production Experience"),
-    ).toBeTruthy()
+    expect(screen.getByText("3+ Years Production Experience")).toBeTruthy()
+  })
+
+  it("renders audit metrics grid for audit tile", () => {
+    const auditTile: AppTile = {
+      id: "audit",
+      name: "Project Audit",
+      category: "Featured Case Study",
+      icon: "audit.png",
+      problem: "Audit test problem",
+    }
+    render(<AppWindow tile={auditTile} onClose={() => {}} />)
+    expect(screen.getByTestId("audit-grid")).toBeTruthy()
+    expect(screen.getByText("Performance")).toBeTruthy()
+    expect(screen.getByText("Accessibility")).toBeTruthy()
   })
 })

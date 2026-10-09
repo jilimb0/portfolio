@@ -3,19 +3,20 @@
 Personal portfolio site presented as a retro OS desktop GUI with draggable icons.
 
 ## Tech Stack
-- **Framework:** Create React App (React 18, TypeScript)
+- **Framework:** Vite 6 + React 19 (TypeScript)
 - **Styling:** CSS Modules
 - **Lint/Format:** Biome (double quotes, asNeeded semicolons)
-- **Tests:** React Testing Library + Jest
+- **Tests:** React Testing Library + Vitest
 - **Deploy:** Netlify
 
 ## Commands
-- `pnpm start` — CRA dev server
-- `pnpm build` — production build
-- `pnpm test` — Jest + RTL
+- `pnpm dev` (or `pnpm start`) — Vite dev server
+- `pnpm build` — production build (`tsc --noEmit && vite build`)
+- `pnpm test` — Vitest + RTL
 - `pnpm lint` — `biome check .`
+- `pnpm lint:fix` — `biome check --write .`
 - `pnpm typecheck` — `tsc --noEmit`
-- `pnpm format` — `biome format --write .`
+- `pnpm check` — lint + typecheck
 - `pnpm validate` — lint → typecheck → build
 
 ## Conventions

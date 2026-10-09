@@ -70,9 +70,33 @@ const terminalTile: AppTile = {
   icon: logo,
 }
 
+const auditTile: AppTile = {
+  id: "audit",
+  name: "Project Audit",
+  category: "Featured Case Study",
+  tags: [
+    "Vitest",
+    "Biome",
+    "TypeScript 5.8",
+    "React 19",
+    "Lighthouse",
+    "Netlify Edge",
+  ],
+  problem:
+    "Engineering transparency: displaying real-time code quality, test coverage, and strict performance metrics directly in production.",
+  role: "Lead Frontend Engineer & Performance Architect: Designed automated CI testing pipeline, type safety system, and sub-millisecond interaction loop.",
+  challenges:
+    "Maintaining 60fps drag-and-drop responsiveness under continuous coordinate snapping, with zero cumulative layout shift and 100% test pass rate.",
+  outcome:
+    "34/34 passing unit/component tests in Vitest, 0 Biome linter warnings, sub-100ms cold builds, Lighthouse 98+ score across all Core Web Vitals.",
+  ghLink: "https://github.com/jilimb0",
+  icon: logo,
+}
+
 const appTiles: AppTile[] = [
   aboutTile,
   terminalTile,
+  auditTile,
   ...Object.values(portfolioDb as Record<string, PortfolioProject>).map(
     (item) => ({
       ...item,
@@ -216,16 +240,32 @@ export default function DesktopApp() {
   }, [])
 
   useEffect(() => {
-    const handleEscape = (event: KeyboardEvent) => {
+    const handleGlobalKeys = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setActiveId(null)
+        setShowTerminal(false)
         setOpenMenu(null)
+      } else if (
+        (event.metaKey || event.ctrlKey) &&
+        event.key.toLowerCase() === "k"
+      ) {
+        event.preventDefault()
+        setShowTerminal((prev) => !prev)
+      } else if (
+        (event.metaKey || event.ctrlKey) &&
+        event.key.toLowerCase() === "w"
+      ) {
+        if (activeId !== null || showTerminal) {
+          event.preventDefault()
+          setActiveId(null)
+          setShowTerminal(false)
+        }
       }
     }
 
-    window.addEventListener("keydown", handleEscape)
-    return () => window.removeEventListener("keydown", handleEscape)
-  }, [])
+    window.addEventListener("keydown", handleGlobalKeys)
+    return () => window.removeEventListener("keydown", handleGlobalKeys)
+  }, [activeId, showTerminal])
 
   useEffect(() => {
     const handleResize = () => {

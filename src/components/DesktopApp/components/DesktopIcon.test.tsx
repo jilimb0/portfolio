@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react"
 import { describe, expect, it, vi } from "vitest"
 import type { AppTile } from "../../../types/portfolio"
-import DesktopIcon from "./DesktopIcon"
 import s from "../style.module.css"
+import DesktopIcon from "./DesktopIcon"
 
 const baseTile: AppTile = {
   id: "test-project",

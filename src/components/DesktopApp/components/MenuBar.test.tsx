@@ -41,9 +41,7 @@ describe("MenuBar", () => {
 
   it("renders the apple logo button with About Me aria-label", () => {
     render(<MenuBar {...createProps()} />)
-    expect(
-      screen.getByRole("button", { name: "Open About Me" }),
-    ).toBeTruthy()
+    expect(screen.getByRole("button", { name: "Open About Me" })).toBeTruthy()
   })
 
   it("shows the current time", () => {
@@ -61,11 +59,7 @@ describe("MenuBar", () => {
   })
 
   it("shows filter options panel when openMenu is Filter", () => {
-    render(
-      <MenuBar
-        {...createProps({ openMenu: "Filter" as MenuLabel })}
-      />,
-    )
+    render(<MenuBar {...createProps({ openMenu: "Filter" as MenuLabel })} />)
 
     expect(screen.getByText("✓ All")).toBeTruthy()
     expect(screen.getByText("Commercial")).toBeTruthy()
@@ -77,9 +71,7 @@ describe("MenuBar", () => {
   })
 
   it("shows view options panel when openMenu is View", () => {
-    render(
-      <MenuBar {...createProps({ openMenu: "View" as MenuLabel })} />,
-    )
+    render(<MenuBar {...createProps({ openMenu: "View" as MenuLabel })} />)
 
     expect(screen.getByText("Icon Size: Small")).toBeTruthy()
     expect(screen.getByText("Icon Size: Medium")).toBeTruthy()
@@ -87,19 +79,13 @@ describe("MenuBar", () => {
   })
 
   it("shows window options panel when openMenu is Window", () => {
-    render(
-      <MenuBar
-        {...createProps({ openMenu: "Window" as MenuLabel })}
-      />,
-    )
+    render(<MenuBar {...createProps({ openMenu: "Window" as MenuLabel })} />)
 
-    expect(screen.getByText("Close Active Window")).toBeTruthy()
+    expect(screen.getByText(/Close Active Window/)).toBeTruthy()
   })
 
   it("shows file options panel when openMenu is File", () => {
-    render(
-      <MenuBar {...createProps({ openMenu: "File" as MenuLabel })} />,
-    )
+    render(<MenuBar {...createProps({ openMenu: "File" as MenuLabel })} />)
 
     expect(screen.getByText("Open About Me")).toBeTruthy()
     expect(screen.getByText("Reset Icon Layout")).toBeTruthy()

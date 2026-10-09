@@ -191,7 +191,7 @@ export default function MenuBar({
                   type="button"
                   onClick={onCloseWindow}
                 >
-                  Close Active Window
+                  Close Active Window (⌘W)
                 </button>
               </div>
             )}

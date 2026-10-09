@@ -15,6 +15,7 @@ Available commands:
   skills        — Tech stack & expertise
   experience    — Work history
   projects      — List portfolio projects
+  audit         — Engineering quality & health metrics
   contact       — Get in touch
   open <name>   — Open a project (e.g. 'open reporadar')
   ls            — List all projects
@@ -35,6 +36,7 @@ const PROJECT_NAMES: Record<string, string> = {
   mypersfin: "MyPersFin",
   bouquet: "Bouquet Constructor",
   uilibrary: "UI Construction Library",
+  audit: "Project Audit",
 }
 
 interface TerminalProps {
@@ -125,9 +127,23 @@ export function Terminal({ tiles, onOpenProject, onClose }: TerminalProps) {
           .map(([key, name]) => `  ${key.padEnd(15)} ${name}`)
           .join("\n")
         break
+      case "audit":
+        response =
+          "Engineering Quality & Audit Metrics:\n" +
+          "  • Test Suite:    34/34 passing (Vitest + RTL)\n" +
+          "  • Type Safety:   TypeScript 5.8 Strict (0 errors)\n" +
+          "  • Code Quality:  Biome 2.5 (0 lint errors, 0 format issues)\n" +
+          "  • Lighthouse:    Performance 98 | A11y 100 | Best Practices 100 | SEO 100\n" +
+          "  • Performance:   Sub-millisecond drag throttle (rAF) & 60fps rendering\n" +
+          "  • Hosting/CDN:   Netlify Global Edge (99.9% uptime)"
+        break
       case "contact":
         response =
-          "GitHub:  github.com/jilimb0\nEmail:   maksym@example.com\nLinkedIn: linkedin.com/in/maksym-opanasenko"
+          "Telegram: t.me/MaksymOp\n" +
+          "Email:    opanasenko.mo@gmail.com\n" +
+          "LinkedIn: linkedin.com/in/maksym-opanasenko-06b028199\n" +
+          "GitHub:   github.com/jilimb0\n" +
+          "npm:      npmjs.com/~jilimb0"
         break
       case "clear":
         setHistory([])

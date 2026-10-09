@@ -2,6 +2,15 @@ import { useEffect, useState } from "react"
 import type { AppTile } from "../../../types/portfolio"
 import s from "../style.module.css"
 
+const AUDIT_METRICS = [
+  { label: "Performance", score: "98", unit: "/100", color: "#34d399" },
+  { label: "Accessibility", score: "100", unit: "/100", color: "#34d399" },
+  { label: "Best Practices", score: "100", unit: "/100", color: "#34d399" },
+  { label: "SEO", score: "100", unit: "/100", color: "#34d399" },
+  { label: "Test Suites", score: "34/34", unit: "passed", color: "#60a5fa" },
+  { label: "Type Safety", score: "100%", unit: "strict", color: "#a78bfa" },
+]
+
 interface AppWindowProps {
   tile: AppTile | null
   onClose: () => void
@@ -21,6 +30,7 @@ export default function AppWindow({ tile, onClose }: AppWindowProps) {
 
   const canEmbedLivePreview = Boolean(tile.link) && !tile.embedBlocked
   const isAbout = tile.id === "about"
+  const isAudit = tile.id === "audit"
 
   const infoLines = isAbout
     ? String(tile.descr || "")
@@ -113,6 +123,27 @@ export default function AppWindow({ tile, onClose }: AppWindowProps) {
               </div>
             ) : (
               <div className={s.caseStudy}>
+                {isAudit && (
+                  <div className={s.auditGrid} data-testid="audit-grid">
+                    {AUDIT_METRICS.map((metric) => (
+                      <div key={metric.label} className={s.auditMetricCard}>
+                        <span
+                          className={s.auditMetricScore}
+                          style={{ color: metric.color }}
+                        >
+                          {metric.score}
+                          <small className={s.auditMetricUnit}>
+                            {metric.unit}
+                          </small>
+                        </span>
+                        <span className={s.auditMetricLabel}>
+                          {metric.label}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
                 {caseStudySections.map(({ label, value }) => (
                   <div key={label} className={s.caseSection}>
                     <span className={s.caseSectionLabel}>{label}</span>

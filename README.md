@@ -19,32 +19,37 @@ Live Deployed URL: **[maksympanasenko.netlify.app](https://maksympanasenko.netli
 
 ## 🛠️ Tech Stack & Tooling
 
-- **Core**: React 18, HTML5, CSS Modules
+- **Core**: React 19, TypeScript, HTML5, CSS Modules
+- **Bundler & Dev Server**: Vite 6
+- **Test Runner**: Vitest + React Testing Library
 - **Quality Assurance**: Biome (Linter, formatter, import organizer)
 - **Package Manager**: pnpm 10
-- **Build system**: Create React App (react-scripts)
 
 ---
 
 ## 📂 Codebase Architecture
 
-The project has been refactored into a highly modular component structure:
+The project is structured with modular TypeScript components:
 
 ```text
 src/
 ├── assets/                  # Icons and wallpaper background WebP images
 ├── components/
-│   └── DesktopApp/
-│       ├── components/
-│       │   ├── AppWindow.js   # Project detail view, iframe embedder & actions
-│       │   ├── DesktopDock.js # Bottom dock with macOS magnification physics
-│       │   ├── DesktopIcon.js # Single draggable icon component
-│       │   └── MenuBar.js     # Top menu, clock, and options panel
-│       ├── utils/
-│       │   └── layout.js      # Drag clamping, grid snap calculations
-│       ├── index.js           # Desktop main coordinator
-│       └── style.module.css   # Glassmorphic custom theme system
-├── App.js                   # Application root
+│   ├── DesktopApp/
+│   │   ├── components/
+│   │   │   ├── AppWindow.tsx   # Project detail view, iframe embedder & actions
+│   │   │   ├── DesktopDock.tsx # Bottom dock with macOS magnification physics
+│   │   │   ├── DesktopIcon.tsx # Single draggable icon component
+│   │   │   ├── MenuBar.tsx     # Top menu, clock, and options panel
+│   │   │   └── Terminal.tsx    # Interactive terminal emulator
+│   │   ├── utils/
+│   │   │   └── layout.ts       # Drag clamping, grid snap calculations
+│   │   ├── index.tsx           # Desktop main coordinator
+│   │   └── style.module.css    # Glassmorphic custom theme system
+│   └── ErrorBoundary.tsx
+├── types/
+│   └── portfolio.ts         # TypeScript interfaces & types
+├── App.tsx                  # Application root
 ├── index.css                # Base HTML reset & variables
 └── portfolio-db.json        # Unified project database configuration
 ```
@@ -62,7 +67,8 @@ pnpm install
 
 ### 2. Start Dev Server
 ```bash
-pnpm start
+pnpm dev
+# or: pnpm start
 ```
 Open **[http://localhost:3000](http://localhost:3000)** to view it in the browser.
 

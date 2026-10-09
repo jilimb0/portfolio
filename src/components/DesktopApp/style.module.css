@@ -1623,3 +1623,53 @@
   font-size: 0.85rem;
   caret-color: #3fb950;
 }
+
+/* ── Audit Metrics Grid ──────────────────────── */
+.auditGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.auditMetricCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 0.6rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.auditMetricScore {
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  display: flex;
+  align-items: baseline;
+  gap: 0.2rem;
+}
+
+.auditMetricUnit {
+  font-size: 0.75rem;
+  font-weight: 500;
+  opacity: 0.75;
+}
+
+.auditMetricLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 0.3rem;
+  color: rgba(220, 235, 255, 0.75);
+}
+
+@media (max-width: 620px) {
+  .auditGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
