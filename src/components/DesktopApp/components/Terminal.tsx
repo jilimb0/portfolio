@@ -54,7 +54,9 @@ export function Terminal({ tiles, onOpenProject, onClose }: TerminalProps) {
   const outputRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    outputRef.current?.scrollTo(0, outputRef.current.scrollHeight)
+    if (typeof outputRef.current?.scrollTo === "function") {
+      outputRef.current.scrollTo(0, outputRef.current.scrollHeight)
+    }
   }, [])
 
   useEffect(() => {
