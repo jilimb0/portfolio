@@ -612,7 +612,7 @@ export default function DesktopApp() {
             <a
               href="https://github.com/jilimb0"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className={s.heroLink}
             >
               GitHub
@@ -620,7 +620,7 @@ export default function DesktopApp() {
             <a
               href="https://gitlab.com/ofmaos"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className={s.heroLink}
             >
               GitLab
@@ -636,7 +636,7 @@ export default function DesktopApp() {
               <a
                 href={aboutTile.cvLink}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className={s.heroLink}
               >
                 View CV
@@ -657,7 +657,7 @@ export default function DesktopApp() {
           <a
             href="https://github.com/jilimb0"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className={s.mobileLink}
           >
             GitHub
@@ -665,7 +665,7 @@ export default function DesktopApp() {
           <a
             href="https://gitlab.com/ofmaos"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className={s.mobileLink}
           >
             GitLab
@@ -681,7 +681,7 @@ export default function DesktopApp() {
             <a
               href={aboutTile.cvLink}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className={s.mobileLink}
             >
               View CV

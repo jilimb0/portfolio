@@ -206,7 +206,7 @@ export default function MenuBar({
               key={id}
               href={href}
               target={href.startsWith("mailto") ? undefined : "_blank"}
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className={s.menuContactLink}
               title={title}
             >

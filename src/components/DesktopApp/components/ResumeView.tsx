@@ -107,7 +107,7 @@ export const ResumeView: React.FC<ResumeViewProps> = ({ onClose, isTMA }) => {
                 as="a"
                 href="https://t.me/MaksymOp"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 variant="default"
                 size="sm"
                 rightIcon={
@@ -120,7 +120,7 @@ export const ResumeView: React.FC<ResumeViewProps> = ({ onClose, isTMA }) => {
                 as="a"
                 href="https://github.com/jilimb0"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 variant="outline"
                 size="sm"
                 leftIcon={<GithubIcon style={{ width: 14, height: 14 }} />}

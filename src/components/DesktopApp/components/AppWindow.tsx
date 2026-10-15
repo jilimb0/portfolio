@@ -235,7 +235,7 @@ export default function AppWindow({ tile, onClose }: AppWindowProps) {
                   as="a"
                   href={tile.link}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   variant={showLivePreview ? "default" : "outline"}
                   className={showLivePreview ? s.actionBtn : s.actionBtnGhost}
                   rightIcon={
@@ -250,7 +250,7 @@ export default function AppWindow({ tile, onClose }: AppWindowProps) {
                   as="a"
                   href={tile.ghLink}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   variant="outline"
                   className={s.actionBtnGhost}
                   leftIcon={<GithubIcon style={{ width: 14, height: 14 }} />}
@@ -263,7 +263,7 @@ export default function AppWindow({ tile, onClose }: AppWindowProps) {
                   as="a"
                   href={tile.gitlabLink}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   variant="outline"
                   className={s.actionBtnGhost}
                   leftIcon={<GitlabIcon style={{ width: 14, height: 14 }} />}
@@ -276,7 +276,7 @@ export default function AppWindow({ tile, onClose }: AppWindowProps) {
                   as="a"
                   href={tile.cvLink}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   variant="outline"
                   className={s.actionBtnGhost}
                 >
