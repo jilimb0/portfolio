@@ -1,4 +1,8 @@
-import { useEffect, useMemo, useRef, useState } from "react"
+import {
+  ContextMenu,
+  type ContextMenuItem,
+} from "@ui-construction-library/core"
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import bouquet from "../../assets/bouquet.webp"
 import catlabpos from "../../assets/catlab-pos-screen.webp"
 import converter from "../../assets/converter.webp"
@@ -32,6 +36,8 @@ import DesktopDock from "./components/DesktopDock"
 import DesktopIcon from "./components/DesktopIcon"
 import MenuBar from "./components/MenuBar"
 import { ResumeView } from "./components/ResumeView"
+import { SponsorModal } from "./components/SponsorModal"
+import { SpotlightModal } from "./components/SpotlightModal"
 import { Terminal } from "./components/Terminal"
 import s from "./style.module.css"
 import { clamp, getDefaultPositions, snap } from "./utils/layout"
@@ -151,6 +157,8 @@ export default function DesktopApp() {
   const [iconPositions, setIconPositions] = useState<IconPositions>({})
   const [projectFilter, setProjectFilter] = useState<ProjectFilter>("All")
   const [showTerminal, setShowTerminal] = useState(false)
+  const [showSpotlight, setShowSpotlight] = useState(false)
+  const [showSponsor, setShowSponsor] = useState(false)
   const [showResumeView, setShowResumeView] = useState(() => {
     if (typeof window === "undefined") return false
     const search = new URLSearchParams(window.location.search)
@@ -292,6 +300,8 @@ export default function DesktopApp() {
       if (event.key === "Escape") {
         setActiveId(null)
         setShowTerminal(false)
+        setShowSpotlight(false)
+        setShowSponsor(false)
         setOpenMenu(null)
       } else if (
         (event.metaKey || event.ctrlKey) &&
@@ -301,19 +311,27 @@ export default function DesktopApp() {
         setShowTerminal((prev) => !prev)
       } else if (
         (event.metaKey || event.ctrlKey) &&
+        (event.key === " " || event.code === "Space")
+      ) {
+        event.preventDefault()
+        setShowSpotlight((prev) => !prev)
+      } else if (
+        (event.metaKey || event.ctrlKey) &&
         event.key.toLowerCase() === "w"
       ) {
-        if (activeId !== null || showTerminal) {
+        if (activeId !== null || showTerminal || showSpotlight || showSponsor) {
           event.preventDefault()
           setActiveId(null)
           setShowTerminal(false)
+          setShowSpotlight(false)
+          setShowSponsor(false)
         }
       }
     }
 
     window.addEventListener("keydown", handleGlobalKeys)
     return () => window.removeEventListener("keydown", handleGlobalKeys)
-  }, [activeId, showTerminal])
+  }, [activeId, showTerminal, showSpotlight, showSponsor])
 
   useEffect(() => {
     const handleResize = () => {
@@ -475,11 +493,11 @@ export default function DesktopApp() {
     }
   }
 
-  const resetLayout = () => {
+  const resetLayout = useCallback(() => {
     const width = canvasRef.current?.clientWidth || window.innerWidth
     setIconPositions(getDefaultPositions(desktopTiles, width))
     setOpenMenu(null)
-  }
+  }, [desktopTiles])
 
   const openTile = (id: string) => {
     if (id === "terminal") {
@@ -534,6 +552,37 @@ export default function DesktopApp() {
     if (event.key === "Enter") openTile(id)
   }
 
+  const contextMenuItems: ContextMenuItem[] = useMemo(
+    () => [
+      {
+        id: "spotlight",
+        label: "Search Spotlight (⌘K)",
+        onSelect: () => setShowSpotlight(true),
+      },
+      {
+        id: "resume",
+        label: showResumeView ? "Switch to macOS Desktop" : "Open Resume View",
+        onSelect: () => setShowResumeView((prev) => !prev),
+      },
+      {
+        id: "terminal",
+        label: "Open Terminal",
+        onSelect: () => setShowTerminal(true),
+      },
+      {
+        id: "reset",
+        label: "Reset Icon Layout",
+        onSelect: resetLayout,
+      },
+      {
+        id: "sponsor",
+        label: "Support with Telegram Stars ⭐",
+        onSelect: () => setShowSponsor(true),
+      },
+    ],
+    [showResumeView, resetLayout],
+  )
+
   return (
     <main
       data-testid="desktop"
@@ -564,30 +613,37 @@ export default function DesktopApp() {
         }}
         projectFilter={projectFilter}
         setProjectFilter={setProjectFilter}
+        onOpenSpotlight={() => setShowSpotlight(true)}
+        onOpenSponsor={() => setShowSponsor(true)}
       />
 
-      <section
-        className={`${s.desktopCanvas} ${s.desktopFree}`}
-        ref={canvasRef}
-      >
-        {desktopTiles.map((tile, index) => {
-          const position = iconPositions[tile.id]
+      <ContextMenu
+        trigger={
+          <section
+            className={`${s.desktopCanvas} ${s.desktopFree}`}
+            ref={canvasRef}
+          >
+            {desktopTiles.map((tile, index) => {
+              const position = iconPositions[tile.id]
 
-          return (
-            <DesktopIcon
-              key={tile.id}
-              tile={tile}
-              isActive={activeId === tile.id}
-              iconSizeClass={iconSizeClass}
-              position={position}
-              headerSafeTop={HEADER_SAFE_TOP}
-              onPointerDown={handlePointerDown}
-              onKeyDown={handleKeyDown}
-              index={index}
-            />
-          )
-        })}
-      </section>
+              return (
+                <DesktopIcon
+                  key={tile.id}
+                  tile={tile}
+                  isActive={activeId === tile.id}
+                  iconSizeClass={iconSizeClass}
+                  position={position}
+                  headerSafeTop={HEADER_SAFE_TOP}
+                  onPointerDown={handlePointerDown}
+                  onKeyDown={handleKeyDown}
+                  index={index}
+                />
+              )
+            })}
+          </section>
+        }
+        items={contextMenuItems}
+      />
 
       <div
         className={s.heroWidget}
@@ -737,6 +793,18 @@ export default function DesktopApp() {
       {showResumeView && (
         <ResumeView onClose={() => setShowResumeView(false)} isTMA={isTMA} />
       )}
+
+      <SpotlightModal
+        open={showSpotlight}
+        onClose={() => setShowSpotlight(false)}
+        tiles={appTiles}
+        onSelectTile={(id) => openTile(id)}
+        onOpenResume={() => setShowResumeView(true)}
+        onOpenTerminal={() => setShowTerminal(true)}
+        onOpenSponsor={() => setShowSponsor(true)}
+      />
+
+      <SponsorModal open={showSponsor} onClose={() => setShowSponsor(false)} />
     </main>
   )
 }

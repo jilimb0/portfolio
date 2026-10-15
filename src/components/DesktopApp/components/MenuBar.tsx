@@ -1,3 +1,4 @@
+import { Kbd } from "@ui-construction-library/core"
 import type { RefObject } from "react"
 import logo from "../../../assets/logo.webp"
 import type {
@@ -63,6 +64,8 @@ interface MenuBarProps {
   onCloseWindow: () => void
   projectFilter: ProjectFilter
   setProjectFilter: React.Dispatch<React.SetStateAction<ProjectFilter>>
+  onOpenSpotlight?: () => void
+  onOpenSponsor?: () => void
 }
 
 export default function MenuBar({
@@ -76,6 +79,8 @@ export default function MenuBar({
   onCloseWindow,
   projectFilter,
   setProjectFilter,
+  onOpenSpotlight,
+  onOpenSponsor,
 }: MenuBarProps) {
   const isOpen = (label: MenuLabel) => openMenu === label
 
@@ -200,6 +205,53 @@ export default function MenuBar({
       </div>
 
       <div className={s.menuRight}>
+        {onOpenSpotlight && (
+          <button
+            type="button"
+            onClick={onOpenSpotlight}
+            title="Search Spotlight (⌘K)"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "4px",
+              background: "transparent",
+              border: "none",
+              color: "inherit",
+              cursor: "pointer",
+              fontSize: "12px",
+              padding: "2px 6px",
+              borderRadius: "4px",
+            }}
+          >
+            <span>🔍</span>
+            <Kbd style={{ fontSize: "10px", padding: "1px 4px" }}>⌘K</Kbd>
+          </button>
+        )}
+
+        {onOpenSponsor && (
+          <button
+            type="button"
+            onClick={onOpenSponsor}
+            title="Support via Telegram Stars"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "3px",
+              background: "rgba(245, 158, 11, 0.15)",
+              border: "1px solid rgba(245, 158, 11, 0.4)",
+              color: "#fbbf24",
+              cursor: "pointer",
+              fontSize: "11px",
+              fontWeight: "600",
+              padding: "2px 7px",
+              borderRadius: "4px",
+            }}
+          >
+            <span>⭐</span>
+            <span>Stars</span>
+          </button>
+        )}
+
         <nav className={s.menuContactLinks} aria-label="Contact links">
           {CONTACT_LINKS.map(({ id, label, href, title }) => (
             <a
