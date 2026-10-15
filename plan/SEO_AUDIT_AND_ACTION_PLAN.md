@@ -31,45 +31,14 @@
 
 ## 2. Пошаговый план внедрения (Action Plan)
 
-- [ ] **Шаг 1: Добавление мета-тегов Open Graph, Twitter и Canonical в `index.html`**
-  ```html
-  <link rel="canonical" href="https://maksympanasenko.netlify.app/" />
-  <!-- Open Graph -->
-  <meta property="og:type" content="profile" />
-  <meta property="og:url" content="https://maksympanasenko.netlify.app/" />
-  <meta property="og:title" content="Maksym Opanasenko | Senior Frontend & Full-Stack Engineer" />
-  <meta property="og:description" content="Senior Frontend & Full-Stack Engineer. Interactive macOS Desktop Portfolio, Dashboards, Fintech & Production Systems." />
-  <meta property="og:image" content="https://maksympanasenko.netlify.app/og-preview.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Maksym Opanasenko | Senior Engineer" />
-  <meta name="twitter:description" content="Interactive macOS Desktop Portfolio & Production Case Studies." />
-  <meta name="twitter:image" content="https://maksympanasenko.netlify.app/og-preview.png" />
-  ```
+- [x] **Шаг 1: Добавление мета-тегов Open Graph, Twitter и Canonical в `index.html`**
+  - Добавлены `link[rel="canonical"]`, `og:type="profile"`, `og:title`, `og:description`, `og:image`, `twitter:card="summary_large_image"`.
 
-- [ ] **Шаг 2: Создание растрового баннера `public/og-preview.png` (1200×630)**
-  - Подготовить скриншот интерактивного десктопа macOS с открытым окном терминала/проекта и бейджем специализации.
+- [x] **Шаг 2: Создание растрового баннера `public/og-preview.png` (1200×630)**
+  - Сгенерирован растровый брендированный баннер.
 
-- [ ] **Шаг 3: Генерация `public/sitemap.xml` и обновление `public/robots.txt`**
-  ```xml
-  <?xml version="1.0" encoding="UTF-8"?>
-  <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url>
-      <loc>https://maksympanasenko.netlify.app/</loc>
-      <lastmod>2026-10-14</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>1.0</priority>
-    </url>
-  </urlset>
-  ```
-  В `public/robots.txt`:
-  ```txt
-  User-agent: *
-  Allow: /
-  Sitemap: https://maksympanasenko.netlify.app/sitemap.xml
-  ```
+- [x] **Шаг 3: Генерация `public/sitemap.xml` и обновление `public/robots.txt`**
+  - Создан `sitemap.xml` и добавлена директива `Sitemap:` в `robots.txt`.
 
-- [ ] **Шаг 4: Добавление семантического fallback-контента в `<noscript>`**
-  - Разместить внутри `<noscript>` краткое текстовое резюме со ссылками на ключевые проекты (RepoRadar, C&TLab, Converter) для роботов без JS.
+- [x] **Шаг 4: Добавление семантического fallback-контента в `<noscript>`**
+  - Размещен текстовый H1 и ссылки на флагманские проекты экосистемы (RepoRadar, FormatFlow, профили).
