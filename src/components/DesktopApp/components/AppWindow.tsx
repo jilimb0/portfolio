@@ -1,14 +1,50 @@
+import { Badge, Button, Card, Progress } from "@ui-construction-library/core"
+import {
+  ExternalLinkIcon,
+  GithubIcon,
+  GitlabIcon,
+} from "@ui-construction-library/icons"
 import { useEffect, useState } from "react"
 import type { AppTile } from "../../../types/portfolio"
 import s from "../style.module.css"
 
 const AUDIT_METRICS = [
-  { label: "Performance", score: "98", unit: "/100", color: "#34d399" },
-  { label: "Accessibility", score: "100", unit: "/100", color: "#34d399" },
-  { label: "Best Practices", score: "100", unit: "/100", color: "#34d399" },
-  { label: "SEO", score: "100", unit: "/100", color: "#34d399" },
-  { label: "Test Suites", score: "34/34", unit: "passed", color: "#60a5fa" },
-  { label: "Type Safety", score: "100%", unit: "strict", color: "#a78bfa" },
+  {
+    label: "Performance",
+    score: "98",
+    unit: "/100",
+    color: "#34d399",
+    pct: 98,
+  },
+  {
+    label: "Accessibility",
+    score: "100",
+    unit: "/100",
+    color: "#34d399",
+    pct: 100,
+  },
+  {
+    label: "Best Practices",
+    score: "100",
+    unit: "/100",
+    color: "#34d399",
+    pct: 100,
+  },
+  { label: "SEO", score: "100", unit: "/100", color: "#34d399", pct: 100 },
+  {
+    label: "Test Suites",
+    score: "34/34",
+    unit: "passed",
+    color: "#60a5fa",
+    pct: 100,
+  },
+  {
+    label: "Type Safety",
+    score: "100%",
+    unit: "strict",
+    color: "#a78bfa",
+    pct: 100,
+  },
 ]
 
 interface AppWindowProps {
@@ -77,7 +113,9 @@ export default function AppWindow({ tile, onClose }: AppWindowProps) {
           <div className={s.windowTitleGroup}>
             <h2 className={s.windowTitle}>{tile.name}</h2>
             {tile.category && (
-              <span className={s.windowCategory}>{tile.category}</span>
+              <Badge variant="info" className={s.windowCategory}>
+                {tile.category}
+              </Badge>
             )}
           </div>
         </div>
@@ -126,7 +164,11 @@ export default function AppWindow({ tile, onClose }: AppWindowProps) {
                 {isAudit && (
                   <div className={s.auditGrid} data-testid="audit-grid">
                     {AUDIT_METRICS.map((metric) => (
-                      <div key={metric.label} className={s.auditMetricCard}>
+                      <Card
+                        key={metric.label}
+                        elevation="flat"
+                        className={s.auditMetricCard}
+                      >
                         <span
                           className={s.auditMetricScore}
                           style={{ color: metric.color }}
@@ -139,24 +181,38 @@ export default function AppWindow({ tile, onClose }: AppWindowProps) {
                         <span className={s.auditMetricLabel}>
                           {metric.label}
                         </span>
-                      </div>
+                        <Progress
+                          value={metric.pct}
+                          aria-label={`${metric.label} score`}
+                          style={{ marginTop: "0.4rem", height: "4px" }}
+                        />
+                      </Card>
                     ))}
                   </div>
                 )}
 
                 {caseStudySections.map(({ label, value }) => (
-                  <div key={label} className={s.caseSection}>
+                  <Card
+                    key={label}
+                    elevation="flat"
+                    className={s.caseSection}
+                    style={{
+                      background: "transparent",
+                      border: "none",
+                      padding: 0,
+                    }}
+                  >
                     <span className={s.caseSectionLabel}>{label}</span>
                     <p className={s.caseSectionText}>{value}</p>
-                  </div>
+                  </Card>
                 ))}
 
                 {tags.length > 0 && (
                   <div className={s.tagList}>
                     {tags.map((tag) => (
-                      <span key={tag} className={s.tag}>
+                      <Badge key={tag} variant="default" className={s.tag}>
                         {tag}
-                      </span>
+                      </Badge>
                     ))}
                   </div>
                 )}
@@ -165,53 +221,67 @@ export default function AppWindow({ tile, onClose }: AppWindowProps) {
 
             <div className={s.actions}>
               {canEmbedLivePreview && !showLivePreview && (
-                <button
+                <Button
                   type="button"
+                  variant="default"
                   className={s.actionBtnPrimary}
                   onClick={() => setShowLivePreview(true)}
                 >
                   Open In Window
-                </button>
+                </Button>
               )}
               {tile.link && (
-                <a
+                <Button
+                  as="a"
                   href={tile.link}
                   target="_blank"
                   rel="noreferrer"
+                  variant={showLivePreview ? "default" : "outline"}
                   className={showLivePreview ? s.actionBtn : s.actionBtnGhost}
+                  rightIcon={
+                    <ExternalLinkIcon style={{ width: 14, height: 14 }} />
+                  }
                 >
                   {showLivePreview ? "Open in New Tab" : "Open Website"}
-                </a>
+                </Button>
               )}
               {tile.ghLink && (
-                <a
+                <Button
+                  as="a"
                   href={tile.ghLink}
                   target="_blank"
                   rel="noreferrer"
+                  variant="outline"
                   className={s.actionBtnGhost}
+                  leftIcon={<GithubIcon style={{ width: 14, height: 14 }} />}
                 >
                   GitHub
-                </a>
+                </Button>
               )}
               {tile.gitlabLink && (
-                <a
+                <Button
+                  as="a"
                   href={tile.gitlabLink}
                   target="_blank"
                   rel="noreferrer"
+                  variant="outline"
                   className={s.actionBtnGhost}
+                  leftIcon={<GitlabIcon style={{ width: 14, height: 14 }} />}
                 >
                   GitLab
-                </a>
+                </Button>
               )}
               {tile.cvLink && (
-                <a
+                <Button
+                  as="a"
                   href={tile.cvLink}
                   target="_blank"
                   rel="noreferrer"
+                  variant="outline"
                   className={s.actionBtnGhost}
                 >
                   View CV
-                </a>
+                </Button>
               )}
             </div>
           </div>

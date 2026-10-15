@@ -31,6 +31,7 @@ import AppWindow from "./components/AppWindow"
 import DesktopDock from "./components/DesktopDock"
 import DesktopIcon from "./components/DesktopIcon"
 import MenuBar from "./components/MenuBar"
+import { ResumeView } from "./components/ResumeView"
 import { Terminal } from "./components/Terminal"
 import s from "./style.module.css"
 import { clamp, getDefaultPositions, snap } from "./utils/layout"
@@ -93,8 +94,17 @@ const auditTile: AppTile = {
   icon: logo,
 }
 
+const resumeTile: AppTile = {
+  id: "resume",
+  name: "Resume & TMA",
+  category: "Featured Case Study",
+  descr: "Interactive resume, skills matrix, and Telegram Mini App showcase.",
+  icon: logo,
+}
+
 const appTiles: AppTile[] = [
   aboutTile,
+  resumeTile,
   terminalTile,
   auditTile,
   ...Object.values(portfolioDb as Record<string, PortfolioProject>).map(
@@ -141,6 +151,44 @@ export default function DesktopApp() {
   const [iconPositions, setIconPositions] = useState<IconPositions>({})
   const [projectFilter, setProjectFilter] = useState<ProjectFilter>("All")
   const [showTerminal, setShowTerminal] = useState(false)
+  const [showResumeView, setShowResumeView] = useState(() => {
+    if (typeof window === "undefined") return false
+    const search = new URLSearchParams(window.location.search)
+    return search.get("view") === "resume"
+  })
+
+  const isTMA =
+    typeof window !== "undefined" &&
+    Boolean(
+      (
+        window as unknown as {
+          Telegram?: {
+            WebApp?: {
+              initData?: string
+              ready?: () => void
+              expand?: () => void
+            }
+          }
+        }
+      )?.Telegram?.WebApp?.initData,
+    )
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const tg = (
+        window as unknown as {
+          Telegram?: {
+            WebApp?: { ready?: () => void; expand?: () => void }
+          }
+        }
+      )?.Telegram?.WebApp
+      if (tg) {
+        tg.ready?.()
+        tg.expand?.()
+      }
+    }
+  }, [])
+
   const [heroPos, setHeroPos] = useState<{ x: number; y: number }>(() => {
     if (typeof window === "undefined") return { x: 20, y: 70 }
     const saved = localStorage.getItem("portfolio.heroPos")
@@ -436,6 +484,8 @@ export default function DesktopApp() {
   const openTile = (id: string) => {
     if (id === "terminal") {
       setShowTerminal(true)
+    } else if (id === "resume") {
+      setShowResumeView(true)
     } else {
       setActiveId(id)
     }
@@ -682,6 +732,10 @@ export default function DesktopApp() {
           }}
           onClose={() => setShowTerminal(false)}
         />
+      )}
+
+      {showResumeView && (
+        <ResumeView onClose={() => setShowResumeView(false)} isTMA={isTMA} />
       )}
     </main>
   )
