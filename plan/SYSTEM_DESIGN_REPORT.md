@@ -1,4 +1,4 @@
-# План внедрения System Design и архитектурной устойчивости: Portfolio
+# Отчет о внедрении System Design и архитектурной устойчивости: Portfolio
 
 > **Статус:** Имплементировано  
 > **Область:** PWA Service Worker (Stale-While-Revalidate & Cache-First), Edge CDN Caching Headers, Fast LCP Preloading  
