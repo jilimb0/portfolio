@@ -203,7 +203,7 @@ export default function DesktopApp() {
     if (saved) {
       try {
         return JSON.parse(saved)
-      } catch {}
+      } catch (err) { console.error("[UDPA-Handled]", err);}
     }
     const bottom = typeof window !== "undefined" ? window.innerHeight - 220 : 70
     return { x: 20, y: Math.max(70, bottom) }

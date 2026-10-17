@@ -48,7 +48,7 @@ self.addEventListener("fetch", (event) => {
   // 1. Navigation requests: Network-First with Cache Fallback to '/'
   if (request.mode === "navigate") {
     event.respondWith(
-      fetch(request)
+      fetch(request, { signal: AbortSignal.timeout(10_000) })
         .then((response) => {
           if (response && response.status === 200) {
             const copy = response.clone()
