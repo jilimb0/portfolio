@@ -19,3 +19,6 @@ portfolio — Interactive desktop macOS-style portfolio showcase presenting prod
 - Inbound requests are validated at perimeter boundaries using strict schemas.
 - Outbound third-party calls must employ timeouts, retries with backoff, and circuit breakers.
 - Zero secrets or unredacted customer PII in logs or storage snapshots.
+
+## 5. Active ADRs
+- **[ADR-0001](.ai/adr/0001-pwa-service-worker-cache-and-projects-yaml-alignment.md)** (`src/**`, `public/**`): PWA Service Worker (`public/sw.js` Network-First HTML + Cache-First SWR assets), Netlify immutable asset headers (`netlify.toml`), LCP preload, and strict alignment with `PROJECTS.yaml`.
