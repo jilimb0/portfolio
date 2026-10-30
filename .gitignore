@@ -26,3 +26,6 @@ pnpm-debug.log*
 .plans/
 # Local Netlify folder
 .netlify
+
+# Local AI agent temporary artefacts
+.ai/artefacts/
