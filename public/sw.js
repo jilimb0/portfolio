@@ -1,3 +1,4 @@
+// See .ai/adr/0001-pwa-service-worker-cache-and-projects-yaml-alignment.md
 const CACHE_NAME = "portfolio-static-v2"
 const RUNTIME_CACHE = "portfolio-runtime-v2"
 

@@ -22,3 +22,4 @@ portfolio — Interactive desktop macOS-style portfolio showcase presenting prod
 
 ## 5. Active ADRs
 - **[ADR-0001](.ai/adr/0001-pwa-service-worker-cache-and-projects-yaml-alignment.md)** (`src/**`, `public/**`): PWA Service Worker (`public/sw.js` Network-First HTML + Cache-First SWR assets), Netlify immutable asset headers (`netlify.toml`), LCP preload, and strict alignment with `PROJECTS.yaml`.
+- **[ADR-0002](.ai/adr/0002-security-headers-frame-ancestors-and-seo-baseline.md)** (`netlify.toml`, `index.html`, `public/**`): CSP headers restricting frame-ancestors to self and Telegram for TMA clickjacking defense, external link rel="noopener noreferrer" sanitization, and structured SEO metadata.

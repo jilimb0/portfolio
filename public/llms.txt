@@ -1,0 +1,19 @@
+# llms.txt
+
+Maksym Opanasenko (maksympanasenko.netlify.app) — Senior Frontend & Full-Stack Engineer
+
+Maksym Opanasenko (maksympanasenko.netlify.app) is a Senior Frontend & Full-Stack Engineer with deep expertise in TypeScript, React, Vite, Node.js, and Local-First systems.
+
+## Key Projects
+
+- **RepoRadar (reporadar.app)**: Multi-provider repository telemetry and health dashboard for GitHub, GitLab, and Bitbucket.
+- **Gavel (gavel.sh)**: Autonomous software assay and capital underwriting engine with Ed25519 Merkle passports.
+- **FormatFlow (formatflow.dev)**: 100% in-browser WebAssembly image converter and vectorizer.
+- **TGWrapper**: Serverless-first Telegram bot framework for TypeScript with CAS distributed sessions.
+- **C&T Lab (catlab-pos.vercel.app)**: Local-first Coffee & Tea POS and inventory system.
+
+## Profiles & Contact
+
+- [Portfolio Website](https://maksympanasenko.netlify.app)
+- [GitHub Profile](https://github.com/jilimb0)
+- [LinkedIn Profile](https://linkedin.com/in/maksym-opanasenko)

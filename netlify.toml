@@ -10,6 +10,7 @@
   to = "/index.html"
   status = 200
 
+# See .ai/adr/0002-security-headers-frame-ancestors-and-seo-baseline.md
 [[headers]]
   for = "/*"
   [headers.values]
@@ -18,6 +19,7 @@
     Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=(), browsing-topics=()"
     Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; frame-ancestors 'self' https://web.telegram.org https://*.telegram.org; connect-src 'self' https:;"
 
+# See .ai/adr/0001-pwa-service-worker-cache-and-projects-yaml-alignment.md
 [[headers]]
   for = "/assets/*"
   [headers.values]

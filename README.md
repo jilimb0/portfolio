@@ -1,7 +1,5 @@
-# Personal Portfolio & Showcase Hub
+# 🖥️ Interactive macOS-Style Portfolio & Showcase Hub
 > Monetization, Billing & Sponsorship: Integrates Stripe and Telegram Stars paywall for commercial engineering contracts and support.
-
-# 🖥️ Interactive macOS-Style Portfolio
 
 A premium, interactive desktop environment portfolio built with **React** and **CSS Modules**. It simulates a macOS desktop experience, featuring draggable icons, responsive grid snapping, an animated dock, and live interactive project windows using iframe embeds.
 
