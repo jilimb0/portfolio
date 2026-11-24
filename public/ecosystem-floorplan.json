@@ -1,0 +1,608 @@
+{
+  "schemaTag": "gavel/floorplan@1",
+  "mode": "as_built",
+  "snapshotId": "56f16532bfcb61591722937da0462310ea40146b6cef3aeed265f112afa3664a",
+  "generatedAtIso": "2026-11-24T09:00:00.000Z",
+  "repositories": [
+    {
+      "repoId": "ba",
+      "commitSha": null,
+      "framework": "fintech"
+    },
+    {
+      "repoId": "ctl",
+      "commitSha": null,
+      "framework": "fintech"
+    },
+    {
+      "repoId": "trader",
+      "commitSha": null,
+      "framework": "fintech"
+    },
+    {
+      "repoId": "converter",
+      "commitSha": null,
+      "framework": "services"
+    },
+    {
+      "repoId": "reporadar",
+      "commitSha": null,
+      "framework": "services"
+    },
+    {
+      "repoId": "bouquet",
+      "commitSha": null,
+      "framework": "services"
+    },
+    {
+      "repoId": "gavel",
+      "commitSha": null,
+      "framework": "services"
+    },
+    {
+      "repoId": "service-app",
+      "commitSha": null,
+      "framework": "services"
+    },
+    {
+      "repoId": "weather",
+      "commitSha": null,
+      "framework": "services"
+    },
+    {
+      "repoId": "lifestyle",
+      "commitSha": null,
+      "framework": "lifestyle"
+    },
+    {
+      "repoId": "mypersfin",
+      "commitSha": null,
+      "framework": "lifestyle"
+    },
+    {
+      "repoId": "speech",
+      "commitSha": null,
+      "framework": "lifestyle"
+    },
+    {
+      "repoId": "wishlist",
+      "commitSha": null,
+      "framework": "lifestyle"
+    },
+    {
+      "repoId": "ratio",
+      "commitSha": null,
+      "framework": "lifestyle"
+    },
+    {
+      "repoId": "feedflip",
+      "commitSha": null,
+      "framework": "lifestyle"
+    },
+    {
+      "repoId": "tgwrapper",
+      "commitSha": null,
+      "framework": "core"
+    },
+    {
+      "repoId": "uilibrary",
+      "commitSha": null,
+      "framework": "core"
+    },
+    {
+      "repoId": "create-ready-stack",
+      "commitSha": null,
+      "framework": "core"
+    },
+    {
+      "repoId": "udpa-engine",
+      "commitSha": null,
+      "framework": "core"
+    },
+    {
+      "repoId": "portfolio",
+      "commitSha": null,
+      "framework": "showcase"
+    },
+    {
+      "repoId": "gatebar",
+      "commitSha": null,
+      "framework": "services"
+    },
+    {
+      "repoId": "readmd",
+      "commitSha": null,
+      "framework": "services"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "domain:core",
+      "repoId": "ecosystem",
+      "parentId": null,
+      "kind": "part",
+      "technicalName": "core",
+      "plainTitle": "Core Infrastructure",
+      "plainSummary": "Shared SDKs, UI design system, scaffolding CLI, and CI gates",
+      "filePath": null,
+      "changedInLastCommit": false,
+      "findingCountCritical": 0,
+      "findingCountHigh": 0
+    },
+    {
+      "id": "domain:services",
+      "repoId": "ecosystem",
+      "parentId": null,
+      "kind": "part",
+      "technicalName": "services",
+      "plainTitle": "Services & Developer Tools",
+      "plainSummary": "Developer intelligence, security assay, HITL relay, and local-first apps",
+      "filePath": null,
+      "changedInLastCommit": false,
+      "findingCountCritical": 0,
+      "findingCountHigh": 0
+    },
+    {
+      "id": "domain:fintech",
+      "repoId": "ecosystem",
+      "parentId": null,
+      "kind": "part",
+      "technicalName": "fintech",
+      "plainTitle": "Fintech & Trading",
+      "plainSummary": "POS systems, crypto trading engines, and business analytics",
+      "filePath": null,
+      "changedInLastCommit": false,
+      "findingCountCritical": 0,
+      "findingCountHigh": 0
+    },
+    {
+      "id": "domain:lifestyle",
+      "repoId": "ecosystem",
+      "parentId": null,
+      "kind": "part",
+      "technicalName": "lifestyle",
+      "plainTitle": "Lifestyle & Productivity",
+      "plainSummary": "Consumer web/mobile apps, microlearning, and Telegram bots",
+      "filePath": null,
+      "changedInLastCommit": false,
+      "findingCountCritical": 0,
+      "findingCountHigh": 0
+    },
+    {
+      "id": "domain:showcase",
+      "repoId": "ecosystem",
+      "parentId": null,
+      "kind": "part",
+      "technicalName": "showcase",
+      "plainTitle": "Showcase",
+      "plainSummary": "Interactive desktop portfolio showcase",
+      "filePath": null,
+      "changedInLastCommit": false,
+      "findingCountCritical": 0,
+      "findingCountHigh": 0
+    },
+    {
+      "id": "repo:ba",
+      "repoId": "ba",
+      "parentId": "domain:fintech",
+      "kind": "repo",
+      "technicalName": "fintech/ba",
+      "plainTitle": "BA",
+      "plainSummary": "BA (fintech) — private repo; Pages disabled 2026-10-30 (local-only demo)",
+      "filePath": "fintech/ba",
+      "changedInLastCommit": false,
+      "findingCountCritical": 0,
+      "findingCountHigh": 0
+    },
+    {
+      "id": "repo:ctl",
+      "repoId": "ctl",
+      "parentId": "domain:fintech",
+      "kind": "repo",
+      "technicalName": "fintech/ct-lab",
+      "plainTitle": "C&TLab",
+      "plainSummary": "C&TLab (fintech) — Coffee & Tea POS, not Crypto Lab",
+      "filePath": "fintech/ct-lab",
+      "httpRoute": "https://catlab-pos.vercel.app",
+      "changedInLastCommit": false,
+      "findingCountCritical": 0,
+      "findingCountHigh": 0
+    },
+    {
+      "id": "repo:trader",
+      "repoId": "trader",
+      "parentId": "domain:fintech",
+      "kind": "repo",
+      "technicalName": "fintech/trader",
+      "plainTitle": "Trader",
+      "plainSummary": "Trader (fintech) — 1 dirty file, 1 unpushed commit",
+      "filePath": "fintech/trader",
+      "httpRoute": "https://github.com/jilimb0/trader.git",
+      "changedInLastCommit": false,
+      "findingCountCritical": 0,
+      "findingCountHigh": 0
+    },
+    {
+      "id": "repo:converter",
+      "repoId": "converter",
+      "parentId": "domain:services",
+      "kind": "repo",
+      "technicalName": "services-and-apps/converter",
+      "plainTitle": "Converter",
+      "plainSummary": "Converter (services) — FormatFlow monorepo; no root version",
+      "filePath": "services-and-apps/converter",
+      "changedInLastCommit": false,
+      "findingCountCritical": 0,
+      "findingCountHigh": 0
+    },
+    {
+      "id": "repo:reporadar",
+      "repoId": "reporadar",
+      "parentId": "domain:services",
+      "kind": "repo",
+      "technicalName": "services-and-apps/repo-radar",
+      "plainTitle": "RepoRadar",
+      "plainSummary": "RepoRadar (services) — private monorepo",
+      "filePath": "services-and-apps/repo-radar",
+      "httpRoute": "https://reporadar.app",
+      "changedInLastCommit": true,
+      "findingCountCritical": 0,
+      "findingCountHigh": 0
+    },
+    {
+      "id": "repo:bouquet",
+      "repoId": "bouquet",
+      "parentId": "domain:services",
+      "kind": "repo",
+      "technicalName": "services-and-apps/bouquet-constructor",
+      "plainTitle": "bouquet-constructor",
+      "plainSummary": "bouquet-constructor (services module)",
+      "filePath": "services-and-apps/bouquet-constructor",
+      "changedInLastCommit": false,
+      "findingCountCritical": 0,
+      "findingCountHigh": 0
+    },
+    {
+      "id": "repo:gavel",
+      "repoId": "gavel",
+      "parentId": "domain:services",
+      "kind": "repo",
+      "technicalName": "services-and-apps/gavel",
+      "plainTitle": "Gavel",
+      "plainSummary": "Gavel (services) — 51 dirty files, 1 unpushed commit; absent from old audits",
+      "filePath": "services-and-apps/gavel",
+      "changedInLastCommit": true,
+      "findingCountCritical": 0,
+      "findingCountHigh": 0
+    },
+    {
+      "id": "repo:service-app",
+      "repoId": "service-app",
+      "parentId": "domain:services",
+      "kind": "repo",
+      "technicalName": "services-and-apps/service-app",
+      "plainTitle": "service-app",
+      "plainSummary": "service-app (services module)",
+      "filePath": "services-and-apps/service-app",
+      "changedInLastCommit": false,
+      "findingCountCritical": 0,
+      "findingCountHigh": 0
+    },
+    {
+      "id": "repo:weather",
+      "repoId": "weather",
+      "parentId": "domain:services",
+      "kind": "repo",
+      "technicalName": "services-and-apps/weather-forecast",
+      "plainTitle": "weather-forecast",
+      "plainSummary": "weather-forecast (services) — vanilla JS; 1 dirty file",
+      "filePath": "services-and-apps/weather-forecast",
+      "httpRoute": "https://weather-forecast-jilimb0.netlify.app",
+      "changedInLastCommit": false,
+      "findingCountCritical": 0,
+      "findingCountHigh": 0
+    },
+    {
+      "id": "repo:lifestyle",
+      "repoId": "lifestyle",
+      "parentId": "domain:lifestyle",
+      "kind": "repo",
+      "technicalName": "lifestyle-productivity/lifestyle-ecosystem",
+      "plainTitle": "LifestyleEcosystem",
+      "plainSummary": "LifestyleEcosystem (lifestyle) — 200 on retry; previous 000 was Render cold start",
+      "filePath": "lifestyle-productivity/lifestyle-ecosystem",
+      "httpRoute": "https://lifestyle-ecosystem.onrender.com",
+      "changedInLastCommit": false,
+      "findingCountCritical": 0,
+      "findingCountHigh": 0
+    },
+    {
+      "id": "repo:mypersfin",
+      "repoId": "mypersfin",
+      "parentId": "domain:lifestyle",
+      "kind": "repo",
+      "technicalName": "lifestyle-productivity/my-pers-fin",
+      "plainTitle": "MyPersFin",
+      "plainSummary": "MyPersFin (lifestyle) — monorepo",
+      "filePath": "lifestyle-productivity/my-pers-fin",
+      "changedInLastCommit": false,
+      "findingCountCritical": 0,
+      "findingCountHigh": 0
+    },
+    {
+      "id": "repo:speech",
+      "repoId": "speech",
+      "parentId": "domain:lifestyle",
+      "kind": "repo",
+      "technicalName": "lifestyle-productivity/speech",
+      "plainTitle": "Speech",
+      "plainSummary": "Speech (lifestyle module)",
+      "filePath": "lifestyle-productivity/speech",
+      "httpRoute": "https://jilimb0.github.io/Speech/",
+      "changedInLastCommit": false,
+      "findingCountCritical": 0,
+      "findingCountHigh": 0
+    },
+    {
+      "id": "repo:wishlist",
+      "repoId": "wishlist",
+      "parentId": "domain:lifestyle",
+      "kind": "repo",
+      "technicalName": "lifestyle-productivity/wishlist",
+      "plainTitle": "Wishlist",
+      "plainSummary": "Wishlist (lifestyle) — WishTracker monorepo",
+      "filePath": "lifestyle-productivity/wishlist",
+      "changedInLastCommit": false,
+      "findingCountCritical": 0,
+      "findingCountHigh": 0
+    },
+    {
+      "id": "repo:ratio",
+      "repoId": "ratio",
+      "parentId": "domain:lifestyle",
+      "kind": "repo",
+      "technicalName": "lifestyle-productivity/ratio-schedule-bot",
+      "plainTitle": "ratioAndScheduleBot",
+      "plainSummary": "ratioAndScheduleBot (lifestyle) — Render deployment removed; runs locally/self-hosted.",
+      "filePath": "lifestyle-productivity/ratio-schedule-bot",
+      "changedInLastCommit": false,
+      "findingCountCritical": 0,
+      "findingCountHigh": 0
+    },
+    {
+      "id": "repo:feedflip",
+      "repoId": "feedflip",
+      "parentId": "domain:lifestyle",
+      "kind": "repo",
+      "technicalName": "lifestyle-productivity/feedflip",
+      "plainTitle": "FeedFlip",
+      "plainSummary": "FeedFlip (lifestyle) — 90-second microlearning PWA + BYOC pipeline + Stealth FSRS + Telegram Bot Inbox",
+      "filePath": "lifestyle-productivity/feedflip",
+      "changedInLastCommit": false,
+      "findingCountCritical": 0,
+      "findingCountHigh": 0
+    },
+    {
+      "id": "repo:tgwrapper",
+      "repoId": "tgwrapper",
+      "parentId": "domain:core",
+      "kind": "repo",
+      "technicalName": "core-infra/tg-wrapper",
+      "plainTitle": "TGWrapper",
+      "plainSummary": "TGWrapper (core) — current branch is a feature branch (chore/standardize-gitignore)",
+      "filePath": "core-infra/tg-wrapper",
+      "httpRoute": "https://jilimb0.github.io/TGWrapper",
+      "changedInLastCommit": false,
+      "findingCountCritical": 0,
+      "findingCountHigh": 0
+    },
+    {
+      "id": "repo:uilibrary",
+      "repoId": "uilibrary",
+      "parentId": "domain:core",
+      "kind": "repo",
+      "technicalName": "core-infra/ui-library",
+      "plainTitle": "UI-Library",
+      "plainSummary": "UI-Library (core) — version is @ui-construction-library/core",
+      "filePath": "core-infra/ui-library",
+      "httpRoute": "https://jilimb0.github.io/UI-Library",
+      "changedInLastCommit": true,
+      "findingCountCritical": 0,
+      "findingCountHigh": 0
+    },
+    {
+      "id": "repo:create-ready-stack",
+      "repoId": "create-ready-stack",
+      "parentId": "domain:core",
+      "kind": "repo",
+      "technicalName": "core-infra/create-ready-stack",
+      "plainTitle": "create-ready-stack",
+      "plainSummary": "create-ready-stack (core) — npm package",
+      "filePath": "core-infra/create-ready-stack",
+      "httpRoute": "https://www.npmjs.com/package/create-ready-stack",
+      "changedInLastCommit": false,
+      "findingCountCritical": 0,
+      "findingCountHigh": 0
+    },
+    {
+      "id": "repo:udpa-engine",
+      "repoId": "udpa-engine",
+      "parentId": "domain:core",
+      "kind": "repo",
+      "technicalName": "core-infra/udpa-engine",
+      "plainTitle": "udpa-engine",
+      "plainSummary": "udpa-engine (core) — composite GitHub Action; bundled Gavel engine, consumed as jilimb0/udpa-engine@v1",
+      "filePath": "core-infra/udpa-engine",
+      "changedInLastCommit": false,
+      "findingCountCritical": 0,
+      "findingCountHigh": 0
+    },
+    {
+      "id": "repo:portfolio",
+      "repoId": "portfolio",
+      "parentId": "domain:showcase",
+      "kind": "repo",
+      "technicalName": "portfolio",
+      "plainTitle": "portfolio",
+      "plainSummary": "portfolio (showcase) — macOS-style showcase",
+      "filePath": "portfolio",
+      "httpRoute": "https://portfolio-jilimb0.netlify.app",
+      "changedInLastCommit": true,
+      "findingCountCritical": 0,
+      "findingCountHigh": 0
+    },
+    {
+      "id": "repo:gatebar",
+      "repoId": "gatebar",
+      "parentId": "domain:services",
+      "kind": "repo",
+      "technicalName": "services-and-apps/gatebar",
+      "plainTitle": "GateBar",
+      "plainSummary": "GateBar (services) — Ecosystem ID 20; native Swift 6 macOS HITL relay over ~/.gatebar/gate.sock",
+      "filePath": "services-and-apps/gatebar",
+      "changedInLastCommit": true,
+      "findingCountCritical": 0,
+      "findingCountHigh": 0
+    },
+    {
+      "id": "repo:readmd",
+      "repoId": "readmd",
+      "parentId": "domain:services",
+      "kind": "repo",
+      "technicalName": "services-and-apps/readmd",
+      "plainTitle": "ReadMD",
+      "plainSummary": "ReadMD (services) — Ecosystem ID 21; local-first Markdown reader (Tauri v2 + PWA/TMA + SQLite WAL)",
+      "filePath": "services-and-apps/readmd",
+      "changedInLastCommit": true,
+      "findingCountCritical": 0,
+      "findingCountHigh": 0
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:ba->ctl",
+      "sourceNodeId": "repo:ba",
+      "targetNodeId": "repo:ctl",
+      "kind": "http_call",
+      "isCrossRepo": true,
+      "confidenceBps": 9500,
+      "verifiedByContract": true
+    },
+    {
+      "id": "edge:ctl->ba",
+      "sourceNodeId": "repo:ctl",
+      "targetNodeId": "repo:ba",
+      "kind": "http_call",
+      "isCrossRepo": true,
+      "confidenceBps": 9500,
+      "verifiedByContract": true
+    },
+    {
+      "id": "edge:weather->ba",
+      "sourceNodeId": "repo:weather",
+      "targetNodeId": "repo:ba",
+      "kind": "http_call",
+      "isCrossRepo": true,
+      "confidenceBps": 9000,
+      "verifiedByContract": false
+    },
+    {
+      "id": "edge:readmd->converter",
+      "sourceNodeId": "repo:readmd",
+      "targetNodeId": "repo:converter",
+      "kind": "http_call",
+      "isCrossRepo": true,
+      "confidenceBps": 9500,
+      "verifiedByContract": true
+    },
+    {
+      "id": "edge:readmd->gatebar",
+      "sourceNodeId": "repo:readmd",
+      "targetNodeId": "repo:gatebar",
+      "kind": "local_ipc",
+      "isCrossRepo": true,
+      "confidenceBps": 9500,
+      "verifiedByContract": true
+    },
+    {
+      "id": "edge:gavel->udpa-engine",
+      "sourceNodeId": "repo:gavel",
+      "targetNodeId": "repo:udpa-engine",
+      "kind": "import",
+      "isCrossRepo": true,
+      "confidenceBps": 10000,
+      "verifiedByContract": true
+    },
+    {
+      "id": "edge:uilibrary->portfolio",
+      "sourceNodeId": "repo:uilibrary",
+      "targetNodeId": "repo:portfolio",
+      "kind": "import",
+      "isCrossRepo": true,
+      "confidenceBps": 10000,
+      "verifiedByContract": true
+    },
+    {
+      "id": "edge:uilibrary->reporadar",
+      "sourceNodeId": "repo:uilibrary",
+      "targetNodeId": "repo:reporadar",
+      "kind": "import",
+      "isCrossRepo": true,
+      "confidenceBps": 10000,
+      "verifiedByContract": true
+    },
+    {
+      "id": "edge:uilibrary->readmd",
+      "sourceNodeId": "repo:uilibrary",
+      "targetNodeId": "repo:readmd",
+      "kind": "import",
+      "isCrossRepo": true,
+      "confidenceBps": 10000,
+      "verifiedByContract": true
+    },
+    {
+      "id": "edge:tgwrapper->converter",
+      "sourceNodeId": "repo:tgwrapper",
+      "targetNodeId": "repo:converter",
+      "kind": "import",
+      "isCrossRepo": true,
+      "confidenceBps": 10000,
+      "verifiedByContract": true
+    },
+    {
+      "id": "edge:tgwrapper->ratio",
+      "sourceNodeId": "repo:tgwrapper",
+      "targetNodeId": "repo:ratio",
+      "kind": "import",
+      "isCrossRepo": true,
+      "confidenceBps": 10000,
+      "verifiedByContract": true
+    },
+    {
+      "id": "edge:tgwrapper->readmd",
+      "sourceNodeId": "repo:tgwrapper",
+      "targetNodeId": "repo:readmd",
+      "kind": "import",
+      "isCrossRepo": true,
+      "confidenceBps": 10000,
+      "verifiedByContract": true
+    },
+    {
+      "id": "edge:reporadar->gavel",
+      "sourceNodeId": "repo:reporadar",
+      "targetNodeId": "repo:gavel",
+      "kind": "import",
+      "isCrossRepo": true,
+      "confidenceBps": 10000,
+      "verifiedByContract": true
+    }
+  ],
+  "findings": [],
+  "metrics": {
+    "assignedFilesBps": 10000,
+    "edgeResolutionCoverageBps": 10000,
+    "unmatchedFrontendCallsCount": 0,
+    "aiLabelingCostMicroUsd": "0",
+    "scanDurationMs": 12
+  }
+}

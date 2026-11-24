@@ -1,11 +1,13 @@
 // See .ai/adr/0001-pwa-service-worker-cache-and-projects-yaml-alignment.md
-const CACHE_NAME = "portfolio-static-v2"
-const RUNTIME_CACHE = "portfolio-runtime-v2"
+// See .ai/adr/0003-ecosystem-architecture-floorplan-and-sw-v3.md
+const CACHE_NAME = "portfolio-static-v3"
+const RUNTIME_CACHE = "portfolio-runtime-v3"
 
 const PRECACHE_URLS = [
   "/",
   "/index.html",
   "/manifest.json",
+  "/ecosystem-floorplan.json",
   "/logo.webp",
   "/og-preview.png",
   "/robots.txt",
@@ -70,7 +72,7 @@ self.addEventListener("fetch", (event) => {
   // 2. Static hashed build assets & images: Cache-First with Stale-While-Revalidate
   const isStaticAsset =
     url.pathname.startsWith("/assets/") ||
-    /\.(?:js|css|webp|png|jpg|jpeg|svg|woff2?|ico)$/i.test(url.pathname)
+    /\.(?:js|css|json|webp|png|jpg|jpeg|svg|woff2?|ico)$/i.test(url.pathname)
 
   if (isStaticAsset) {
     event.respondWith(

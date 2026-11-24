@@ -11,8 +11,9 @@ describe("Service Worker & Edge Caching Configuration", () => {
     const swPath = join(ROOT, "public/sw.js")
     const swContent = readFileSync(swPath, "utf-8")
 
-    expect(swContent).toContain("portfolio-static-v2")
-    expect(swContent).toContain("portfolio-runtime-v2")
+    expect(swContent).toContain("portfolio-static-v3")
+    expect(swContent).toContain("portfolio-runtime-v3")
+    expect(swContent).toContain("/ecosystem-floorplan.json")
     expect(swContent).toContain('request.mode === "navigate"')
     expect(swContent).toContain('url.pathname.startsWith("/assets/")')
   })

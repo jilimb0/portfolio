@@ -108,11 +108,22 @@ const resumeTile: AppTile = {
   icon: logo,
 }
 
+const ecosystemMapTile: AppTile = {
+  id: "ecosystem-map",
+  name: "Architecture Map",
+  category: "Featured Case Study",
+  tags: ["Floorplan", "22 Projects", "Cross-Repo", "PWA"],
+  descr:
+    "Interactive multi-zoom map of all 22 ecosystem projects with Plain / Architect mode and cross-repo edges.",
+  icon: logo,
+}
+
 const appTiles: AppTile[] = [
   aboutTile,
   resumeTile,
   terminalTile,
   auditTile,
+  ecosystemMapTile,
   ...Object.values(portfolioDb as Record<string, PortfolioProject>).map(
     (item) => ({
       ...item,

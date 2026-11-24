@@ -7,6 +7,7 @@ import {
 import { useEffect, useState } from "react"
 import type { AppTile } from "../../../types/portfolio"
 import s from "../style.module.css"
+import { EcosystemFloorplanView } from "./EcosystemFloorplanView"
 
 const AUDIT_METRICS = [
   {
@@ -67,6 +68,7 @@ export default function AppWindow({ tile, onClose }: AppWindowProps) {
   const canEmbedLivePreview = Boolean(tile.link) && !tile.embedBlocked
   const isAbout = tile.id === "about"
   const isAudit = tile.id === "audit"
+  const isEcosystemMap = tile.id === "ecosystem-map"
 
   const infoLines = isAbout
     ? String(tile.descr || "")
@@ -161,6 +163,7 @@ export default function AppWindow({ tile, onClose }: AppWindowProps) {
               </div>
             ) : (
               <div className={s.caseStudy}>
+                {isEcosystemMap && <EcosystemFloorplanView />}
                 {isAudit && (
                   <div className={s.auditGrid} data-testid="audit-grid">
                     {AUDIT_METRICS.map((metric) => (

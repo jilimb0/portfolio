@@ -10,6 +10,7 @@ Live Deployed URL: **[maksympanasenko.netlify.app](https://maksympanasenko.netli
 ## ✨ Features
 
 - **📱 Live Iframe Embedding**: Opening a portfolio item loads the actual live site directly inside a draggable macOS-style window, with fallback loading spinners and a mobile-friendly screenshot layout.
+- **🗺️ Interactive 22-Project Architecture Map**: `EcosystemFloorplanView` (`public/ecosystem-floorplan.json`, SW `portfolio-static-v3`) visualizes all 22 ecosystem projects with `Plain` / `Architect` toggle, domain multi-zoom, and cross-repo edge inspector.
 - **🎛️ Dynamic Glassmorphic Dock**: A custom dock featuring scale magnification physics depending on mouse distance and standard running indicators (active status dots).
 - **🤏 Interactive Desktop Icons**: Fully draggable icons that snap to a custom alignment grid.
 - **📏 Spilling Prevention**: Automatically snaps icon boundaries back inside safe screen coordinates when resizing the browser window.
@@ -39,6 +40,7 @@ src/
 │   ├── DesktopApp/
 │   │   ├── components/
 │   │   │   ├── AppWindow.tsx   # Project detail view, iframe embedder & actions
+│   │   │   ├── EcosystemFloorplanView.tsx # 22-project Plain/Architect topology map
 │   │   │   ├── DesktopDock.tsx # Bottom dock with macOS magnification physics
 │   │   │   ├── DesktopIcon.tsx # Single draggable icon component
 │   │   │   ├── MenuBar.tsx     # Top menu, clock, and options panel

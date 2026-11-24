@@ -11,6 +11,8 @@ Maksym Opanasenko (maksympanasenko.netlify.app) is a Senior Frontend & Full-Stac
 - **FormatFlow (formatflow.dev)**: 100% in-browser WebAssembly image converter and vectorizer.
 - **TGWrapper**: Serverless-first Telegram bot framework for TypeScript with CAS distributed sessions.
 - **C&T Lab (catlab-pos.vercel.app)**: Local-first Coffee & Tea POS and inventory system.
+- **GateBar**: Native Swift 6 macOS Human-in-the-Loop (HITL) approval relay over `~/.gatebar/gate.sock`.
+- **ReadMD**: Local-first Markdown reader for macOS (Tauri v2), PWA, and Telegram Mini App with SQLite WAL sync.
 
 ## Profiles & Contact
 
