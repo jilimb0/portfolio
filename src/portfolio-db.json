@@ -189,5 +189,166 @@
     "role": "Creator & Architect: Designed framework-agnostic component library with 14 packages + 8 apps in a pnpm + Turbo monorepo.",
     "challenges": "Building framework-agnostic primitives that work across React, Solid, Svelte, and Vue while maintaining API consistency. Managing 4,792 files with dependency boundary enforcement.",
     "outcome": "74 npm scripts, axe-core accessibility testing, API snapshot contracts, bundle size budgets, dependency boundary enforcement, changeset-based versioning. All checks passing in CI."
+  },
+  "createReadyStack": {
+    "id": "create-ready-stack",
+    "name": "create-ready-stack",
+    "category": "Open Source",
+    "tags": [
+      "TypeScript",
+      "Node.js",
+      "CLI",
+      "Next.js 15",
+      "Drizzle ORM",
+      "MCP"
+    ],
+    "problem": "Bootstrapping production full-stack, TMA, Telegram bot, and AI agent repositories consistently across teams required repeating boilerplate, ADRs, and security boundaries.",
+    "role": "Creator & Maintainer: Engineered deterministic monorepo scaffolding CLI supporting web, saas, tma, bot, agent, and agent-mcp presets plus --blueprint architecture mode.",
+    "challenges": "Enforcing zero-collision pre-write guards, centralized dependency version locking, integer minor-unit billing schemas, and read-only MCP context resources out of the box.",
+    "outcome": "Published on npm (v0.7.0) with 16 test files, headless --agent --in-place scaffolding, shared TerminalShell UX, and gavel/floorplan@1 PRD-to-blueprint generation.",
+    "link": "https://www.npmjs.com/package/create-ready-stack"
+  },
+  "udpaEngine": {
+    "id": "udpa-engine",
+    "name": "UDPA Engine",
+    "category": "Open Source",
+    "tags": [
+      "GitHub Action",
+      "TypeScript",
+      "SARIF 2.1.0",
+      "Ed25519",
+      "AST Analysis",
+      "FinOps"
+    ],
+    "problem": "CI pipelines across multiple repositories needed a zero-install deterministic quality, security, and architectural drift gate without vendoring scripts.",
+    "role": "Creator & Architect: Packaged the bundled Gavel assay engine as composite GitHub Action jilimb0/udpa-engine@v1 emitting SARIF 2.1.0, Ed25519 passports, and architecture diffs.",
+    "challenges": "Keeping a self-contained ~5.0 MB CJS action bundle with zero runtime pnpm installs, zero network calls, and deterministic floorplan-diff outputs on PR runs.",
+    "outcome": "Deployed across ecosystem CI pipelines with advisory/strict fail-on-breach gating, cryptographic zero-knowledge passports, and reproducible PR topology diff artifacts."
+  },
+  "gavel": {
+    "id": "gavel",
+    "name": "Gavel",
+    "category": "Open Source",
+    "tags": ["TypeScript", "Fastify", "React 19", "SQLite WAL", "MCP", "AST"],
+    "problem": "Technical due diligence, M&A cohort underwriting, and automated code audits lacked deterministic fixed-point scoring and verifiable byte-offset lineage.",
+    "role": "Creator & Lead Architect: Built packages/core assay scanners, M&A Comps engine, Policy Diff engine, deterministic architecture floorplan builder, War Room UI, and stdio MCP.",
+    "challenges": "Guaranteeing zero floating-point drift using BigInt/bps math, streaming 250 MB FinOps CSV imports, CAS approval gates, and pre-LLM secret redaction.",
+    "outcome": "23 test files covering 10-vector underwriting, Ed25519 passports, SARIF 2.1.0 export, floorplan@1 topology graphs, and interactive War Room terminal."
+  },
+  "trader": {
+    "id": "trader",
+    "name": "Trader",
+    "category": "Commercial Product",
+    "tags": [
+      "TypeScript",
+      "BigInt",
+      "SQLite WAL",
+      "Telegram Mini App",
+      "Bybit/BingX",
+      "MCP"
+    ],
+    "problem": "Systematic crypto execution and equity fundamental research required unified terminal analytics with strict execution isolation and zero float rounding drift.",
+    "role": "Lead Systems Engineer: Built multi-timeframe strategy engines, progressive stop-loss lifecycle, SEC EDGAR byte-offset lineage, SPLC supply chain graph, and read-only MCP.",
+    "challenges": "Enforcing strict module isolation between advisor research and live order execution while computing BigInt ratios, Brinson attribution, and tax-lot harvesting.",
+    "outcome": "205 test files across scanner, execution, reconciliation TCA, Equity Advisor SSR terminal, Telegram Mini App cockpit, and 8 read-only MCP resources."
+  },
+  "ba": {
+    "id": "ba",
+    "name": "BA (Business Analyzer)",
+    "category": "Commercial Product",
+    "tags": ["Hono", "TypeScript", "Leaflet", "Geohash", "Zod", "TGWrapper"],
+    "problem": "Selecting retail and coffee shop locations lacked fast multi-criteria spatial scoring combining competitor density, cannibalization risk, and weather foot-traffic adjustments.",
+    "role": "Creator & Full-stack Engineer: Built Base32 Geohash-7 SpatialGrid screener, weather Alt-Data engine, color-linked Leaflet terminal UI, and read-only MCP server.",
+    "challenges": "Avoiding O(N^2) POI scans via mtimeMs-invalidated SHA-256 caches, integer bps scoring, and zero-CDN local Leaflet deployment.",
+    "outcome": "6 test files validating sub-second Geohash-7 screening, Green/Blue side-by-side site comparison, and direct integration with C&TLab POS analytics."
+  },
+  "serviceApp": {
+    "id": "service-app",
+    "name": "service-app",
+    "category": "Client Project",
+    "tags": [
+      "TypeScript",
+      "React",
+      "PostgreSQL",
+      "REST API",
+      "Work Orders",
+      "Telemetry"
+    ],
+    "problem": "Service operations teams needed a structured work-order and field technician dispatch application replacing manual spreadsheets.",
+    "role": "Full-stack Engineer: Implemented service request workflows, role-based access control, status lifecycle tracking, and automated integration tests.",
+    "challenges": "Coordinating concurrent technician status updates and maintaining strict tenant/role validation across API boundaries.",
+    "outcome": "20 test files covering work-order workflows, API validation, and responsive operator views."
+  },
+  "ratioAndScheduleBot": {
+    "id": "ratio",
+    "name": "ratioAndScheduleBot",
+    "category": "Personal Tool",
+    "tags": [
+      "TypeScript",
+      "TGWrapper",
+      "Node.js",
+      "Telegram Bot",
+      "Cron",
+      "Vitest"
+    ],
+    "problem": "Automated daily scheduling reminders and ratio calculations needed a lightweight, self-hosted Telegram bot with deterministic state handling.",
+    "role": "Creator: Built Telegram bot workflows on @tgwrapper/core with recurring schedule handlers, ratio calculators, and resilient command routing.",
+    "challenges": "Ensuring reliable self-hosted execution without external platform lock-in and clean separation of schedule state from bot transport.",
+    "outcome": "7 test files verifying schedule parsing, ratio computations, and TGWrapper command/callback handling."
+  },
+  "weatherForecast": {
+    "id": "weather",
+    "name": "Weather Forecast",
+    "category": "Pet Project",
+    "tags": [
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Weather API",
+      "Netlify",
+      "Responsive UI"
+    ],
+    "problem": "Users wanted a fast, zero-framework weather forecast web app displaying multi-day conditions and hourly metrics cleanly across devices.",
+    "role": "Frontend Developer: Designed and built lightweight vanilla JS client with clean forecast cards, search, and Netlify continuous deployment.",
+    "challenges": "Handling API error/loading states gracefully in zero-dependency vanilla JavaScript while keeping payload size minimal.",
+    "outcome": "Live on Netlify (v2.0.0) with fast cold loads and zero build-step complexity.",
+    "link": "https://weather-forecast-jilimb0.netlify.app"
+  },
+  "feedflip": {
+    "id": "feedflip",
+    "name": "FeedFlip",
+    "category": "Featured Case Study",
+    "tags": ["TypeScript", "PWA", "FSRS", "BYOC", "Telegram Bot", "Vitest"],
+    "problem": "Busy engineers struggle to retain technical articles and notes, with traditional spaced-repetition apps feeling heavy and disconnected from daily reading.",
+    "role": "Creator & Architect: Built a 90-second microlearning PWA featuring a BYOC content pipeline, Stealth FSRS scheduling, and Telegram Bot Inbox ingestion.",
+    "challenges": "Balancing fast mobile card interactions with deterministic FSRS memory-decay scheduling and seamless bot-to-PWA content capture.",
+    "outcome": "5 test files covering FSRS scheduling, BYOC ingestion, and Telegram inbox workflows."
+  },
+  "gatebar": {
+    "id": "gatebar",
+    "name": "GateBar",
+    "category": "Personal Tool",
+    "tags": ["Swift 6", "macOS", "Menu Bar", "Unix Socket", "HITL", "Security"],
+    "problem": "Autonomous coding and CLI agents needed a native, low-friction macOS human-in-the-loop (HITL) approval surface without context switching to a browser.",
+    "role": "Creator: Engineered a native Swift 6 macOS menu-bar HITL relay communicating over local Unix domain socket (~/.gatebar/gate.sock).",
+    "challenges": "Designing a responsive native approval queue with strict local IPC framing and zero network exposure.",
+    "outcome": "Native macOS HITL relay integrated with local-first apps like ReadMD for instant operator gate decisions."
+  },
+  "readmd": {
+    "id": "readmd",
+    "name": "ReadMD",
+    "category": "Personal Tool",
+    "tags": [
+      "Tauri v2",
+      "TypeScript",
+      "PWA",
+      "Telegram Mini App",
+      "SQLite WAL",
+      "TGWrapper"
+    ],
+    "problem": "Reading, annotating, and reviewing technical Markdown documents across desktop, web, and Telegram required a fast local-first reader without cloud lock-in.",
+    "role": "Creator: Built a local-first Markdown reader spanning Tauri v2 desktop, PWA, and Telegram Mini App backed by SQLite WAL and GateBar/Converter integrations.",
+    "challenges": "Synchronizing reading state and annotations locally across desktop and TMA surfaces while integrating @ui-construction-library/core and @tgwrapper/core.",
+    "outcome": "Multi-surface local-first reader (v0.2.0) with SQLite WAL persistence, format conversion via Converter, and GateBar HITL integration."
   }
 }
