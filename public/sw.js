@@ -1,7 +1,7 @@
 // See .ai/adr/0001-pwa-service-worker-cache-and-projects-yaml-alignment.md
 // See .ai/adr/0003-ecosystem-architecture-floorplan-and-sw-v3.md
-const CACHE_NAME = "portfolio-static-v3"
-const RUNTIME_CACHE = "portfolio-runtime-v3"
+const CACHE_NAME = "portfolio-static-v4"
+const RUNTIME_CACHE = "portfolio-runtime-v4"
 
 const PRECACHE_URLS = [
   "/",
